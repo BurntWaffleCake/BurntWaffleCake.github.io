@@ -1,0 +1,6 @@
+p {
+     border: blue;
+    color: red;
+    font-family: Times New Roman;
+}
+
