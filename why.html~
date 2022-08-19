@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>But Why?</title>
+    <link rel="stylesheet" href="styleSheet.css">
+  </head>
+  
+  <body>
+    <div class="upperLinks">
+      <a href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/index.html">About Me</a>
+      <a href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/classes.html">Classes</a>
+      <a href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/why.html">But Why?</a>
+    </div>
+    <h1>But Why Have a Digital Portfolio?</h1>
+    <p>A Digital Portfolio allows me and others to show off our accomplishments as well as aspects about ourselves that may be of interest.</p>
+  </body>
+</html>

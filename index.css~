@@ -1,5 +1,6 @@
 p {
     border: blue;
     color: red;
-    font-family: verdana;
+    font-family: Times New Roman;
 }
+

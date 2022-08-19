@@ -1,0 +1,84 @@
+img {
+    width: 25%;
+    height: auto;
+}
+
+body {
+    margin: 0px;
+}
+
+p, h1, h2 {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 10px;
+    color: black;
+    font-family: Georgia;
+}
+
+code {
+    font-size: 16px;
+}
+
+.upperLinksUnselected {
+    margin: 0px;
+    display: inline-block;
+    width: 100px;
+    height: auto;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    font-family: Trebuchet MS;
+}
+
+.codeSection {
+    align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 90%;
+    padding: 30px;
+    vertical-align: middle;
+    border: 2px solid lightgray;
+    background-color: rgb(230,230,230);
+    border-radius: 10px;
+}
+
+ul {
+    display:flex;
+    margin:0;
+    padding:0;
+}
+
+ul li {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+}
+
+ul li:hover{background: #555}
+
+ul li:hover ul {display:block;}
+
+ul li ul {
+    position: absolute;
+    display: none;
+}
+
+ul li ul li {
+    background: #555;
+    display: flex;
+    
+}
+ul li ul li a {display:block !important;}
+ul li ul li:hover {background: #666;}
+
+.selection {
+    display: flex;
+    padding: 0px;
+    background-color: gray;
+    width: 100%;
+}
