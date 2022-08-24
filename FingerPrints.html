@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Computer Science I</title>
+    <link rel="stylesheet" href="styleSheet.css">
+    <main class="mainHeader">Fingerprints</main>
+    <div class="selection">
+      
+      <ul class="linkBar">
+	<li>
+	  <a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/index.html">About Me</a>
+	  <ul>
+	  </ul>
+	</li>
+	<li>
+	  <a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/classes.html">Classes</a>
+	  <ul>
+	    <li><a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/computerScienceI.html">Computer Science I</a></li>
+	  </ul>
+	</li>
+	<li>
+	  <a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/why.html">But Why?</a>	  
+	</li>
+	<li>
+	  <a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/FingerPrints.html">Fingerprints</a>	  
+	</li>
+      </ul>
+    </div>
+  </head>
+  
+  <body>
+     <h1>Fingerprints and HTTPS Keys</h1>
+    <p>
+      A HTTPS web-connection is a secure version of a http connection (hence the s at the end .>.). The purpose of this extra security is to "ensure the intregrety and confidentiality of data sent between the server and user" (Developers Google). The integrety of the information is maintained in order to prevent external modification to said data by a MITM (man-in-the-middle) when being sent between the user and server. This is especially important as web connections could be spoofed in order to trick users from believing a fake website as the real version of said website. A MITM is an interceptor of the information being sent between the server and user who is able to modify or read off of the data. This ability to read and modify data can be used to target especially sensitive data such as passwords, band account details, and many others as such. In order to prevent or detect this from happening, a key is used to encrypt the data.      
+    </p>
+    <h2>Keys</h2>
+     <p>
+       There are two types of keys. A public key and a private key. A public key is used to encrypt data and is available for everyone to see. A private key is kept secret to the public and is only avaiable to look at by the sender and user. The private key is used to decrypt the data after it was encrypted by the pubilic key. 
+     </p>
+     <div class="bodyElement">
+     <img src="https://www.okta.com/sites/default/files/styles/tinypng/public/media/image/2021-03/public-key-encryption.png?itok=Bxgj8OXl">
+     </div>
+     <h2>susious tiltilar</h2>
+     <h2>Hashes</h2>
+     <p>Cryptographic hashes (or digests) are "are complex mathematical algorithms which carefully process every single bit of what they digest"(Gibson Research Corporation) and are used to "fingerprint" certificates in order to validate any changes made. A good hash is able to change more than half of the bits that rrepresent the fingerprint no matter how small the change is. This is used to validate certificates due to the sensitivity of the fingerprint which allows for us to precisely see whether or not the fingerprint has been tampered with. These certificates are then managed by a CA or certificate authority who keep a library of reliable certificates of different companies such as Amazon, Google, and such whilst verifying the certificates for various websites.</p>
+     <div class="bodyElement">
+       <img  src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2008/10/23/0/FNMCornedBeefHash_s3x4.jpg.rend.hgtvcom.616.462.suffix/1371587691772.jpeg">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Fingerprint.svg/800px-Fingerprint.svg.png">    
+     </div>
+     <p></p>
+     <!-- <img src="bananor.png"/> -->
+     <img src="rat-spinning.gif">
+     <img src="https://thumbs.gfycat.com/WideeyedInsistentHarborporpoise-max-1mb.gif">
+     <img src="https://colinbendell.cloudinary.com/image/upload/c_crop,f_auto,g_auto,h_350,w_400/v1512090971/Wizard-Clap-by-Markus-Magnusson.gif">
+   <!-- <img src="https://i.makeagif.com/media/2-09-2017/dfH0H8.gif">
+    <img src="https://c.tenor.com/tKElFQO9vQwAAAAC/goofy-goofy-ahh.gif"> -->
+  </body>
+
+</html>

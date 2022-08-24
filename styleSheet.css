@@ -1,3 +1,7 @@
+* {
+    wrap:soft
+}
+
 img {
     width: 25%;
     height: auto;
@@ -17,21 +21,35 @@ p, h1, h2 {
     font-family: Georgia;
 }
 
+p {
+    font-size: 20px;
+}
+
 code {
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .upperLinksUnselected {
     margin: 0px;
     display: inline-block;
-    width: 100px;
+    width: auto;
     height: auto;
     text-align: center;
     text-decoration: none;
     color: white;
     font-size: 16px;
     padding: 10px;
-    font-family: Trebuchet MS;
+    font-family: Verdana;
+    font-weight: bold;
+}
+
+pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
 
 .codeSection {
@@ -77,8 +95,62 @@ ul li ul li a {display:block !important;}
 ul li ul li:hover {background: #666;}
 
 .selection {
+    margin-bottom:50px;
+    height:100px
     display: flex;
     padding: 0px;
-    background-color: gray;
+    background-color: white;
     width: 100%;
+}
+
+.linkBar {
+    background-color:gray
+}
+
+.mainHeader {
+    white-space:nowrap;
+    display: inline-block !important;
+    font-family: Verdana; 
+    font-weight: bold;
+    /* background-image: url("https://hdqwalls.com/wallpapers/paint-splatter-abstract-4k-8s.jpg"); */
+    background-image: url("https://cdnb.artstation.com/p/assets/images/images/024/538/827/original/pixel-jeff-clipa-s.gif?1582740711&dl=1");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position:center;
+    align: center;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 5em;
+    height:500px;
+    width:100%;
+    font-size: 100px;
+    color: white;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+}
+
+.fullBodyElement {
+    align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 90%;
+    padding: 30px;
+    vertical-align: middle;
+    border: 2px solid lightgray;
+    background-color: rgb(230,230,230);
+    border-radius: 10px;
+}
+
+.bodyElement {
+    diplay: block;
+    align: center;
+    margin: auto;
+    align: center;
+    text-align:center;
+}
+
+.bodyElement img {
+    width:40%;
+    margin-right:20px;
 }

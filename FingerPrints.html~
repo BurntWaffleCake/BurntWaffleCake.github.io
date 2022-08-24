@@ -3,7 +3,7 @@
   <head>
     <title>Computer Science I</title>
     <link rel="stylesheet" href="styleSheet.css">
-    <main class="mainHeader">Classes</main>
+    <main class="mainHeader">About Me</main>
     <div class="selection">
      
       <ul class="linkBar">
@@ -21,18 +21,22 @@
 	<li>
 	  <a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/why.html">But Why?</a>	  
 	</li>
-	<li>
-	  <a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/FingerPrints.html">Fingerprints</a>	  
-	</li>
       </ul>
     </div>
   </head>
-
-  <body>
-    <h1>Classes I have Takes</h1>
-    <a href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/computerScienceI.html">Computer Science I</a>
-    <br>
-    <a href="">AP Statistics</a>
-  </body>
   
- </html
+  <body>
+     <h1>Soohan Cho</h1>
+    <p>
+      Hello! My name is Soohan Cho and this is a page about me!<br>
+      I am currently a Junior at Allen High School and this is my Digital Portfolio.<br>
+      Use the links above to navigate through my digital portfolio.<br>
+      Adios Amigos.
+    <p>
+   <!-- <img src="bananor.png"/> -->
+    <img src="rat-spinning.gif">
+   <!-- <img src="https://i.makeagif.com/media/2-09-2017/dfH0H8.gif">
+    <img src="https://c.tenor.com/tKElFQO9vQwAAAAC/goofy-goofy-ahh.gif"> -->
+  </body>
+
+</html>
