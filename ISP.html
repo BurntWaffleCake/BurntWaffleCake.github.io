@@ -1,37 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Computer Science I</title>
     <link rel="stylesheet" href="styleSheet.css">
-    <main class="mainHeader">Computer Science II</main>
-    <div class="selection">
-     
-      <ul class="linkBar">
-	<li>
-	  <a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/index.html">About Me</a>
-	  <ul>
-	  </ul>
-	</li>
-	<li>
-	  <a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/classes.html">Classes</a>
-	  <ul>
-	    <li><a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/computerScienceI.html">Computer Science I</a></li>
-	  </ul>
-	</li>
-	<li>
-	  <a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/why.html">But Why?</a>	  
-	</li>
-	<li>
-	  <a class="upperLinksUnselected" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/FingerPrints.html">Fingerprints</a>	  
-	</li>
-      </ul>
-    </div>
+    <meta charset="utf-8">
   </head>
-
   <body>
-    <p>
-      Here are some things about by experience in <b>Computer Science II!</b>
-      During the second semester of Computer Science, we did a project called the independant study project (ISP) where we could explore our own coding topics using the swift language and <b>IGIS</b> platform.
+    <main class="mainHeader">Fingerprints</main>
+    <div class="selection">
+      <ul class="linkBar">
+	<li class="linkCell">
+	  <a class="icon" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/index.html"><b>TO HOME</b></a>
+	  <!-- <img class="icon" src=""> -->
+	  <ul>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/index.html">About Me</a>
+	  <ul>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/classes.html">Classes</a>
+	  <ul>
+	    <li class="linkCell">
+	      <a class="barLink" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/computerScience.html">Computer Science I</a>
+	    </li>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/why.html">But Why?</a>	  
+	</li>
+      </ul> 
+    </div>
+    <div class="floatContainer">
+      <div class="sideBar">
+	<a class="sidebarLink" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/ISP.html">ISP</a>
+	<a class="sidebarLink" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/FingerPrints.html">FingerPrints</a>
+      </div>
+      <div class="mainBody">
+	<p>
+	  During the second semester of Computer Science I, we did a project called the independant study project (ISP) where we could explore our own coding topics using the swift language and <b>IGIS</b> platform.
     </p>
     
     <h2>Concept</h2>
@@ -45,8 +54,8 @@
     </p>
     
     <h2>Code Examples</h2>
-    <p>Down below is a portion of the code we used in order to deal with the visuals of the game. We used a single .png image that contained all the various sprites needed in the game which also allowed us to easily swap between different styles while playing the game.
-  
+    <p>Down below is a portion of the code we used in order to deal with the visuals of the game. We used a single .png image that contained all the various sprites needed in the game which also allowed us to easily swap between different styles while playing the game.</p>
+      
 <pre><code class="codeSection">import Igis
 import Foundation
 import Scenes
@@ -148,7 +157,7 @@ class SpriteLibrary : RenderableEntity {
             scene.spriteLibraryReady = true
         }
     }
-}</code><pre>
+}</code></pre>
     <p>Individual styles or <code>SpriteSheets</code> are kept inside of an array for use.</p>
     <pre><code class="codeSection">let spriteLibraryURL = [
       "https://www.codermerlin.com/users/soohan-cho/images/SpriteSheet.FlappyBirdClone.ver.1.0.4_10.png",
@@ -198,6 +207,9 @@ class SpriteLibrary : RenderableEntity {
     }</code></pre>
     <h2>Conclusion</h2>
     <p>Overall, the project went smoothly with a few minor bumps along the way due to game and code design issues we encountered. The most difficult part of the project was determining how we should tackle diffent mechanics that we wanted to add.<br>For example, we wanted to make the pipe obstacles reset back to a vertain position but had to decide between two different methods to accomplish the goal.<br>One was to reset the pipes once they went offscreen and the other was to use a different class in order to detect whether or not the pipe should be reset. We decided to go with the second option due to its customizability.</p>
+          </div>
+    </div>
+
   </body>
 </html>
 

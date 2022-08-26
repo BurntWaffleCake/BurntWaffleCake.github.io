@@ -2,11 +2,6 @@
     wrap:soft
 }
 
-img {
-    width: 25%;
-    height: auto;
-}
-
 body {
     margin: 0px;
 }
@@ -27,20 +22,6 @@ p {
 
 code {
     font-size: 20px;
-}
-
-.upperLinksUnselected {
-    margin: 0px;
-    display: inline-block;
-    width: auto;
-    height: auto;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    padding: 10px;
-    font-family: Verdana;
-    font-weight: bold;
 }
 
 pre {
@@ -67,11 +48,13 @@ pre {
 
 ul {
     display:flex;
+    height:100%;
     margin:0;
     padding:0;
 }
 
 ul li {
+    height: 100%;
     margin: 0px;
     padding: 0px;
     display: inline-block;
@@ -79,7 +62,7 @@ ul li {
 
 ul li:hover{background: #555}
 
-ul li:hover ul {display:block;}
+ul li:hover ul {display:flex;}
 
 ul li ul {
     position: absolute;
@@ -88,23 +71,61 @@ ul li ul {
 
 ul li ul li {
     background: #555;
-    display: flex;
-    
+    display:table-cell;
+    vertical-align:middle;
 }
-ul li ul li a {display:block !important;}
 ul li ul li:hover {background: #666;}
 
-.selection {
-    margin-bottom:50px;
-    height:100px
-    display: flex;
-    padding: 0px;
-    background-color: white;
-    width: 100%;
+.linkBar {
+    height: 100%;
+    background-color:gray;
+    display: table;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-.linkBar {
-    background-color:gray
+
+.selection {
+    position: sticky;
+    list-style:none;
+    top:0;
+    margin:auto;
+    height:50px;
+    width:100%;
+    display: flex;
+    padding: 0px;
+    background-color: gray;
+}
+
+.barLink {
+    padding:10px;
+    text-align:middle;
+    vertical-align:center;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    width:auto;
+    font-family: RooneySans-Regular,Lucida Sans,Lucida Grande,Lucida Sans Unicode,Trebuchet MS,sans-serif;
+    display:inline-block;
+}
+
+.linkCell {
+    display:table-cell;
+    margin: 0px;
+    width: auto;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+inlineElement {
+    display:inline-block;
+    margin:0px;
+    padding:10px
 }
 
 .mainHeader {
@@ -113,7 +134,8 @@ ul li ul li:hover {background: #666;}
     font-family: Verdana; 
     font-weight: bold;
     /* background-image: url("https://hdqwalls.com/wallpapers/paint-splatter-abstract-4k-8s.jpg"); */
-    background-image: url("https://cdnb.artstation.com/p/assets/images/images/024/538/827/original/pixel-jeff-clipa-s.gif?1582740711&dl=1");
+    background-image: url("https://cdnb.artstation.com/p/assets/images/images/024/538/827/original/pixel-jeff-clipa-s.gif?1582740711&dl=1"); /*
+    background-image: url("https://im2.ezgif.com/tmp/ezgif-2-f306650990.gif"); */
     background-repeat: no-repeat;
     background-size: 100%;
     background-position:center;
@@ -121,11 +143,11 @@ ul li ul li:hover {background: #666;}
     text-align: center;
     vertical-align: middle;
     line-height: 5em;
-    height:500px;
+    height:25vw;
     width:100%;
-    font-size: 100px;
+    font-size: 5vw;
     color: white;
-    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-width: .25vw;
     -webkit-text-stroke-color: black;
 }
 
@@ -145,12 +167,67 @@ ul li ul li:hover {background: #666;}
 .bodyElement {
     diplay: block;
     align: center;
-    margin: auto;
+    margin: 20px;
     align: center;
     text-align:center;
 }
 
 .bodyElement img {
-    width:40%;
+    width: 40%;
     margin-right:20px;
+}
+
+.mainBody {
+    flex:5;
+    margin: auto;
+    padding: 0px;
+    margin-left:0px;
+    float:right;
+    align: right;
+    display: block;
+    border: 1px solid black;
+}
+
+.sideBar {
+    box-sizing: border-box;
+    z-index: 1;
+    align-self:flex-start;
+    position:sticky;
+    top:50px;
+    width:10vw;
+    height:?;
+    float:left;
+    display: block;
+    text-color:black;
+}
+
+.floatContainer {
+    padding:0px;
+    margin:0px;
+    wrap:soft;
+    display:flex;
+}
+
+.icon {
+    /*    background-image: url("https://i.gifer.com/origin/fa/fa3a4ff01def196d418dbd6ea75bac62_w200.gif"); */
+    
+    float:top;
+    background-size: 100% 100%;
+    display:block;
+    height: 50px;
+    width:10vw ;
+    padding: 0px;
+    margin:0px;
+    text-decoration: none;
+    vertical-align: middle;
+    text-align: middle;
+}
+
+.sidebarLink {
+    display: block;
+    width: auto;
+    height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    border: 2px solid black;
 }
