@@ -6,7 +6,7 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <main class="mainHeader">Fingerprints</main>
+    <main class="mainHeader">ISP</main>
     <div class="selection">
       <ul class="linkBar">
 	<li class="linkCell">

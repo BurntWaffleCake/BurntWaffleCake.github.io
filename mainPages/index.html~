@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Computer Science I</title>
+    <link rel="stylesheet" href="styleSheet.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <main class="mainHeader">Aboubt Me</main>
+    <div class="selection">
+      <ul class="linkBar">
+	<li class="linkCell">
+	  <a class="icon" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/index.html"><b>TO HOME</b></a>
+	  <!-- <img class="icon" src=""> -->
+	  <ul>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/index.html">About Me</a>
+	  <ul>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/classes.html">Classes</a>
+	  <ul>
+	    <li class="linkCell">
+	      <a class="barLink" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/computerScience.html">Computer Science I</a>
+	    </li>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="https://www.codermerlin.com/users/soohan-cho/Digital%20Portfolio/why.html">But Why?</a>	  
+	</li>
+      </ul> 
+    </div>
+     <h1>Soohan Cho</h1>
+    <p>
+      Hello! My name is Soohan Cho and this is a page about me!<br>
+      I am currently a Junior at Allen High School and this is my Digital Portfolio.<br>
+      Use the links above to navigate through my digital portfolio.<br>
+      Adios Amigos.
+    <p>
+   <!-- <img src="bananor.png"/> -->
+    <img src="rat-spinning.gif" alt="thats a bit sus! this image is dead">
+   <!-- <img src="https://i.makeagif.com/media/2-09-2017/dfH0H8.gif">
+    <img src="https://c.tenor.com/tKElFQO9vQwAAAAC/goofy-goofy-ahh.gif"> -->
+  </body>
+</html>
+
+<!-- this portfolio lives at git@github.com:BurntWaffleCake/BurntWaffleCake.github.io.git :P -->
