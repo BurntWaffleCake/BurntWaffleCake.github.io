@@ -1,7 +1,3 @@
-* {
-    wrap:soft
-}
-
 body {
     margin: 0px;
 }
@@ -13,12 +9,12 @@ p, h1, h2 {
     margin-bottom: 0px;
     padding: 10px;
     color: black;
-    font-family: Georgia;
+    font-family: Garamond;
 }
 
 p {
-    font-size: 16px;
-    line-height: 25px;
+    font-size: 20px;
+    line-height:35px;
 }
 
 code {
@@ -35,7 +31,6 @@ pre {
 }
 
 .codeSection {
-    align: center;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -102,7 +97,6 @@ ul li ul li:hover {background: #666;}
 
 .barLink {
     padding:10px;
-    text-align:middle;
     vertical-align:center;
     text-decoration: none;
     color: white;
@@ -136,12 +130,12 @@ inlineElement {
     font-family: Verdana; 
     font-weight: bold;
     /* background-image: url("https://hdqwalls.com/wallpapers/paint-splatter-abstract-4k-8s.jpg"); */
-    background-image: url("https://cdnb.artstation.com/p/assets/images/images/024/538/827/original/pixel-jeff-clipa-s.gif?1582740711&dl=1"); /*
+/*    background-image: url("https://cdnb.artstation.com/p/assets/images/images/024/538/827/original/pixel-jeff-clipa-s.gif?1582740711&dl=1"); /*
     background-image: url("https://im2.ezgif.com/tmp/ezgif-2-f306650990.gif"); */
+    background-image: url("https://wallpapercave.com/wp/wp7455333.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
     background-position:center;
-    align: center;
     text-align: center;
     vertical-align: middle;
     line-height: 5em;
@@ -177,14 +171,13 @@ inlineElement {
     background-repeat: no-repeat;
     background-size: 100%;
     background-position:center;
-    align: center;
     text-align: center;
     vertical-align: middle;
     height:100%;
     width:100%;
     line-height:4em;
     display:block;
-    padding-bottom: 0px;
+    padding-bottom: 0px;    
     margin-bottom:0px;
     font-size: 10vw;
     color: black;
@@ -199,7 +192,6 @@ inlineElement {
 }
 
 .fullBodyElement {
-    align: center;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -212,10 +204,7 @@ inlineElement {
 }
 
 .bodyElement {
-    diplay: block;
-    align: center;
     margin: 20px;
-    align: center;
     text-align:center;
 }
 
@@ -231,10 +220,13 @@ inlineElement {
     padding: 0px;
     margin-left:0px;
     float:right;
-    align: right;
     display: block;
     border: 1px solid black;
     
+}
+
+.mainBody p {
+    margin: 0px 300px 0px 100px;
 }
 
 .sideBar {
@@ -244,16 +236,13 @@ inlineElement {
     position:sticky;
     top:50px;
     width:10vw;
-    height:?;
     float: left;
     display: block;
-    text-color: black;
 }
 
 .floatContainer {
     padding:0px;
     margin:0px;
-    wrap:soft;
     display:flex;
 }
 
