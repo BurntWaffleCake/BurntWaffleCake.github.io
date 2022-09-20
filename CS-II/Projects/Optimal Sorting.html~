@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Computer Science I</title>
+    <link rel="stylesheet" href="../../styles/styleSheet.css">
+    <meta charset="utf-8"> 
+  </head>
+  <body>
+    <main class="mainHeader">FingerPrints</main>
+    <div class="selection">
+      <ul class="linkBar">
+	<li class="linkCell">
+	  <a class="barLink" href="../../index.html"><b>TO HOME</b></a>
+	  <!-- <img class="icon" src=""> -->
+	  <ul>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="../../mainPages/index.html">About Me</a>
+	  <ul>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="../../mainPages/classes.html">Classes</a>
+	  <ul>
+	    <li class="linkCell">
+	      <a class="barLink" href="../../mainPages/computerScience.html">Computer Science I</a>
+	    </li>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="../../mainPages/why.html">But Why?</a>
+	</li>
+      </ul> 
+    </div>
+
+    <div class="floatContainer">
+      <div class="sideBar">
+	<a class="sidebarLink" href="../Essays/ISP.html">ISP</a>
+	<a class="sidebarLink" href="../Essays/FingerPrints.html">FingerPrints</a>
+	<a class="sidebarLink" href="../Essays/AISentience.html">AI Sentience</a>
+	<a class="sidebarLink" href="Optimal Sorting.html">Optimal Sorting</a>
+      </div>
+    <div class="mainBody">
+      <h1>Optimal Sorting</h1>
+      <h2>colaborated with: Jacob Fessa, Robby</h2>
+      <a href="https://github.com/BurntWaffleCake/Optimal-Sorting">github link</a>
+      <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-09-11T19:23:26.887Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36 Edg/105.0.1343.33\&quot; etag=\&quot;y-PUh7zWg5qblreyTY68\&quot; version=\&quot;20.2.8\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;Z02LLMoSof-S0UZd88kD\&quot; name=\&quot;Page-1\&quot;&gt;7Vpbe9o4EP01PJLPF2zIIyGQNk26m7Lpln0T9oC1tS1Xlrnk11eyJWwiB+hui7378YQ1kvDM0TmjkaBjj6LNHUVJ8Eh8CDuW4W869m3Hsky77/APYdkWloHRKwxLin05qDRM8QtIoyGtGfYh3RvICAkZTvaNHolj8NieDVFK1vvDFiTcf2uClqAZph4Kdeuf2GeBjMIxSvs7wMtAvdk0ZE+E1GBpSAPkk3XFZI879ogSwoqnaDOCUICncCnmTd7o3TlGIWanTLj73AuYYcez4bebwRY9j55Ws65cjBUKMxmwdJZtFQLgc0Bkk1AWkCWJUTgurTeUZLEP4jUGb5VjHghJuNHkxr+Bsa1cXZQxwk0Bi0LZq4cio0tJRj044L90lyG6BHZgnF2ME7FUXiCBugMSAaNbPoBCiBhe7S8+khxa7saVMPMHifQPoG5pqE95BEyHPgw5zwXE6wAzmCYoB2PNpXYigCugDDYHQ5a9tuLpdsfkor0uaW+qMUGF8gPj36Pkxtnnb7+Nk9XT03C4+kLtD/fdGpT+W9y0dW7Wxmm2ipu2hvrQ8yBhOfAUx8u0Y7khj+dmTvnTUjyRGARRCPUFVMDtRoiF7dVynZ/F1qksdn8Ci81P/oeRb9l/rSZTeH//3B1MrrtuE6SFDWZfxPQrR7ZmlZ7bjfzmvLFVjZiHW5kkmrNqXzktb6l5JwnkEPGrAqmFsDGBHPK6IhCPRAkOlQRS8QUxX5G8AEHCMbKoqqd5UVw3LQrnIoojZD8qCqspURzyuiKKUQDeV+Eg8gJRnweIIo/lewOOU17UK13IAYU8+MO8UMwiBb0g2ufA+ZVj95tWjtrPLtJ5UxJHpdNvlXRqDgNEnAXqlIPCJEBzYJgfUIWHc5SCX8hFycnjptbppuc2rpveRTdH9HC8DmvXntPXhPN7VtHNbkNRxVhcqchK4QjJZDQHrdx2qqJrmZQcp3EpuRrwM9Dr2ou8XsnmuL6cpvTVuzP79++Hj7OPDzCLwpePf/jvuvoyN7HGtZD8vIWojdxptJTWC4JbIvSlEpvKYQFa5UV0nJcCxR2MSnqvk1ZAonmWnidhGYMrdesvc5Zr1+SsnnXl6FnLdH5Z2hpcUtSxzHM8RbWrdlZ+V7UCu+uYyYL7wCCu1AA7ofg4An4MFWtZSqplW/3AOuNW/2JY3eH6efjsjnG0ecwevlqfai6Dm9sC/hGva0rb2kDbVdmaNaUtz+ustUy9Puc1+6EFrCA2wTFOA52vTf6mZpzzR7Xa0mbQIkX/aFH3dq12Qk3XP5OgDzlZQR3HHoX8qqY8dOY3n6a2HifxVCNlDZpv8rQ32Oepq+q3c8i5FjClk/8PT0++ZGmSp/q+QyEBVPz4C4k4hCwI1Y8ia8xEMyJUEJoF+V3LwRPJ+Un9K+/uebP8I0/eV/k7lD3+Dg==&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+      <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+      <br>
+      <br>
+      <br>
+    </div>
+    </div>
+    <!-- <img src="bananor.png"/> -->
+    <!-- <img src="https://i.makeagif.com/media/2-09-2017/dfH0H8.gif">
+	 <img src="https://c.tenor.com/tKElFQO9vQwAAAAC/goofy-goofy-ahh.gif"> -->
+  </body>
+</html>

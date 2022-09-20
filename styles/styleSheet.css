@@ -2,7 +2,7 @@ body {
     margin: 0px;
 }
 
-p, h1, h2 {
+p, h1, h2, h3 {
     margin-left: 50px;
     margin-right: 50px;
     margin-top: 0px;
@@ -149,6 +149,10 @@ inlineElement {
 
 #AISentience {
     background-image: url("https://www.gizmodo.com.au/wp-content/uploads/sites/2/2018/08/31/h7pxjzbtdsvtylmjvxfh.jpg?quality=80&w=660"); 
+}
+
+#Statistics {
+    background-image: url("https://cdn.wallpapersafari.com/86/84/AGD4qa.png"); 
 }
 
 .unselectable {
