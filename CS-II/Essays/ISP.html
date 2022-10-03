@@ -42,22 +42,31 @@
 	<a class="sidebarLink" href="../Projects/Optimal Sorting.html">Optimal Sorting</a>
       </div>
       <div class="mainBody">
+	<h2 class="runningHeader">ISP</h2>
+	<p class="apaHeading"><b>ISP: A Blast From the Past</b><br>
+	  Soohan Cho<br>
+	  Allen ISD STEAM Center <br>
+	  Computer Science II<br>
+	  Dr. Ben-Yaakov<br>
+	  Septemper 22, 2022
+	</p>
+
 	<p>
 	  During the second semester of Computer Science I, we did a project called the independant study project (ISP) where we could explore our own coding topics using the swift language and <b>IGIS</b> platform.
-    </p>
-    
-    <h2>Concept</h2>
-    <p>
-      The concept behind our ISP project was to recreate <b>Flappy Bird</b> using the <b>IGIS</b> platform. We wanted to include customizability inside and outside of the code while retaining the basic gameplay mechanics of the orginal game.
-    </p>
-    
-    <h2>Motivation</h2>
-    <p>
-      The reasoning for choosing <b>Flappy Bird</b> instead of other games was due to its removal from the app store as well as its simplicity in gameplay and artstyle. Having just come out of learning how to use <b>IGIS</b> and Swift, we wanted a challenge but not something so amibtious but also praiseworthy, clean, and robust. We also wanted the game to have minimal bugs and glitches which resulted in us having to debug the game heavily.
-    </p>
-    
-    <h2>Code Examples</h2>
-    <p>Down below is a portion of the code we used in order to deal with the visuals of the game. We used a single .png image that contained all the various sprites needed in the game which also allowed us to easily swap between different styles while playing the game.</p>
+	</p>
+	
+	<h2>Concept</h2>
+	<p>
+	  The concept behind our ISP project was to recreate <b>Flappy Bird</b> using the <b>IGIS</b> platform. We wanted to include customizability inside and outside of the code while retaining the basic gameplay mechanics of the orginal game.
+	</p>
+	
+	<h2>Motivation</h2>
+	<p>
+	  The reasoning for choosing <b>Flappy Bird</b> instead of other games was due to its removal from the app store as well as its simplicity in gameplay and artstyle. Having just come out of learning how to use <b>IGIS</b> and Swift, we wanted a challenge but not something so amibtious but also praiseworthy, clean, and robust. We also wanted the game to have minimal bugs and glitches which resulted in us having to debug the game heavily.
+	</p>
+	
+	<h2>Code Examples</h2>
+	<p>Down below is a portion of the code we used in order to deal with the visuals of the game. We used a single .png image that contained all the various sprites needed in the game which also allowed us to easily swap between different styles while playing the game.</p>
       
 <pre><code class="codeSection">import Igis
 import Foundation
@@ -161,13 +170,13 @@ class SpriteLibrary : RenderableEntity {
         }
     }
 }</code></pre>
-    <p>Individual styles or <code>SpriteSheets</code> are kept inside of an array for use.</p>
+	<p>Individual styles or <code>SpriteSheets</code> are kept inside of an array for use.</p>
     <pre><code class="codeSection">let spriteLibraryURL = [
       "https://www.codermerlin.com/users/soohan-cho/images/SpriteSheet.FlappyBirdClone.ver.1.0.4_10.png",
       "https://www.codermerlin.com/users/soohan-cho/images/SpriteSheet.FlappyBirdClone.ver.1.0.3(robotConversion)(highRes).png",
       "https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world.jpg",
  ]</code></pre>
-    <p>The intitial <code>SpriteSheet</code> is setup and loaded into the game once the game starts running.</p>
+	<p>The intitial <code>SpriteSheet</code> is setup and loaded into the game once the game starts running.</p>
     <pre><code class="codeSection">override func setup(canvasSize: Size, canvas: Canvas) {
         for element in spriteLibraryURL {
             let spriteURL = URL(string:"\(element)")
@@ -181,7 +190,7 @@ class SpriteLibrary : RenderableEntity {
         spriteLibrary = Image(sourceURL: spriteLibraryDefault)
         canvas.setup(spriteLibrary)
     }</code></pre>
-    <p>The game then continually checks to see if the style has been updated every render cycle. If so, then the game chooses the cooresponding <code>SpriteSheet</code> using an id</p>
+	<p>The game then continually checks to see if the style has been updated every render cycle. If so, then the game chooses the cooresponding <code>SpriteSheet</code> using an id</p>
     <pre><code class="codeSection">override func render(canvas: Canvas) {
         guard let scene = scene as? MainScene else {
             fatalError("mainscene needed for spriteLibrary")
@@ -209,10 +218,9 @@ class SpriteLibrary : RenderableEntity {
         }
     }</code></pre>
     <h2>Conclusion</h2>
-    <p>Overall, the project went smoothly with a few minor bumps along the way due to game and code design issues we encountered. The most difficult part of the project was determining how we should tackle diffent mechanics that we wanted to add.<br>For example, we wanted to make the pipe obstacles reset back to a vertain position but had to decide between two different methods to accomplish the goal.<br>One was to reset the pipes once they went offscreen and the other was to use a different class in order to detect whether or not the pipe should be reset. We decided to go with the second option due to its customizability.</p>
-          </div>
+	<p>Overall, the project went smoothly with a few minor bumps along the way due to game and code design issues we encountered. The most difficult part of the project was determining how we should tackle diffent mechanics that we wanted to add.<br>For example, we wanted to make the pipe obstacles reset back to a vertain position but had to decide between two different methods to accomplish the goal.<br>One was to reset the pipes once they went offscreen and the other was to use a different class in order to detect whether or not the pipe should be reset. We decided to go with the second option due to its customizability.</p>
+      </div>
     </div>
-
   </body>
 </html>
 

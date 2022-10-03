@@ -5,34 +5,29 @@
     <link rel="stylesheet" href="../styles/styleSheet.css">
     <meta charset="utf-8"> 
   </head>
-  <body>
-    <main class="mainHeader">Computer Science</main>
-   <div class="selection">
-      <ul class="linkBar">
-	<li class="linkCell">
-	  <a class="barLink" href="../index.html"><b>TO HOME</b></a>
-	  <!-- <img class="icon" src=""> -->
-	  <ul>
-	  </ul>
-	</li>
-	<li class="linkCell">
-	  <a class="barLink" href="index.html">About Me</a>
-	  <ul>
-	  </ul>
-	</li>
-	<li class="linkCell">
-	  <a class="barLink" href="classes.html">Classes</a>
-	  <ul>
-	    <li class="linkCell">
-	      <a class="barLink" href="computerScience.html">Computer Science I</a>
-	    </li>
-	  </ul>
-	</li>
-	<li class="linkCell">
-	  <a class="barLink" href="why.html">But Why?</a>
-	</li>
-      </ul> 
-    </div>
+<body>
+
+  <main class="mainHeader">Computer Science</main>
+    <div class="navigation-bar">
+      <a href="../index.html" id="sized">TO HOME</a>
+      <a href="index.html" id="sized">About Me</a>
+      <div class="dropdown">
+	<a href="classes.html" id="sized">Classes</a>
+	<div class="dropdown-content">
+	  <a href="computerScience.html">Computer Science</a>
+	  <a href="statistics.html">Statistics</a>
+	</div>
+      </div>
+      <a href="why.html" id="sized">But Why?</a>
+      <div class="dropdown">
+	<a href="">sampleLink</a>
+	<div class="dropdown-content">
+	  <a href="">link1</a>
+	  <a href="">link2</a>
+	  <a href="">link3</a>
+	</div>
+      </div>
+   </div>
     <div class="floatContainer">
       <div class="sideBar">
 	<a class="sidebarLink" href="../CS-II/Essays/ISP.html">ISP</a>

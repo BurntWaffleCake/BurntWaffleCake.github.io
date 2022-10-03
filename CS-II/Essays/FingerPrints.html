@@ -59,18 +59,18 @@
 	  There are two types of keys. A public key and a private key. A public key is used to encrypt data and is available for everyone to see. A private key is kept secret to the public and is only avaiable to look at by the sender and user. The private key is used to decrypt the data after it was encrypted by the pubilic key. 
 	</p>
 	<div class="bodyElement">
-	  <img src="https://www.okta.com/sites/default/files/styles/tinypng/public/media/image/2021-03/public-key-encryption.png?itok=Bxgj8OXl" alt="image not found">
-	</div>
+	  <img src="../../images/CS-II/Essays/FingerPrints/public-key-encryption.png" alt="image not found">
+	  	</div>
 	<h2>Hashes</h2>
 	<p>Cryptographic hashes (or digests) are "are complex mathematical algorithms which carefully process every single bit of what they digest"(Gibson Research Corporation, 2020) and are used to "fingerprint" certificates in order to validate any changes made. A good hash is able to change more than half of the bits that represent the fingerprint no matter how small the change is. This is used to validate certificates due to the sensitivity of the fingerprint which allows for us to precisely see whether or not the fingerprint has been tampered with. These certificates are then managed by a CA or certificate authority who keep a library of reliable certificates of different companies such as Amazon, Google, whilst verifying the certificates for various websites.</p>
 	<div class="bodyElement">
-	  <img  src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2008/10/23/0/FNMCornedBeefHash_s3x4.jpg.rend.hgtvcom.616.462.suffix/1371587691772.jpeg" alt="image not found">
-	  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Fingerprint.svg/800px-Fingerprint.svg.png" alt="image not found">    
+	  <img  src="../../images/CS-II/Essays/FingerPrints/1371587691772 (1).png" alt="image not found">
+	  <img src="../../images/CS-II/Essays/FingerPrints/800px-Fingerprint.svg.png" alt="image not found">
 	</div>
 	<h2>Proxy SSL Interception</h2>
 	<p>SSL Interception is used to spoof a users targeted web connection and then send information gained from tracking the user to the actual website. This can be used to record any actions taken as the SSL is the connection taking the inputs and is often employed by schools and other entities in order to gather information about their websites traffic. There is no visual way to tell between the actual web server and the spoofed web connection but comparing the fingerprints is a viable way to tell whether or not one is being intercepted or not. This is due to the fact that fingerprints change drastically when modified even a little. This also corelated with the use of keys in order to encrypt and decrypt information. The private key and public key (although mathematically different) are one of a pair and one is required for hte other and equivalently in the other direction. This poses a problem for the interceptor, however, as private keys are held in secret by the genuine web server and is unvailable to look at by the interceptor. This in turn means that the interception requires a different public and private key in order to provide a spoofed certificate which does not exist on the actual web server..</p>
 	<div class="bodyElement">
-	  <img src="https://avinetworks.com/wp-content/uploads/2018/12/ssl-proxy-diagram.png" alt="image not found">
+	  <img src="../../images/CS-II/Essays/FingerPrints/ssl-proxy-diagram.png" alt="image not found">
 	</div>
 	<h2>The Art of Being False</h2>
 	<p>There are cases when examining these differences in keys and fingerprints that problematic conclusions can be reached. We call these cases false positives and false negatives. A false positive can be reached when someone incorrectly diduces that their web connection is being intercepted. In other words, a false conclusion is reached about an issue that hasn't happened. One of the ways such a conclusion can be reached is if the address for the website is sligtly different. For example, www.google.com and google.com are similar and reach the same webserver; however, the small change in the address results in a <b>VERY DIFFERENT</b> fingerprint which can cause someone to think that they are being intercepeted. On the other hand, a false negative is a user's or systems inability or failure to prevent an interception. For example, due to the configurability of SSL Interception appliances, there are times when interception is deliberately not done (for high level executives and such). It can then be falsely concluded that no interception is being done when in reality it may only be for that specifed user or web connection.</p>

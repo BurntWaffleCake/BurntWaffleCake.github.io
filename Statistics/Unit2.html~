@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Computer Science I</title>
+    <link rel="stylesheet" href="../styles/styleSheet.css">
+    <meta charset="utf-8"> 
+  </head>
+  <body>
+    <main class="mainHeader" id="Statistics">Unit1</main>
+    <div class="selection">
+      <ul class="linkBar">
+	<li class="linkCell">
+	  <a class="barLink" href="../index.html"><b>TO HOME</b></a>
+	  <!-- <img class="icon" src=""> -->
+	  <ul>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="../mainPages/index.html">About Me</a>
+	  <ul>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="../mainPages/classes.html">Classes</a>
+	  <ul>
+	    <li class="linkCell">
+	      <a class="barLink" href="../mainPages/computerScience.html">Computer Science I</a>
+	    </li>
+	    <li class="linkCell">
+	      <a class="barLink" href="../mainPages/statistics.html">Statistics</a>
+	    </li>
+	  </ul>
+	</li>
+	<li class="linkCell">
+	  <a class="barLink" href="../mainPages/why.html">But Why?</a>
+	</li>
+      </ul> 
+    </div>
+
+    <div class="floatContainer">
+      <div class="sideBar">
+	<a class="sidebarLink" href="Unit1.html">Unit1</a>
+	<a class="sidebarLink" href="Unit2.html">Unit2</a>
+      </div>
+      <div class="mainBody">
+	<h1>Unit 2</h1>
+	<p>In Unit 1 we went over linear and non linear regression of quantitative data. This data and its linear trend can be represented by the coefficient of correlation and determination and can also be plotted using an LSRL and the residuals that result from it.</p>
+	<h2>ScatterPlots</h2>
+	<p>Scatterplot sketches should include the min and max of the data set of both axis (x and y). Remember to label the axis as well as give the scatterplot a title.</p>
+
+	<div class="bodyElement">
+	  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Scatter_diagram_for_quality_characteristic_XXX.svg/1200px-Scatter_diagram_for_quality_characteristic_XXX.svg.png" alt="image not found">
+	</div>
+	
+	<h2>Linear Regression</h2>
+	<p>Linear regression can be used to model the best line of fit or LSRL (least square regression line) which minimizes the sum of square of the deviations from the line. We can then use this line to predict values that fall in the range of the points. The correlation coefficient (r) is a quantitative assessment of the strength and direction of the linear relationship between bivariate, <b>quantitative</b> data. The correlation coefficient's strength can be determined by how close to 1 or -1 the number is. 0 - 0.5 is weak, 0.5 - 0.8 is moderate, and 0.8 - 1.0 is strong (same applies for negatives). The correlation of determination is the square of the correlation coefficient (r<sup>2</sup>) and can be used to describe the proportional variation of the y-variable as a approximate linear relationship between the x and y variables. The explanatory variable explains the change in the response variable. For example, if the two variables are weight of backpack and number of books in backpack, the explanatory variable would be the books in backpack as the weight of the backpack responds to the increase or decrease of books in the backpack. The LSRL can be used to extrapolate data or predict values outside of the range of the x variable. This is usually not very good practice as the linear relationship may only be present in the given dataset if the a linear model is appropriate.</p>
+	<div class="bodyElement">
+	  <img src="https://i.stack.imgur.com/7lvv2.png" alt="image not found">
+	</div>
+
+	<h2>Interpreting Computer Generated Data</h2>
+	<p>Computer generated data usually comes in two rows representing the constant and x-variable. These are then given values such as coef, stdev, T, and P. The correlation coefficient and/or the coefficient of determination is present at the bottom of the data. The constant is the Y variable and the coef that corresponds with it is the y intercept of the LSRL. The x-variable's coef is the slope of the LSRL.</p>
+	<div class="bodyElement">
+	  <img src="https://cdn.kastatic.org/googleusercontent/OQcvHSTr1bekT75EKG8fCEDGFQTRqdWro6ruVzsb2Z6UQr41DjwOhd04pXirds_Ya371zT2vMkT5d3sjjBadqMNe" alt="image not found">
+	</div>
+	<p>An alternative way of determining the LSRL without computer generated data can be through the standard deviations and means of the variables.</p>
+
+	<div class="bodyElement">
+	  <img src="https://images.slideplayer.com/25/7640459/slides/slide_6.jpg" alt="image not found">
+	</div>
+
+	<h2>Notable Regression Facts</h2>
+	<p>
+	  The correlation coefficient and coefficient of determination is not changed when a linear transformation (unit conversions) is applied or when the x and y variable is reversed.<br>
+	  The mean of both variables lie on is always on the LSRL<br>
+	  The LSRL, Correlation Coefficient and coefficient of determination are non-resistant.
+	</p>
+
+	<h2>Outliers and Influential Points</h2>
+	<p>Outliers are points far from the LSRL relative to the distances of the other points.<br>
+	  Influential Points are points that effect the LSRL's slope significantly.<br>
+	  Influential Points could be close to the LSRL but far from the other points. This means that an outlier could be either influential or not.
+	</p>
+
+	<h2>Residuals</h2>
+	<p>Residuals are the vertical deviation of points and the LSRL. The sum of residuals is always zero is the linear regression was properly made and can be found by subtracting the actual y-variable from the predicted y-variable found in the LSRL.</p>
+
+	<div class="bodyElement">
+	  <img src="https://www.alpharithms.com/wp-content/uploads/1156/simple-linear-regression-estimated-residual.jpg" alt="image not found">
+	</div>
+
+	<h2>Residual Plots</h2>
+	<p>A residual plot is a scatterplot between the x and residual of different data points. A function is appropriate to the data if the residuals do not follow a pattern when plotted.</p>
+
+	<div class="bodyElement">
+	  <img src="https://www.qualtrics.com/support/wp-content/uploads/2017/07/Screen-Shot-2017-07-19-at-9.46.11-AM.png" alt="image not found">
+	</div>
+
+
+	<h2>Non-linear Regression</h2>
+	<p>You can determine if a linear regression is appropriate or not by seeing if the residuals in the residual plot of a data set is random or not. If the regression is inappropriate, transformations can be applied to determine if the residuals are random and the transformation is appropriate.</p>
+	
+      </div>
+    </div>
+    <!-- <img src="bananor.png"/> -->
+    <!-- <img src="https://i.makeagif.com/media/2-09-2017/dfH0H8.gif">
+	 <img src="https://c.tenor.com/tKElFQO9vQwAAAAC/goofy-goofy-ahh.gif"> -->
+  </body>
+</html>
