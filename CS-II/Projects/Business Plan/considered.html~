@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Computer Science I</title>
+    <link rel="stylesheet" href="../../../styles/styleSheet.css">
+    <meta charset="utf-8"> 
+  </head>
+  <body>
+    <main class="mainHeader">ISP Proposal</main>
+    <div class="navigation-bar">
+     <a href="../../../index.html" id="sized">TO HOME</a>
+     <a href="../../../mainPages/index.html">About Me</a>
+     <div class="dropdown">
+       <a href="../../../mainPages/classes.html">Classes</a>
+       <div class="dropdown-content">
+	 <a href="../../../mainPages/computerScience.html">Computer Science</a>
+	 <a href="../../../mainPages/statistics.html">Statistics</a>
+       </div>
+     </div>
+     <a href="../../../mainPages/why.html">But Why?</a>
+     <a href="index.html">ISP Proposal</a>
+   </div>
+
+   <div class="floatContainer">
+     <div class="sideBar">
+       <a class="sidebarLink" href="index.html">ISP Proposal</a>
+       <a class="sidebarLink" href="considered.html">Considered ISPs</a>
+     </div>
+     
+     <div class="mainBody">
+       <h2 class="runningHeader">Considered ISPs</h2>
+       <p class="apaHeading"><b>Considered ISPs:To Be or Not to Be</b><br>
+	 Soohan Cho<br>
+	 Allen ISD STEAM Center <br>
+	 Computer Science II<br>
+	 Dr. Ben-Yaakov<br>
+	 Septemper 20, 2022
+       </p>
+       
+       <h1>The Non-Accepted</h1>
+       <p>The following are ISPs that have been considered but rejected due to a number of aspects.</p>
+
+       <h2>Spaceward</h2>
+       <a href="https://www.codermerlin.com/users/muqadam-sabir/Digital%20Portfolio/CS-II/Projects/Business%20Plan/index.html">Link to ISP</a>
+       <p>Although the UI of skyward itself is terrible and experiences many lag issues, especially during arena scheduling where multiple clients are accessing skyward at once, the application itself is generally ok to work with and provides a somewhat acceptable level of interaction. The main problem I see with this project is the lack of focus on security and the implementation of a subscription-based service. If the subscription is aimed toward the everyday user, its usage in a school environment is questionable and may give way to the no-cost aspect of skyward. If the subscription is diverted to the school district itself, it will have to make sure that its costs don't overshadow the already existing skywards whilst providing enough improvements to show the worthiness of usage. Another problem is the lack of focus on security. Skyward itself contains sensitive information that has to be kept secure to deter anyone with malicious intent. With the numerous improvements planned by the company, another improvement should be to enforce/reinforce this aspect of the application.</p>
+
+       <h2>Bolt</h2>
+       <a href="https://www.codermerlin.com/users/myoram-langwang/Digital%20Portfolio/CS-II/Projects/Business%20Plan/index.html">Link to ISP</a>
+       <p>The idea of a computer science-oriented community discussion application is a great idea with many aspects that could be exploited to form a satisfying yet useful program. These aspects, however, could most definitely be overshadowed by other applications such as discord especially because of the proposed application's price tag. Continuing with discord, the application itself is free and can be used as both an app, website, and software allowing for usage on a multitude of devices. Many of the aspects presented in the proposed application are already covered in discord and the added monthly subscription needed by the application will only lessen its usage of the application. My best suggestion would be to use the subscription to give certain powers to the user as discord does instead of blocking the user entirely if they are unable to pay.</p>
+
+       <h2>School Food</h2>
+       <a href="https://www.codermerlin.com/users/logan-rohlfs/Digital%20Portfolio/CS-II/Projects/Business%20Plan/index.html">Link to ISP</a>
+       <p>This sounds like a great idea but some more thinking in the pickup aspect of the ordering system may be needed. The lines themselves will most likely be adverted or made drastically shorter; however, other problems arise with the ordering process itself. The school currently uses the id system (and cash) to get paid for lunch meals. If this system were to replicate in an online app, anyone could theoretically use anyone else's id number to access their money. If this app were to ever be used, the way pay is given to the website may have to be changed drastically which presents both a monetary and logistic problem.</p>
+
+       <h2>TV360</h2>
+       <a href="https://www.codermerlin.com/users/austin-dlugosch/Digital%20Portfolio/CS-II/Projects/Business%20Plan/index.html">Link to ISP</a>
+       <p>I do not see the point of this product. Yes TVs take up a lot of space and having a tv specially built for movement and rotation may help alleviate that problem to an extent but simply moving the tv by hand is more applicable and practical. I do not see people buying this TV for the higher cost just to get a swivel mount for a tv when they could have just bought a normal tv for tens maybe even hundreds of dollars less. The product presents a cool concept, especially if the 3d aspect of it were to be implemented, but does not seem sustainable in the long term. The producer also does not mention the wiring setup for the product which is a major pain to deal with even when using normal TVs. This would be further amplified by the maneuverability of the TV itself and could result in a multitude of problems.</p>
+
+       <h2>Detect and Deter Drowsiness Inator (AKA Dx3)</h2>       
+       <a href="https://www.codermerlin.com/users/akshay-vemulapalli/Digital%20Portfolio/CS-III/Projects/Business%20Plan/index.html">Link to ISP</a>
+       <p>This product brings questionable morales into a non-existing market. There are indeed many incidents that happen due to driver drowsiness however one of the deterrents was indicated to be an electric shock administered to the driver. Even if the effectiveness of this method is proven, not many investors nor buyers will be looking for a device that gives them physical discomfort or harm, severely cutting the number of people the product can be sold to. This stimulant to wake the driver may also become a danger in itself as the sudden wakening of the driver may cause them to make erratic movements in the vehicle. In my opinion, a better way of going about this would be a similar strategy to what Tesla cars do, where the car detects whether or not a person is driving and initiates the auto drive function built into the car. </p>
+       
+       <h2>WEBSHOP</h2>
+       <a href="https://www.codermerlin.com/users/bo-hong-chen/Digital%20Portfolio/webshop/plan.html">Link to ISP</a>       
+       <p>
+       The main problem with this product is the numerous other products made by larger corporations that serve as major competitors. A CSS visualizer is an appealing idea for us, who may have just started to indulge in website development; however, software such as visual code studio and adobe Dreamweaver already accomplish this. Dreamweaver has built-in HTML integration and is very flexible when it comes to web development in general. There may be a learning curve to fully master the software, but this software can provide a lot more than just CSS visualization when it comes to web development. Another problem arises with the suggested product itself. Why have a CSS visualizer when you can just locate the URL and see what happens yourself? It is only a minor inconvenience to have to switch between the browser and the text editor and split screen exists to be able to easily juggle between the two windows. Having a tool that shows the available options in the CSS element may be a better approach to dealing with headaches while using CSS.</p>
+
+       <h2>Click Battle</h2>
+       <a href="https://www.codermerlin.com/users/devon-leerssen/Digital%20Portfolio/CS-II/Projects/Business%20Plan/index.html">Link to ISP</a>       
+       <p>Similar sites that aimed towards the younger audience with simplistic layouts and gameplay were popular back in the 2016-2018 range years when games such as the .io games were popular. This era, however, has long passed and youngsters tend to enjoy multiplayer-oriented games or social media sites such as TikTok. The simplistic layout of the game itself may show itself as a detriment to the site's popularity. If the visuals are to be kept as simplistic as the example provided, players may get bored in little to no time as many will see the game as something to play when they have 5 minutes to spare on the school internet. Simply put, there are other sources of entertainment that people tend to gravitate towards nowadays. Another problem is the lack of some way or plans to make money. With the small number of visitors, advertisement is not likely to be a reasonable way to generate income, and offering powerups or visual changes is something people are not going to be willing to buy.
+       </p>
+
+       <h2>Unnamed-Momentum Based Fighting Game</h2>
+       <a href="https://www.codermerlin.com/users/eric-steiner/Digital%20Portfolio/CS-II/Projects/Business%20Plan/index.html">Link to ISP</a>       
+       <p>A momentum-based fighting game made with the Unity engine sounds like something I would enjoy very much. Unity provides a lot of flexibility as can run on mid-range devices and can be ported to mobile. The problem comes in with the detail of the game itself. A straightforward goal has not been established and only the main concept is present. A lot of different styles can be applied to a momentum-based fighting game but without an overall idea to encompass the concept, not much can be attained for what the investment into this game will result in. I would have loved to be a part of this if there was a plan for what the game would entail such as ideas for the scene, playstyle, and genre but such ideas are not mentioned at all.</p>
+
+       <h2>Unnamed-Rendering 3D Objects</h2>
+       <a href="https://www.codermerlin.com/users/jacob-jershin/Digital%20Portfolio/CS-III/Projects/Business%20Plan/index.html">Link to ISP</a>       
+       <p>there seems to be a bit of a misunderstanding when it comes to modern-day rendering software. Rending 3d objects does not take that much processing power to do especially with vector maths and linear algebra. A lot can be done with matrices however complexity may become a problem due to the difficulty of understanding the underlying concepts of the topics themselves. Expensive hardware is needed when it comes to rendering such as raytracing for realistic-looking renders. Hyperrealistic rendering such as the landscapes able to be rendered in Unreal Engine 5 is very taxing on the GPU due to the incredibly large number of rays needed to render each frame. When it comes to a more simplistic way of rendering objects, even school grade calculators are able to render 3d objects to a certain degree.</p>
+
+       <br>
+       <h1>The Accepted</h1>
+       <p>The following is an ISP that has been accepted due to an exemplary concept and/or polished business model.</p>
+
+       
+       <p style="margin:750px;"></p>
+       <h3>But I think we know who the real winners are...</h3>
+       <div style="text-align:center;">
+	 <h4>Average Goose Game Player</h4>
+	 <img src="../../../images/GooseGuy.png" style="">
+       </div>
+     </div>
+   </div>
+   <!-- <img src="bananor.png"/> -->
+   <!-- <img src="https://i.makeagif.com/media/2-09-2017/dfH0H8.gif">
+	<img src="https://c.tenor.com/tKElFQO9vQwAAAAC/goofy-goofy-ahh.gif"> -->
+  </body>
+</html>

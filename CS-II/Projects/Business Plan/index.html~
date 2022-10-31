@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Computer Science I</title>
+    <link rel="stylesheet" href="../../../styles/styleSheet.css">
+    <meta charset="utf-8"> 
+  </head>
+  <body>
+    <main class="mainHeader">ISP Proposal</main>
+    <div class="navigation-bar">
+     <a href="../../../index.html" id="sized">TO HOME</a>
+     <a href="../../../mainPages/index.html">About Me</a>
+     <div class="dropdown">
+       <a href="../../../mainPages/classes.html">Classes</a>
+       <div class="dropdown-content">
+	 <a href="../../../mainPages/computerScience.html">Computer Science</a>
+	 <a href="../../../mainPages/statistics.html">Statistics</a>
+       </div>
+     </div>
+     <a href="../../../mainPages/why.html">But Why?</a>
+     <a href="index.html">ISP Proposal</a>
+   </div>
+
+   <div class="floatContainer">
+     <div class="sideBar">
+       <a class="sidebarLink" href="index.html">ISP Proposal</a>
+       <a class="sidebarLink" href="considered.html">Considered ISPs</a>
+     </div>
+     
+     <div class="mainBody">
+       <h2 class="runningHeader">ISP Proposal</h2>
+       <p class="apaHeading"><b>ISP Proposal: The Bliss of Geese</b><br>
+	 Soohan Cho<br>
+	 Allen ISD STEAM Center <br>
+	 Computer Science II<br>
+	 Dr. Ben-Yaakov<br>
+	 Septemper 20, 2022
+       </p>
+       
+       <h1>The Plan</h1>
+       <p>There are several wacky games out there such as Deer Simulator and Goat Simulator that have achieved unwaranted levels of successful with millions of downloads and coverage by multiple large influencers. These types of games serve as peculiar examples of successes as they are not exactly created for a certain audience like other games are. Our goal is to meld this type of fun and unexpected gameplay with the multiplayer capabilites presented by the roblox engine.</p>
+
+       <h2>Why Roblox?</h2>
+       <p>Roblox is a game creation and distribution company founded in September 1, 2006. It has gone on to attract over 200 million users and has become a icon of the younger generation entertainment market. The reason as to the use of roblox instead of more powerful engines such as unity or unreal engine is due to the simplicity of using the engine itself as well as the built in multiplayer integration which will allow us to easily make multiplayer without having to spend extra money on running servers. Roblox also provides us with a source of revenue through its robux integration program which will be our primary way of getting funds. Roblox's community consists of mostly younger childeren which will be the primary age range target for the game. Later stages of developement will also allow for mobile integration as roblox also supports compatability between a multitude of consoles (pc, console, mobile, etc.).</p>
+       <div style="margin:auto; width:75%"><iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5Rsat7ZoY9_IMIfydgAgiF5q3EYDpw7LJ6_4lq1CxNFS6ju5xcqIcpccqgl5S_d-bhURNdWZQpwjD/pubhtml?widget=true&amp;headers=false" style="height:500px; width:90%;"></iframe></div>
+     </div>
+   </div>
+   <!-- <img src="bananor.png"/> -->
+   <!-- <img src="https://i.makeagif.com/media/2-09-2017/dfH0H8.gif">
+	<img src="https://c.tenor.com/tKElFQO9vQwAAAAC/goofy-goofy-ahh.gif"> -->
+  </body>
+</html>

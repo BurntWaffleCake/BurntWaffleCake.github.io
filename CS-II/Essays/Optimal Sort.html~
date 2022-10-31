@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Computer Science I</title>
+    <link rel="stylesheet" href="../../styles/styleSheet.css">
+    <meta charset="utf-8"> 
+  </head>
+  <body>
+    <div class="mainHeader">Optimal Sort</div>
+    <div class="navigation-bar">
+     <a href="../../index.html" id="sized">TO HOME</a>
+     <a href="../../mainPages/index.html" id="sized">About Me</a>
+     <div class="dropdown">
+       <a href="../../mainPages/classes.html" id="sized">Classes</a>
+       <div class="dropdown-content">
+	 <a href="../../mainPages/computerScience.html">Computer Science</a>
+	 <a href="../../mainPages/statistics.html">Statistics</a>
+       </div>
+     </div>
+     <a href="../../mainPages/why.html" id="sized">But Why?</a>
+   </div>
+
+    <div class="floatContainer">
+      <div class="sideBar">
+	<a class="sidebarLink" href="ISP.html">ISP</a>
+	<a class="sidebarLink" href="FingerPrints.html">FingerPrints</a>
+	<a class="sidebarLink" href="AISentience.html">AI Sentience</a>
+	<a class="sidebarLink" href="Optimal Sort.html">Optimal Sort</a>
+      </div>
+    <div class="mainBody">
+      <h2 class="runningHeader">OPTIMAL SORTING</h2>
+      <p class="apaHeading"><b>Optimal Sorting: Optimally Sort Alphabetically</b><br>
+	Soohan Cho<br>
+	Allen ISD STEAM Center <br>
+	Computer Science II<br>
+	Dr. Ben-Yaakov<br>
+	Septemper 22, 2022
+      </p>
+
+      <h2>The Idea Behind Our Optimal Sort</h2>
+      <h3>Colaborated with: Jacob Fesseha, William Hutchings</h3>
+      <p>The basic idea behind our sort was to divide each word into separate groups depending on a specific character on a specific part of the word. For example, words starting with a would be put into one group and those with b in another, those with c in another, and so on. The next pass would then be inside of each of these arrays and would sort these words again except this time with the second letter in the word. As such the order of operations in our sort would be as such<br><br> 
+	1) Loop through the input array of Strings<br>
+	2) Loop through a separate array where the sort will insert the words to see if the current word has a unique character at i. If it is not a unique character, test the first word in each array in the separate array to deteremine where the new group should be located. If the it is not a unique character, insert the word into the current array.<br>
+	3) Loop through the separate arrays and repeat the process in 1, 2 and 3 with the given array if there are more than 1 index using i + 1 as i.<br>
+	4) Flatten the array and return if needed<br><br>
+      </p>
+      
+      <h2>Testing the Array</h2>
+      <p>In order to grasp the weaknesses and strengths of our sort, a series of tests are used to find out the efficiency and vulnerabilities of our algorithm. A set of ordered, reverse-ordered, and random words ranging from 1 word to 100000 words will be ran through the sorting algorithm to test its effectiveness. All time measurements will be in miliseconds.</p>
+      <h3>The Sorts</h3>
+      <p>Four sorts will be tested: Bubble, Insertion, Selection, and Optimal(self made). Each sort will be given their own repositories and will be used to sort a set of words in alphabetic order. (swift init is used to set up swift execution)</p>
+      <h3>Getting the Data Samples</h3>
+      <p>For this test, we will use the contents of the words directory located at /usr/share/dict/words. We will now need to sort this set of words into ordered, reverse-ordered, and random order. For each of these orders we can use these commands:<br><br>
+	<b>Ordered:</b> cat /usr/share/dict/words | sort > ordered.txt<br>
+	<b>Reverse-Ordered:</b> cat /usr/share/dict/words | sort -r > reverse-ordered.txt<br>
+	<b>Random:</b> cat /usr/share/dict/words | sort -R > random.txt<br><br>
+	</p><p>Basic linux command structure is: command [option] [parameter] with | representing piping where the output of one command is used as the input of the following command. In this case, cat reads the words in the words file and pipes the text into a built in sort. The output of this sort is then inserted as the output into a specified text file (note that unlike >> which will concatenate the output at the end of the file's contents, > will simply overwrite the file).</p>
+      <h3>Sample Organization</h3>
+      <p>The actual test files are built off of these libraries of sorted words in order to preserve consistency. Each will consist of 10 times the words from the previous ranging from 1 to 100000. The formating of the files is such:<br><br>
+	1 word: [order type]-10e0.txt<br>
+	10 words: [order type]-10e1.txt<br>
+	100 words: [order type]-10e2.txt<br>
+	1000 words: [order type]-10e3.txt<br>
+	10000 words: [order type]-10e4.txt<br>
+	100000 words: [order type]-10e5.txt<br>
+	</p>
+      <p>
+	Each sort will be separated into separate github repositories and have a copy of the 18 text files as well as the 3 original text files of the words that were used to generate them.
+      </p>
+      <h3>Timing the Sorts</h3>
+      <p>The time command can be used to determine the amount of time a program takes to execute a command. There are three separate categories as the output of the time command: real, user, and sys(system). The real is the actual time elapsed from starting the command to the end where execution of anoter command is possible. User is the time spent by the cpu in user mode while the sys is the time spent in the kernel by the cpu. The command structure used is as follows:<br><br>
+	time cat [filename].txt | swift main.swift  (we will assume all sorts use main.swift as their main program file)<br><br>
+	Note that the times used when collecting data will be the real time.
+      </p>
+      <h2>The Results</h2>
+      <p>This is a spreadsheet consisting of the data gathered from these tests:</p>
+      <div>
+	<a href="https://docs.google.com/spreadsheets/d/1fb1q9_-tqy5DKslBU8BkNTTzQiGpf0PCQTY1IsiR4iM/edit#gid=1753197712">link to spreadsheet</a>
+	<a href="https://github.com/BurntWaffleCake/BubbleSort">Bubble Sort Github</a>
+	<a href="https://github.com/BurntWaffleCake/InsertionSort">Insertion Sort Github</a>
+	<a href="https://github.com/BurntWaffleCake/SelectionSort">Selection Sort Github</a>
+	<a href="https://github.com/BurntWaffleCake/OptimalSort">Optimal Sort Github</a>
+	
+      </div>
+      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRBVzYu86lXg1a9lGNAmXogTmY433XsbTERvn37r90W6-z3kiA0Wt2huEP42ebYbYR56ktQvUwXHecF/pubhtml?widget=true&amp;headers=false" width="99.8%" height="700"></iframe>
+      <br><br>
+      <h2>Conclusion</h2>
+      <p>(The graphs referenced in this section can be found in the summary section of the spreadsheet above) </p>
+      <h3>Bubble Sort</h3>
+      <p>Bubble sort is a simple sort that is typically used in situations with sets of data close to being sorted or of small quantity. It works by selection the first index of and array corresponding with pass number then interating through indices after the pivot until the pivot values is less than the next value. When it comes to all three types of the sorts, it is one of the slowest in all three categories and is only minorly faster in the ordered category. Note that this is an unoptimized version of bubble sort where the sort will not attempt to detect whether or not to end its pass and will instead loop through the entire pass to ensure a completely sorted result. To make the point of bubble sorts efficiency when it comes to large datasets, we will define the variable X as the number of words the sort iterates through (ie. if a for loop were to iterate through an array Y once, X = count of all indcies in Y). Let N = the count of indices in the input array. The sort will interate through the array a total of N times excluding the zeroth index plus the pass number it is on (starting at 0). This means that an array with 5 indices will have an X value of 14 (5 + 4 + 3 + 2 + 1 + 0). We can use the triangular sum equation in order to find what our X value is (n(n+1)/2). Our X values for each number of words will bne as such<br>
+	1 word: X = 1<br>
+	10 word: X = 55<br>
+	100 word: X = 5050<br>
+	1000 word: X = 500500<br>
+	10000 word: X = 50005000<br>
+	100000 word: X = 5000050000<br>
+	The number of times each word is iterated through is much higher compared to the number of words used as input and an exponential relationship can be observed. As this version of Bubble sort will always interate through the input in the same fashion no matter the order of the words, the times for the randomized and reversed are virtually the same in higher numbers of words. The reason for the ordered set being lower that either of the two mentioned before is due to that fact that no words are switched shaving time off of the run time of the sort.
+      </p>
+
+      <h3>Insertion Sort</h3>
+      <p>The Insertion sort works by selecting a value setting its pivot at index 1, then comparing it withe previous values before it until the previous value is less than the pivot value. Then the sort will increase the pivot index by 1 and repeat the steps above until the end of the input array is reached. This guarantees that the sort finishes in a single pass unlike the bubble sort. X value of this sort will depend on where the minimum values are located in the sort. For example, the array [1,2,3,4,5] vs the array [5,4,3,2,1], the first array is already in order meaning the sort will only have to check = each index once giving it a X value of 5 while the second array's numbers is farther away from being in order ensuring that more swaps will have to made in order to find the location each number should be at. This explains the difference between the three orders of words with ordered being the fastest as not many interations are needed to determine the order of each indices, random staying in between the times for ordered and reverse, and reversed with the maximum amount of time taken with the greatest X value out of all three order types. This also means that the reversed ordered order type will have similar results to the bubble sort as the actions of both sorts are similar just reversed in direction.</p>
+      <h3>Selection Sort</h3>
+      <p>The Selection sort works by selecting the lowest index of the input then swaping the value with the first index of the input. This is then repeated while ignoring the number of indices at the beginning of the array corresponding with the pass number (ei. pass 3, the first 3 indices are ignored). This guaruntees that the array will be sorted in a single pass unlike bubble sorts mutliple passes. The X value of this sort is the same as bubble sort as the sort has to iterate through all of the indices excluding previously sorted words in order to find the minimum value in the set. This, however, is faster than bubble sort as only no words are actually swaped when determining the minimum value of the set. The swap occurs after the minimum value is determined and will occur between the first index of the set after the words that have been sorted in previous passes. </p>
+
+      <h3>Optimal Sort</h3>
+      <p>Optimal Sort is a sort developed by the three indiviudals mentioned at the beginning of the article and words fundamentally different compared to the three sorts above. The optimal sort separates each index out depending on the first character of said index and ensures that the groups are put into alphabetical order by comparing the first character of the first index of each group until it finds a location where the first character is less than the first character of the next index. This process is then repeated inside of each grouping this time with the second character and so forth until each group only contains one word. The time difference between each order type will depend mostly on how far each index is from their sorted state.</p>
+
+      <h3>Comparing all Four Sorts </h3>
+      <p>While using the X value to determine the complexity of each sort is viable and easy to do, it ignores several kinks with each sort and the algorithmic aproach of each sort. When it comes to ordered sets of words, bubble does the worst due the fact that it still has to iterate through all the words, Selection is the second worst as determining the minimum values for each set requires that is also iterate througha ll the words, Selection as thirds as the sort only has to check each index once, and finally Optimal as the sort will only iterate through the following groups if the first characters are different. When it comes to Reversed order sets, Bubble and Insertion are Practically the same as Insertion is sorting the words in the same manner as Bubble sort. This is followed by Selection sort as the same number of iterations is needed as bubble and Insertion with the exception of the number of swaps needed to get these words into place. Selection is then followed by Optimal with the same premise as the explanation for the ordered set of words. When it came to the randomized set of words, Bubble did the worst followed shortly by Insertion as both work on similar ways except with insertion going in reverse order from the pivot compared to bubble. They are then followed by Selection and then Optimal as the fastest.</p>
+      
+      <h3>Tying the Knots</h3>
+      <p>All of these sorting algorithms are quite slow especially when a large set of words are presented to them. The Bubble, Insertion, and Selection sorts were all designed and work best with small and close to ordered sets of data and present oportunities for other sorting algorithms to improve the performance of datasets with more data points.</p>
+      <a href="https://github.com/BurntWaffleCake/Optimal-Sorting" id="centered">github link</a>
+      <a href="https://docs.google.com/spreadsheets/d/1F-syeNeO-y7maklqQyJDXK_qGggRHRwjG-4mb1PZvzU/edit?usp=sharing" id="centered">spreadsheet link</a>
+      <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;zoom&quot;:0.8,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-09-23T13:37:37.526Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\&quot; etag=\&quot;YYGlH8EgKjLO1rr8aZDm\&quot; version=\&quot;20.2.8\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;Z02LLMoSof-S0UZd88kD\&quot; name=\&quot;Page-1\&quot;&gt;7Vrbdps4FP0aPzqLi8Hk0XHstGnSmdSTTj1vMshGU0BUCF/y9ZVAMiJQ8KxpDFnLT5aOJDja2vvoSHhgTsP9HQGx/4g9GAwMzdsPzNuBYeiGabEfbjnkFnvk5IYNQZ7oVBgW6AUKoyasKfJgUupIMQ4oistGF0cRdGnJBgjBu3K3NQ7Kb43BBlYMCxcEVevfyKN+bnUsrbB/gGjjyzfrmmgJgewsDIkPPLxTTOZsYE4JxjQvhfspDDh4Epd83PwXrUfHCIzoKQPuvo58qpnRcvLjxjmA5+nTdjkc5U/ZgiAVExbO0oNEAHoMEFHFhPp4gyMQzArrDcFp5EH+Go3Vij4PGMfMqDPjv5DSg1hdkFLMTD4NA9FanYqYXYJT4sIG/4W7FJANpA39zLwfn4vyAgHUHcQhpOTAOhAYAIq25cUHgkObY78CZlYQSP8H1I0K6gs2A1qFPggYzznEOx9RuIhBBsaOSe1EALeQULhvnLJoNSVPD0cm5/VdQXtd9vEVyjva/0fJjtKvP/6Yxdunp8lk+42Yn+6HNSi9L26aVW7WzlPvFTfNCuoT14UxzYAnKNokA8MO2HxuVoSVNryEI8iJgonHoYLMrgWI214t1/lZbJzKYvs3sFj/4n2aeob5z3a+gB/vn4fO/Hpod0FauEf0Gx9+ZYnaUmm53YsnZ5WDrERsusogXl2qbcWwrCbHnSSQJuKrAqmFsDOBNHmtCMTFYYwCKYGEPyBiK5IlIIA7hteqeroXxXXXorAuomghe6sojK5E0eS1IoqpD93v3EHg+jw/9wEBLs32BhQlLKmXuhAdcnmwwipXzDqB1YSozIHzK8ccd60cuZ9dpPNLSbRKZ9wr6dQcBjA/C9QpBwSxD1aQInZA5R6uQAK9XC5STi4z9U43I7tz3YwuumnRQ3se1q89Z1wRzp+popvjhiKTsUjJyArhcMmkJAOt2HZU0fVMSpbVuZTsCvBLWM1rL/J6JZt2fVld6Wt0p4/vP04el58f4DIMXj7/5X0YVpe5izX+vbjXTrQz2BvdVnC/xVxfMrDJGOaDbZZER1kqkN/ByKD3Omj5OFylyXkCluZcja1SzLLNmpg1Mq6satTSrTcLW84lRLVFnvYQ1a/cWfqtagUer2Pma+YDhZGSAxyF4qEQsmMoX8tCUj3b6h3jjFv9i2YMJ7vnybM9Q+H+MX34bnypuQx+Z1tATWpbO9F+ZbZ6TWrL4jrtLVOvz3nN3rSACmJzFKHEr/K1y29q2jk/qtXmOs77UXRTrtaa03W2TzV5raCOIpfA7KqmOHRmN596ZT3enqcjp8xTW+Zv55BzLWBSJ++WpyffqfSKp9V9h8AYgvzjL4z5IWSNSfUoskOUV0NMOKGpn921NJ5Izk/qt7y7Z9XijzxZm/J3KHP2Ew==&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+      <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+      <br>
+    </div>
+    </div>
+    <!-- <img src="bananor.png"/> -->
+    <!-- <img src="https://i.makeagif.com/media/2-09-2017/dfH0H8.gif">
+	 <img src="https://c.tenor.com/tKElFQO9vQwAAAAC/goofy-goofy-ahh.gif"> -->
+  </body>
+</html>
