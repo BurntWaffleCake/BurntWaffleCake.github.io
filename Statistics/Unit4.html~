@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Statistics</title>
+    <link rel="stylesheet" href="../styles/styleSheet.css">
+    <meta charset="utf-8"> 
+  </head>
+  <body>
+    <main class="mainHeader" id="Statistics">Unit3</main>
+    <div class="navigation-bar">
+      <a href="../index.html" id="sized">TO HOME</a>
+      <a href="../mainPages/index.html" id="sized">About Me</a>
+      <div class="dropdown">
+	<a href="../mainPages/classes.html" id="sized">Classes</a>
+	<div class="dropdown-content">
+	  <a href="../mainPages/computerScience.html">Computer Science</a>
+	  <a href="../mainPages/statistics.html">Statistics</a>
+	</div>
+      </div>
+      <a href="../mainPages/why.html" id="sized">But Why?</a>
+      <a href="../CS-II/Projects/Business Plan/index.html" id="sized">ISP Proposal</a>
+    </div>
+
+    <div class="floatContainer">
+      <div class="sideBar">
+	<a class="sidebarLink" href="Unit1.html">Unit1</a>
+	<a class="sidebarLink" href="Unit2.html">Unit2</a>
+	<a class="sidebarLink" href="Unit3.html">Unit3</a>
+      </div>
+      <div class="mainBody">
+	<h1>Unit 3</h1>
+	<p>This unit we went over sampling and experimental design used to formulate steps in gathering or observing data.</p>
+	<h2>Simulations</h2>
+	<p>A simulation is an imitation of chance behavior, based on a model that accurately reflect the experiment under consideration.<br>
+	  A digit table is a table that consists of randomly generated digits that can be used to model experiments.
+	</p>
+
+	<div class="bodyElement">
+	  <img src="https://researchbasics.education.uconn.edu/wp-content/uploads/sites/1215/2015/05/RANTBLE.jpg" alt="image not found">
+	</div>
+	
+	<h3>Setting up a Simulation</h3>
+	<p>1. State the model and define the key components.<br>
+	  2. State what one trial should consist of. A stopping rule should be included if necessary.<br>
+	  3. State what should be recorded.<br>
+	  4. Conduct the trials and record the observation.<br>
+	  5. Summarize and draw conclusions from trials. (only appropriate to do if you have at least 100 trials)
+	</p>
+
+	<h2>Sampling Design</h2>
+	<p>There are many different ways to collect data. Some examples include, surveys/interviews, studies (Observational in the present, Retrospective in the past and Prospective in the future), as well as experiments.<br>
+	  A Population is the entire group of individuals that we want information about.<br>
+	  A Census is a complete count of the population or information about the entire population.<br>
+	  A Sample is a part of the population we examine in order to gather information about the population.<br>
+	  Sampling Design it the method we use to choose a sample from a population. We use a sampling frame which is a list of every individual in the population. Depending on how we choose our sample, certain biases may be present or certain groups may not be fully represented. This means that we will have to carefully choose who we exactly add to our sample in order to avoid interpreting false or uninclusive.
+	  <h3>Types of Sampling Designs</h3>
+	<p>Simple Random Sample - every individual has an equal chance of being selected. Every set of n individuals has an equal chance of being selected. <br>
+	  Stratified Random Sample - population is divided into groups called strata. SRSs are selected from each group. <br>
+	  Systematic Random Sample - sample is selected following a systematic approach. Select starting point and increment over until goal is reached. (number between 1 and n. Select individuals every nth person after)<br>
+	  Cluster Random Sample - randomly pick a location and sample all individuals in that location.<br>
+	  Multistage Sample - any combination of other sample methods. Selects successively smaller groups within population in stages.
+	</p>	
+
+	<div class="bodyElement">
+	  <img src="https://cdn.scribbr.com/wp-content/uploads//2019/09/probability-sampling.png" alt="image not found">
+	</div>
+
+	<h3>Advantages of Sample Types</h3>
+	<p>Simple Random Sample - Unbiased, easy to design, and easier to formulate in order to get SD and confidence intervals.<br>
+	  Stratified Random Sample - Unbiased, less variability, easy if strata already exist.<br>
+	  Systematic Random Sample - Unbiased, Sample frame is not needed, easier and more efficient.<br>
+	  Cluster - Unbiased, Sample frame is not needed, easier and more efficient.
+	</p>
+	
+	<h3>Disadvantages of Sample Types</h3>
+	<p>Simple Random Sample - More variability, may not be representative, sampling frame is required.<br>
+	  Stratified Random Sample - Difficult to execute if strata are not already present, formulas are more complicated, a sample frame is required.<br>
+	  Systematic Random Sample - More variability, can be confounded by trend or cycle, formulas are more complicated.<br>
+	  Cluster - More variability, clusters may not be representative, formulas are more complicated.
+	</p>
+
+	<h2>Biases</h2>
+	<p>A Bias is a systematic error in measuring the estimate that would repeatedly cause the data to be wrong. There are several types of biases that result from different circumstances.<br>
+	  Voluntary Response Bias - people select themselves to participate in the study thus are not randomly chosen. This type of bias tends to favor those with stronger responses to the topic of the study.<br>
+	  Nonresponse Bias - individuals are randomly chosen to be part of the sample but refuse to cooperate with the study. Note that this bias can not exist along with voluntary response bias as the subjects are RANDOMLY chosen and do not volunteer.<br>
+	  Convenience Bias - Subjects are chosen based on the simplicity or convenience of the situation. These subjects are therefore not chosen at random.<br>
+	  Under Coverage Bias - some groups are left out of the selection process whether it be on purpose or accidentally.<br>
+	  Response Bias - Occurs when the response of the subject is impacted by the actions of the subject.<br>
+	  Wording of Question Bias - Occurs when the question given to the subject influences the answer of the subject. Questions should be kept neutral and should be appropriate to the population being surveyed. (Is a type of response bias).
+	</p>
+
+	<div class="bodyElement">
+	  <img src="https://datatron.com/wp-content/uploads/2021/03/character-line.png" alt="image not found">
+	</div>
+	
+	<h2>Experimental Design</h2>
+	<p>An observational study observes the outcomes of a group without imposing treatments. Experiments actively impose randomly assigned treatments in order to observe the response to said treatments. These treatments are given to Experimental Units and treatments can be categorized into factors (explanatory variable) which is what is tested/changed. Levels are specific values or types of the factor. The response variable is the result of the treatment and is what we measure at the end of the experiment. Treatments are specific conditions imposed on the units. They have the same levels when there is only one factor and combinations of levels if there are multiple factors. A control group is a group used to compare factors against a blank state with a placebo. Placebos are dummy treatments that have no effect on the subject. They are not required in every experiment. Blinding is when units or evaluators are oblivious to which treatment the subject received. Double blinding is when both the subject and evaluator are unaware of what treatment was given. Confounding variables are third variables that may impact the factor and response variable. Studies can not be used to show causation as confounding variables may be present. Experiments on the other hand are able to show causation as experiments do not have confounding variables.</p>
+	<h3>Principles of Experimental Design</h3>
+	<p>Control - the effects of extraneous variables on the response.<br>
+	  Randomization - the use of chance to assign subjects treatments.<br>
+	Replication - the imposing of the experiment on many subjects to quantify the nature of the variation.</p>
+	<h3>Types of Experimental Design</h3>
+	<p>Completely Randomized Design - experimental units are assigned completely random treatments.</p>
+	<div class="bodyElement">
+	  <img src="https://digfir-published.macmillanusa.com/psbe4e/asset/ch3/images/fig_ch3_6.jpg" alt="image not found">
+	</div>
+	<p>Randomized Block Design - experimental units are blocked into homogeneous groups then randomly assigned treatments.</p>
+	<div class="bodyElement">
+	  <img src="https://digfir-published.macmillanusa.com/psbe4e/asset/ch3/images/fig_ch3_9.jpg" alt="image not found">
+	</div>
+	<p>Matched Pair Design - A type of block design with two methods/treatments. </p>
+	<p>Randomization eliminates potential confounding variables by spreading uncontrolled confounding variables evenly throughout treatment groups.<br>
+	  Blocking reduced variability.<br>
+	  Variability is controlled by sample size. Larger samples produce statistics with less variability.
+	</p>
+      </div>
+    </div>
+    <!-- <img src="bananor.png"/> -->
+    <!-- <img src="https://i.makeagif.com/media/2-09-2017/dfH0H8.gif">
+	 <img src="https://c.tenor.com/tKElFQO9vQwAAAAC/goofy-goofy-ahh.gif"> -->
+</body>
+</html>
