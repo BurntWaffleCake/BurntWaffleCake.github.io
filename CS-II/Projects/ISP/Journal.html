@@ -32,7 +32,66 @@
 	<a class="sidebarLink" href="Journal.html">ISP Journal</a>
       </div>
       <div class="mainBody">
-	<p class="apaHeading"><b>ISP Journal: Goose Simulator</b><br></p>
+	<p class="apaHeading"><b>ISP Journal: Goose Simulator</b></p>
+	<h2>6-Feb-2023</h2>
+	
+	<h3>Technical challenges</h3>
+	<p>One issue our team is running into is the referencing and usage of different values that pertain to the player's statistics. For example, the movement speed of the player is accessed through the player's character while the health is accessed from the server. This has resulted in problems when implementing features such as buffs which require open and easy access to these values. We are currently discussing implementing an all-encompassing library that will hold all values about the player. This would solve issues regarding unwieldy access to information about the player but may slow down the process as many of the aspects of our game will have to be modified to work with the new system.</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>Scheduling meetings have remained an issue that has yet to be properly solved. The meetings that were originally planned for Saturday evenings have had little attendance and progress/planning accomplished during said meetings has been minimal to none. With the Cyber Security program now over for many of the teams that participated, we expect that meetings will become more frequent to ensure the success of our project.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>With new topics and assignments directed toward our teammates that do not pertain to computer science or our ISP project, motivation generally decreased throughout our team. The momentum we had at the beginning of the project has slowly fizzled as other projects have plagued us that do not benefit the development of the game. This has significantly reduced the progress we are making in our project and may result in us having to reduce the amount of content we had initially wanted to make.</p>
+	
+	<h2>30-Jan-2023</h2>
+	
+	<h3>Technical challenges</h3>
+	<p>The projectile system has now been fixed to use a system that integrates both the client and server. After receiving a projectile request from the client, the server will spawn its own projectile and then request a cosmetic projectile to be spawned in all clients. This ensures that collisions and hits are detected consistently while removing problems that had to do with where projectiles were spawning.  We are now in the process of converting our old classes to work with the new system as well as making sure any other class that uses projectiles also works. </p>
+
+	<h3>Scheduling challenges</h3>
+	<p>A long bad weather weekend has forced us to cancel one of our in-person meetings. We have resorted to using discord to hold a meeting instead however I still feel that having in-person meetings will be much more productive than ones online. </p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>One of our teammates has gone suspiciously quiet for a long time now. They are not known to reach out to us often but have not reached out to us at all for almost 2 and a half weeks now. We are currently trying to reach them again but with little success. Hopefully, we can get in contact with them again for the sake of our project as well as their well-being.</p>
+	<br>
+	<br>
+	<h2>23-Jan-2023</h2>
+	
+	<h3>Technical challenges</h3>
+	<p>The projectile system that we are currently using requires an update due to several circumstances regarding hit detection. In the current system we use, the player equips a tool that in turn is used to spawn projectiles. The client sends a request to the server which then receives the request, processes the information, executes a sanity check on the information, then sends a request to all clients (including the original client) to spawn in a projectile. The main problem with this regards how to hit detection and the actual spawning of the projectile happens in the client. Although testing for hits in the client may seem like a better experience for the user,  we plan to implement multiplayer into our game making testing for hits and collisions in the server much more consistent than in the client. Another problem that rises is that another request has to be sent to the server regarding when and where the hit happened. This could introduce an unwanted delay between the projectile request, spawning, and hit detection.</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>Due to many of our teammates working or being occupied during the weekends and weekdays, many of our meetings had to be shortened or omitted due to insufficient attendance. This has become a serious problem and could result in a reduction of motivation for the project. We are currently working together to solve this problem; however, it seems that this and the following week will also be following the trend mentioned above.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>Although we have tried to standardize the platform we use to communicate, it is becoming more difficult to reach out to some of our team members. They are stating that their parents either do not allow them to use the form of communication at all or in very short intervals which have made contacting them regarding aspects of our project difficult. We are currently trying to get them to talk to their parents regarding their situation as this lack of communication could result in the inability for them to receive important announcements.</p>
+	<br>
+	<br>
+	<h2>16-Jan-2023</h2>
+	
+	<h3>Technical challenges</h3>
+	<p>The room generation algorithm has been completed and is flexible enough to permit different types of generation for different stages/levels. Our team is not working on creating rooms to be used in this algorithm and has been attempting to keep all of our assets as light as possible (performance). A rarity system is planned to be implemented for our items which will be picked up from chests that are randomly generated throughout the level. A new class that assists with random generation logic will be created that will help us with other aspects of our game other than the rarity of items.</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>This week presents us with less than ample time to work on our ISP together. The Cyber Patriot competition takes place the day before our official meeting and has resulted in a notable portion of our time allocated to cybersecurity efforts. Some of the work originally intended for this week may have to be pushed to next week. We plan to put together a very basic beta of our game which will include the map generation, basic enemies and weapons, and a boss. We plan to get this created by around mid-February.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>Due to numerous external conflicts with meeting dates along with other events, not a lot of communication has happed between our teammates this week. We plan to regroup on Sunday to get back on track and discuss further developments in our game. Most of the framework is in place and what remains is implementing assets and further polishing the performance and look of our game, a topic to be discussed in this week's meeting.</p>
+	<br>
+	<br>
+	<h2>9-Jan-2023</h2>
+	
+	<h3>Technical challenges</h3>
+	<p>Some of our teammates are unable to bring devices capable of running Roblox Studio to school due to restrictions placed by their parents or the school entity. This has limited our ability to work while in leisure time (privilege periods) and may negatively impact our work schedule as school is a guaranteed source of in-person meetings. We are currently working towards making sure everyone can access our main project file whether that be in school or at home. Physical copies of our game have also been added to multiple devices as well as to the main GitHub repository to ensure backups are present in case of file corruption or memory loss.</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>Meeting dates have been set to Sunday evenings and unofficial Wednesday meetings are also being held. These meetings are used to log planning and development progress in the game and can be used to change aspects of our game and serve as a semi-guaranteed method of reaching out to all members through voice chat and/or physical meetings. A problem that has arisen is the consistency of times available on Sundays. Some of our teammates have work and/or are unavailable during varying times due to religious meets as well as other external factors. This has caused the meetings to have a variable time and may result in problems in the future. Other possible days are currently being discussed.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>We are currently lacking good ideas as to how our game will look and work. Our game needs multiple enemy and weapon types and a layout as to how these weapons will function, interact with other components of our game, and be created through the Roblox engine are essential to ensure smooth development. Although many ideas are being thrown around our team in both official and unofficial meetings, many have turned out to be unrealistic, impractical, and outright senseless. Those deemed to have some semblance of sense have been shallow in terms of details as to their functionality and mechanics. This has caused development to bottleneck and could turn out to extend the estimated time before we can put together a functional game.</p>
+	<br>
+	<br>
 	<h2>2-Jan-2023</h2>
 	
 	<h3>Technical challenges</h3>
@@ -44,7 +103,9 @@
 	<h3>Interpersonal challenges</h3>
 	<p>One of our teammates has refused to get into contact with the rest of the team which has resulted in a confused ordeal regarding the disposition, sanity, and presence of said teammate. Multiple emails from multiple people on our team were sent to the person with no replies or any measure taken for contact. We are currently attempting to find other methods of contacting the said teammate to verify their presence and their willingness to participate in the ISP project as well as integrate them into our current and future plans.</p>
 
-	<h3>Roles</h3>
+	<br>
+	<br>
+	<h2>Roles</h2>
 	<h3>Software Development Engineer</h3>
 	<p>Software Development Engineers are people who program and design software that meets the needs of their targeted audience. They are the foundational builders of a product and are responsible for the creation, deployment, and maintenance of a product. The most prevalent role in the creation of Goose Simulator will be the Software Developer/Engineer as many people are needed to program a fully-fledged game. Because many of our teammates are less acquainted with the programing language Lua that the Roblox engine uses, there may be a significant lack of efficiency when it comes to programming the game. To alleviate this problem, a very concrete planning stage will have to take place to prioritize the most important components needed in the game while allowing the other teammates to catch up. This role is best suited for me in the current situation of our Isp group as I am the most familiar with Lua at this point. My current goal is to develop and needed modules for our game so that our creation process after the planning is complete will be as smooth and simple as possible for our other teammates.</p>
 	<h3>QA Engineer</h3>
