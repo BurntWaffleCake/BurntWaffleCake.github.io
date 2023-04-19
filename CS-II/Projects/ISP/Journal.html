@@ -33,6 +33,145 @@
       </div>
       <div class="mainBody">
 	<p class="apaHeading"><b>ISP Journal: Goose Simulator</b></p>
+	<h2>03-Apr-2023</h2>
+
+	<h3>Technical challenges</h3>
+	<p>A simpler and more efficient pathfinding algorithm was created but it lacks a good way to scale heights. The system uses an array of nodes to determine a direction with the least weight for the AI to travel in. The algorithm itself is very simple and includes various tests to ensure that the path is viable. Unfortunately, the algorithm lacks a good way to test for height changes such as through ramps or stairs and will tend to stay at the same elevation as it currently is. We have determined that this is a better compromise than using the older pathfinding system as it was much more performance intensive than our new algorithm.</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>Meetings are still a problem as less and less time is available for our members to meet. Tests and other projects are still getting in the way of development and slowing progress down. Our goal is to get as many meetings together as we can with a focus on how our game will look and compromises due to time constraints.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>We are severely lacking good ideas to incorporate into our game such as for weapons, map designs, and other design choices. The basic framework for our game is in place and ready to go but with no idea of what to create, progress has been hampered for a long time. A lot of our development focus has shifted from the workings of the game itself to what we need to include to create a cohesive game with a central theme in mind.</p>
+
+	<h3>Significant Achievements</h3>
+	<div style="text-indent:0">
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ServerStorage/Modules/Pathfinding.lua">Pathfinding</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ServerStorage/Modules/PathfindingNode.lua">PathfindingNode</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ServerStorage/Modules/Misc/Explosion.lua">Explosion</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ServerStorage/Modules/Map/Room.lua">Room</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ServerStorage/Modules/Map/BattleRoom.lua">BattleRoom</a><br>
+	</div>
+	
+	<hr class="solid"> </hr>
+
+	<h2>27-Mar-2023</h2>
+
+	<h3>Technical challenges</h3>
+	<p>We have run into several issues with Roblox's pathfinding services and have decided to simplify our AI down and exclude the usage of the pathfinding service in our enemies. This has resulted in a need to create a watered-down version of a pathfinding AI and will be one of the major challenges our developers will have to overcome. We expect our version of pathfinding to be more performant than Roblox's and will allow us to increase the number of enemies in our game.</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>Meetings are more available for our team but approaching due dates and test days have severely limited our capability to work on the ISP. A new scripter schedule has been put in place to make sure we can meet our project goals and finish our product in time for the deadline. This includes a revised timeline and a separation of goals into parts every week. This has been put in place to make sure everyone on our team is working and has something to do to ensure the timely execution of our plans.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>One of our teammates has not been able to use computers for extended periods due to their parents. This has been an ongoing problem and a solution has not been available as it is a family issue. This has impacted our productivity to a certain extent, however, we feel that there are other methods for this individual to partake in the production of this project.</p>
+
+	<h3>Significant Achievements</h3>
+	<div style="text-indent:0">
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/Client/ClientMain.lua">ClientSideScript</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ServerStorage/Modules/StatusEffectBase.lua">StatusEffectBase</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ServerStorage/Modules/StatusEffects/OnFire.lua">ExampleStatusEffect</a><br>
+	</div>
+	
+	<hr class="solid"> </hr>
+	
+	<h2>20-Mar-2023</h2>
+
+	<h3>Technical challenges</h3>
+	<p>Our main Entity module has been completed to conform with the new OOP system we are using as well as combining the player and enemy logic. Debugging the code to make sure that no mistakes were made during the development has begun which will finish shortly. New AI needs to be written for our enemies which will slow down progress however we hope the new Entity system will make it much easier to implement new enemies.</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>Our lead developer is back and has begun working on the project once more. More meetings are planned to be held as the major Cyber Security season is over. The due date is getting closer with slower progress than anticipated which has prompted our team to work harder to get the game done by the deadline.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>Changes to the weapons in our game have begun to pop up as new features are being implemented and due to plans to shorten the final product to only include a portion of the original plan. This has resulted in some of our teammates disagreeing over how weapons should be balanced and which weapons to add. Some of our teammates also disagree on how over the top we want our game to be which has resulted in several ideas being scrapped or changed to fit the style of our game.
+	</p>
+		
+	<h3>Significant Achievements</h3>
+	<div style="text-indent:0">
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ServerStorage/Modules/Entity.lua">EntityModule</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ReplicatedStorage/Modules/Inventory/Tool.lua">ToolModule</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ReplicatedStorage/Modules/Inventory/Gun.lua">GunToolModule</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ReplicatedStorage/Modules/Inventory/Gun/BasicPistol.lua">BasicPistolModule</a><br>
+	</div>
+
+	<hr class="solid"> </hr>
+	
+	<h2>13-Mar-2023</h2>
+	
+	<h3>Technical challenges</h3>
+	<p>A large portion of the conversion to the new OOP has been completed. We are in the process of reworking our entity system to make it easier to use and to flesh out any major bugs regarding the logic behind the enemies. Combining the player and enemies into a unified entity system will allow us to easily make certain features compatible between the two systems. For example, our original code had two separate handlers for status effects for players and enemies. Our new code combines these two separate code sections into a unified class.</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>The Cyber Security finals have arrived which has taken our lead developer away from working on the project. He has notified us that he will still be able to work on the project throughout his trip to Bethesda but we are anticipating a lack of progress due to his absence. </p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>Our team is having to rethink many of the choices we made during the planning phase of the project. Although the ideas were good, we may have to scrap a significant portion of them due to production delays and overall overambition. We think that if we were given more time much more would be able to be accomplished but as of now, a large portion of our project will have to be put on hold for our team to focus on a smaller portion of our game rather than make the entire thing rushed.</p>
+
+	<h3>Significant Achievements</h3>
+	<div style="text-indent:0">
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ReplicatedStorage/Modules/Utility/Spring.lua">SpringModule</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ReplicatedStorage/Modules/Utility/FlexValue.lua">FlexValueModule</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ReplicatedStorage/Modules/Utility/Rod.lua">RodModule</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ReplicatedStorage/Modules/ProjectileModules/Projectile.lua">ProjectileModule</a><br>
+	  <a href="https://github.com/CSAllenISD/2023-ISP-Ludicrous/blob/master/Main/ReplicatedStorage/Modules/ProjectileModules/Projectiles/Bullet.lua">BulletModule</a><br>
+	</div>
+	
+	<hr class="solid"> </hr>
+
+	<h2>6-Mar-2023</h2>
+
+	<h3>Technical challenges</h3>
+	<p>A flaw in our current code has resulted in a complete scrap of many parts of our code. Lua allows programmers to use metatables to create sudo object-oriented coding. This means there are several different ways to approach using OOP. Unfortunately, the current way we are doing OOP is less efficient than the way we plan to change it in that our current way stores functions as part of the object whereas the new way uses metatable reference towards the object's methods which allows us to use less memory per object we create.
+	</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>A cybersecurity CTF known as PicoCTF has leeched some of our members from working full-time on our game. This has resulted in even less communication regarding the project along with even less productivity as attention is being drawn to the competition instead of the project. Our team is hoping attention will be diverted back to the project after the conclusion of the competition.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>Our team has gone completely off of the original roles we assigned each other and are now working as a hodgepodge group with many not knowing what exactly they should work on. This has been amplified by the fact that many on our team still have not learned how to use the Roblox engine properly. This has become increasingly frustrating as this problem has persisted for multiple weeks at this point with little to no progress being made by these members.</p>
+	
+	<hr class="solid"> </hr>
+	
+	<h2>27-Feb-2023</h2>
+
+	<h3>Technical challenges</h3>
+	<p>The current way we are handling player and enemy models and logic are flawed in that they are independent systems from one another. This may work for games where the player and enemy systems are catered towards supporting their features; however, we want our players and entities to be synonymous with one another to allow easy application of features such as status effects, health handling, and others. This has resulted in a significant amount of code being rewritten to adorn the generalization of the players and enemies through a module that we are calling "entity".</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>Our team is still having trouble making time for meetings and with English ISPs being due very soon even less time has been allocated toward the production of our game. Our small team of developers is working hard to make up for the lost time but progress is still slow with such a small team amplified by the fact that our developers are also having trouble making time for our game.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>Many of our teammates are unable to use Roblox's coding platform due to their lack of knowledge of the software and systems. This has become a major problem as our team has been warned thoroughly about not being able to use the application to its fullest. This has resulted in an asymmetric amount of work being filtered toward our developers which have slowed progress and even put it to a standstill at times.</p>
+	
+	<hr class="solid"> </hr>
+
+	<h2>20-Feb-2023</h2>
+
+	<h3>Technical challenges</h3>
+	<p>The current level creation workflow for our project is based on a directory search-based algorithm that has resulted in several problems when creating new areas for our map. The rooms themselves are not fit for optimal gameplay and can get laggy when many are loaded at once. The Roblox Engine itself is not known to handle thousands of instances being rendered at once very well so this performance issue is also another problem in need of fixing.</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>Our team is having more and more trouble finding optimal dates to hold meetings which has resulted in less discussion regarding producing the actual game. Other issues regarding the availability and ability to learn the ways to create games on Roblox have resulted in slow progress with only one or two developers working on the project. Other projects have started to pop up in other classes which have also slowed the progress of development.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>Motivation is still at a low with our team having to deal with other classes, tests, assignments, and such. Many of our teammates have not been available for meetings both in person and online and have been asked to indulge in other projects which have in turn hurt the productivity of our game. We are hoping that with the passing of many of the tests that have come our way, we will be able to continue work more efficiently.</p>
+	
+	<hr class="solid"> </hr>
+
+	<h2>13-Feb-2023</h2>
+	
+	<h3>Technical challenges</h3>
+	<p>One issue our team is running into is the referencing and usage of different values that pertain to the player's statistics. For example, the movement speed of the player is accessed through the player's character while the health is accessed from the server. This has resulted in problems when implementing features such as buffs which require open and easy access to these values. We are currently discussing implementing an all-encompassing library that will hold all values about the player. This would solve issues regarding unwieldy access to information about the player but may slow down the process as many of the aspects of our game will have to be modified to work with the new system.</p>
+
+	<h3>Scheduling challenges</h3>
+	<p>Scheduling meetings have remained an issue that has yet to be properly solved. The meetings that were originally planned for Saturday evenings have had little attendance and progress/planning accomplished during said meetings has been minimal to none. With the Cyber Security program now over for many of the teams that participated, we expect that meetings will become more frequent to ensure the success of our project.</p>
+	
+	<h3>Interpersonal challenges</h3>
+	<p>With new topics and assignments directed toward our teammates that do not pertain to computer science or our ISP project, motivation generally decreased throughout our team. The momentum we had at the beginning of the project has slowly fizzled as other projects have plagued us that do not benefit the development of the game. This has significantly reduced the progress we are making in our project and may result in us having to reduce the amount of content we had initially wanted to make.</p>
+	
+	<hr class="solid"> </hr>
+
 	<h2>6-Feb-2023</h2>
 	
 	<h3>Technical challenges</h3>
@@ -44,6 +183,8 @@
 	<h3>Interpersonal challenges</h3>
 	<p>With new topics and assignments directed toward our teammates that do not pertain to computer science or our ISP project, motivation generally decreased throughout our team. The momentum we had at the beginning of the project has slowly fizzled as other projects have plagued us that do not benefit the development of the game. This has significantly reduced the progress we are making in our project and may result in us having to reduce the amount of content we had initially wanted to make.</p>
 	
+	<hr class="solid"> </hr>
+
 	<h2>30-Jan-2023</h2>
 	
 	<h3>Technical challenges</h3>
@@ -54,8 +195,9 @@
 	
 	<h3>Interpersonal challenges</h3>
 	<p>One of our teammates has gone suspiciously quiet for a long time now. They are not known to reach out to us often but have not reached out to us at all for almost 2 and a half weeks now. We are currently trying to reach them again but with little success. Hopefully, we can get in contact with them again for the sake of our project as well as their well-being.</p>
-	<br>
-	<br>
+
+	<hr class="solid"> </hr>
+
 	<h2>23-Jan-2023</h2>
 	
 	<h3>Technical challenges</h3>
@@ -66,8 +208,9 @@
 	
 	<h3>Interpersonal challenges</h3>
 	<p>Although we have tried to standardize the platform we use to communicate, it is becoming more difficult to reach out to some of our team members. They are stating that their parents either do not allow them to use the form of communication at all or in very short intervals which have made contacting them regarding aspects of our project difficult. We are currently trying to get them to talk to their parents regarding their situation as this lack of communication could result in the inability for them to receive important announcements.</p>
-	<br>
-	<br>
+
+	<hr class="solid"> </hr>
+
 	<h2>16-Jan-2023</h2>
 	
 	<h3>Technical challenges</h3>
@@ -78,8 +221,9 @@
 	
 	<h3>Interpersonal challenges</h3>
 	<p>Due to numerous external conflicts with meeting dates along with other events, not a lot of communication has happed between our teammates this week. We plan to regroup on Sunday to get back on track and discuss further developments in our game. Most of the framework is in place and what remains is implementing assets and further polishing the performance and look of our game, a topic to be discussed in this week's meeting.</p>
-	<br>
-	<br>
+
+	<hr class="solid"> </hr>
+
 	<h2>9-Jan-2023</h2>
 	
 	<h3>Technical challenges</h3>
@@ -90,8 +234,9 @@
 	
 	<h3>Interpersonal challenges</h3>
 	<p>We are currently lacking good ideas as to how our game will look and work. Our game needs multiple enemy and weapon types and a layout as to how these weapons will function, interact with other components of our game, and be created through the Roblox engine are essential to ensure smooth development. Although many ideas are being thrown around our team in both official and unofficial meetings, many have turned out to be unrealistic, impractical, and outright senseless. Those deemed to have some semblance of sense have been shallow in terms of details as to their functionality and mechanics. This has caused development to bottleneck and could turn out to extend the estimated time before we can put together a functional game.</p>
-	<br>
-	<br>
+
+	<hr class="solid"> </hr>
+
 	<h2>2-Jan-2023</h2>
 	
 	<h3>Technical challenges</h3>

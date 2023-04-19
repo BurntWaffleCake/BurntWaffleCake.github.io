@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Statistics</title>
+    <link rel="stylesheet" href="../styles/styleSheet.css">
+    <meta charset="utf-8"> 
+  </head>
+  <body>
+    <main class="mainHeader" id="Statistics">Unit 5</main>
+    <div class="navigation-bar">
+      <a href="../index.html" id="sized">TO HOME</a>
+      <a href="../mainPages/index.html" id="sized">About Me</a>
+      <div class="dropdown">
+	<a href="../mainPages/classes.html" id="sized">Classes</a>
+	<div class="dropdown-content">
+	  <a href="../mainPages/computerScience.html">Computer Science</a>
+	  <a href="../mainPages/statistics.html">Statistics</a>
+	</div>
+      </div>
+      <a href="../mainPages/why.html" id="sized">But Why?</a>
+      <a href="../CS-II/Projects/Business Plan/index.html" id="sized">ISP Proposal</a>
+    </div>
+
+    <div class="floatContainer">
+      <div class="sideBar">
+	<a class="sidebarLink" href="Unit1.html">Unit 1</a>
+	<a class="sidebarLink" href="Unit2.html">Unit 2</a>
+	<a class="sidebarLink" href="Unit3.html">Unit 3</a>
+	<a class="sidebarLink" href="Unit4.html">Unit 4</a>
+	<a class="sidebarLink" href="Unit5.html">Unit 5</a>
+      </div>
+      <div class="mainBody">
+	<h1>Unit 5</h1>
+	<h2>Probability and Distributions</h2>
+	<p style="text-indent:0;">Two types of numerical variables:<br>
+	  Discrete - Count of a random variable<br>
+	  Continuous - measurement of random variable
+	</p>
+
+	<h2>Discrete Probability Distributions</h2>
+	<p style="text-indent:0;">Table of all probabilities associated with each possible x value (can be displayed in a table or histogram)<br>
+	  for every possible x value: 0 ≤ P(x) = 1<br>
+	  For all x values: ΣP(x) = 1
+	</p>
+	<div class="bodyElement">
+	  <img src="StatisticsImages/discreteExample.png" alt="image not found">
+	</div>
+	<p></p>
+
+	<h2>Special Discrete Distributions</h2>
+	<p style="text-indent:0;"><b>Binomial Distribution:</b> B(n [Number of trials] , p [Probability of success] )<br>
+	  Each trial results in one of two mutually exclusive outcomes: Success or Failure.<br>
+	  There are a fixed number of trials.<br>
+	  The probability that a trial results in a success is the same for all trials.<br>
+	  Example: Toss coin 10 times and count number of heads.<br>
+	  <br>
+	  The binomial random variable x is defined as the number of successes out of the fixed number of trials<br>
+	  <br>
+	  Calculator Steps:<br>
+	  [2nd][var]<br>
+	  Binomialpdf(n,p,x) - calculates the probability of a single binomial P(X = k).<br>
+	  Binomialcdf(n,p,x) - calculates the cumulative probability from P(0) to P(k) = P(X ≤ K).<br>
+	  <br>
+	  Showing work:<br>
+	  B(n,p) [Probability Statement (P(X = k))]
+	</p>
+
+	<div class="bodyElement">
+	  <img src="https://andymath.com/wp-content/uploads/2019/03/BinomialProbabilityFunction-e1573148294456.jpg" alt="image not found">
+	</div>
+
+	<p style="text-indent:0;"><b>Geometric Distribution:</b> geom, p<br>
+	  Two mutually exclusive outcomes: Success or Failure.<br>
+	  Continue until you succeed.<br>
+	  Probability of success remains constant for each trial.<br>
+	  Example: Count the number of children until the first son is born.<br>
+	  <br>
+	  The random variable x is the number of trials until the first success occurs.<br>
+	  <br>
+	  Calculator Steps:<br>
+	  [2nd][var]<br>
+	  geometpdf(p,x) - finds the geometric probability for P(X = k)<br>
+	  geometcdf(p,x) - finds the cumulative probability for P(X ≤ k)<br>
+	  <br>
+	  Showing work:<br>
+	  Geometric, p=# [Probability Statement (P(X = k))]
+	</p>
+
+	<div class="bodyElement">
+	  <img src="https://andymath.com/wp-content/uploads/2019/03/GeometricProbabilityFunction-480x265.jpg" alt="image not found">
+	</div>
+	
+	<p style="text-indent:0; padding-bottom:60px;"><b>Differences of Binomial and Geometric Distributions:</b>
+	  Binomial has fixed number of trials VS Geometric has variable number of trials<br>
+	  Binomial random variables start with 0 VS Geometric random variables start with 1<br>
+	  Binomial distributions are finite VS Geometric distributions are infinite
+	</p>
+	
+	<h2>Continuous Distributions</h2>
+	<p style="text-indent:0; padding-bottom:60px;"><b>Continuous Random Variables:</b><br>
+	  Numerical variables whose values fall within a range or interval<br>
+	  Are measurements<br>
+	  Can be described by a density curve<br>
+	  <br>
+	  <b>Density Curves:</b><br>
+	  Has an area exactly equal to 1<br>
+	  Describe what proportion of the observations fall within each range of values<br>
+	  <br>
+	  <b>Unusual Density Curves:</b><br>
+	  Can be any shape<br>
+	  Are continuous distributions<br>
+	  Probabilities are calculated by finding the are under the curve<br>
+	</p>
+
+	<div class="bodyElement">
+	  <img src="https://intellipaat.com/wp-content/uploads/2015/09/probability-for-a-continuous-random-variable.png" alt="image not found">
+	  <img src="https://saylordotorg.github.io/text_introductory-statistics/section_09/a4a078a33c22b212350844a6cd8789b6.jpg" alt="image not found">
+	</div>
+	
+	<h2>Special Continuous Distributions</h2>
+	<p style="text-indent:0;"><b>Uniform Distribution:</b><br>
+	  Continuous distribution that is evenly (uniformly) distributed<br>
+	  Density curve is in the shape of a rectangle<br>
+	  Probabilities are calculated using area under the curve<br>
+	</p>
+	<div class="bodyElement">
+	  <img src="https://i.ytimg.com/vi/UC-CBUSQXAo/maxresdefault.jpg" alt="image not found">
+	</div>
+	
+	<p style="text-indent:0;"><b>Normal Distributions:</b><br>
+	  Symmetrical bell-shaped curve<br>
+	  N(µ,σ)<br>
+	  Transition points occur at µ±σ<br>
+	  Probability is calculated by finding the area under the curve<br>
+	  as s increases, the curve flattens and spreads out<br>
+	  as s decreases, the curve gets taller and thinner<br>
+	  <br>
+	  Empirical Rule:<br>
+	  Approximately 68% of the observations fall within 1 σ of µ<br>
+	  Approximately 95% of the observations fall within 2 σ of µ<br>
+	  Approximately 99.7% of the observations fall within 3 σ of µ<br>
+	  <br>
+	  Standard Normal Density Curve:<br>
+	  µ = 0, σ = 1<br>
+	  z = (x - µ) / σ<br>
+	  <br>
+	  Calculator Steps:<br>
+	  [2nd][var]<br>
+	  Normalpdf - DO NOT USE THIS ONE<br>
+	  Normalcdf - will find probability of area from lower bound to upper bound<br>
+	  Invnorm (inverse normal) - will find z-score or the x-value for a probability<br>
+	</p>
+
+	<div class="bodyElement">
+	  <img src="https://www.bumc.bu.edu/public-health-learning-modules/files/2021/04/Standard-Normal-Distribution.png" alt="image not found">
+	</div>
+	
+	
+      </div>
+    </div>
+  </body>
+</html>

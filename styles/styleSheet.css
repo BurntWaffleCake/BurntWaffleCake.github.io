@@ -18,6 +18,12 @@ p {
     line-height:35px;
 }
 
+hr.solid {
+    border-top: 3px solid #bbb;
+    width: 80%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 
 pre {
     overflow-x: auto;
