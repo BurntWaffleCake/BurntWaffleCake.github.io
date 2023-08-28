@@ -1,49 +1,146 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="style.css">
-    </head>
 
-<header>
-    <p>Note: this page is currently not styled. A major revamp of previous pages are underway and will be updated shortly.</p>
+<head>
+    <link href="style.css">
+    <style>
+        p {
+            font-size: x-large;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        h2 {
+            font-size: 40px;
+        }
+
+        h3 {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<header style="margin-top: 10%;">
+    <p>Note: this page is currently not styled. A major revamp of the site is underway and will be updated
+        shortly.</p>
     <a href="https://www.codermerlin.academy/users/soohan-cho/Digital%20Portfolio/index.html">Home</a>
 
     <h1>Advanced Sort Algorithms</h1>
 </header>
 
-<body>
+<body style="max-width: 70em; margin: auto;">
     <article>
-    <h2>Abstract</h2>
-        This article will talk about 3 sorting algorithms: Mergesort, Quicksort, and Heapsort. These algorithms are common sorting algorithms with varying time and space complexities and all have their own advantages and disadvantages. This article will be going through how these algorithms work and their efficiencies compared to other common sorting algorithms such as bubblesort.
+        <h2><u>Abstract</u></h2>
+        <p>This article will talk about 3 sorting algorithms: Mergesort, Quicksort, and Heapsort. These algorithms are
+            common sorting algorithms with varying time and space complexities and all have their own advantages and
+            disadvantages. This article will be going through how these algorithms work and their efficiencies compared
+            to other common sorting algorithms such as bubblesort.</p>
+
+        <br />
+
+        <h2><u>Merge Sort</u></h2>
+        <p>Merge sort works by separating an initial input array and then "merging" them together to a final sorted
+            array output. The initial array is split into even halves (odd element counts allocate the remaining element
+            to either the left or right array) recursively until only one element (or none in the case of odd elements)
+            remains in each half. These halves are then combined together sorting each element accordingly until all
+            halves are combined together.</p>
+
+        <h3>Advantages and Disadvantages</h3>
+        <p>Merge sort is generally more efficient for larger arrays but requires much more memory than sorts such as
+            quicksort and bubblesort. This is a consequence from the sorting algorithms external sorting requiring extra
+            temporary memory to store the subdivided arrays. Merge sort can also be slower when applied to shorter
+            arrays. Merge sort is a stable sort meaning duplicate values maintain their relative positions in the
+            resultant array.</p>
+
+        <h3>Time Complexity and Space Complexity:</h3>
+        <p>Time Complexity: O(nLogn) (worst case and best case)<br />
+            Space Complexity: O(n) <br />
+        </p>
+
+        <br />
+
+        <h2><u>Quick Sort</u></h2>
+        <p>Quick sort works by recursively selecting a pivot (there are multiple ways to determine the best pivot
+            however we will consider it as the last element of the array in this case) and partitioning the input array
+            into elements smaller than the pivot and elements larger than the pivot. The algorithm's speed depends on
+            the way the pivot is selected and bad pivots can result in slower sorting times.</p>
+
+        <img style="width: 35%; display: block;"
+            src="https://www.programiz.com/sites/tutorial2program/files/quick-sort-partition-sixth-step.png"
+            alt="failed to load :P">
+
+        <img style="width: 55%; display: block;"
+            src="https://www.programiz.com/sites/tutorial2program/files/quick-sort_1.png" alt="failed to load :P">
+
+        <h3>Advantages and Disadvantages</h3>
+        <p>Quick sort is dependent on the pivot to determine the time complexity of the algorithm. The worst case
+            scenario is when the pivot is either the greatest or least value in the array. The best case scenario
+            results from the pivot being near the "middle" or "center" value of the sorted array. Quick sort uses a
+            substantially less amount of memory than merge sort as all partitioning is contained within the original
+            array. Quick sort is an unstable algorithm meaning duplicate values do not maintain their relative positions
+            in the resultant array.</p>
+
+        <h3>Time Complexity and Space Complexity:</h3>
+        <p>Time Complexity: O(n^2) (worst case)<br />
+            Time Complexity: O(nLogn) (best case)<br />
+            Space Complexity: O(logn) <br />
+        </p>
+
+        <br />
+
+        <h2><u>Heap Sort</u></h2>
+        <h3>What Is a Complete Binary Tree?</h3>
+        <p>To define what a heap is we must first explore what a complete binary tree is. A complete binary tree is a
+            data structure that organizes a dataset into a root, branches and nodes each with their respective parent
+            and children. The root of a complete binary tree is the start of the binary tree and has no parent. A node
+            contains a value and is connected to other nodes or the root forming a branch or path down to another node.
+            Branches are paths that connect the root to a node that doesn't have a child node. Leafs are nodes that do
+            not contain any children nodes. To determine which values go down which branch one can apply this rule: if
+            the index of the specified element is i, the element with index 2i+1 will become the left child node and the
+            element with index 2i+2 will become the right child node of the specified node. The parent of a specific
+            node can also be found using the formula (i-1)/2</p>
+
+        <img style="width: 35%" src="https://www.programiz.com/sites/tutorial2program/files/array-vs-heap-indices.png"
+            alt="failed to load :P">
+
+        <h3>What Is a Heap?</h3>
+        <p>A heap is a complete binary tree in which all nodes follow the rule that they are greater than their
+            children. This is called a max heap. The heap sorting algorithm uses heaps to sort a list of values by
+            heapifying partitions of an array and removing the greatest node until the algorithm has sorted the input
+            array. To heapify an array we start with the rightmost node that is not a leaf and swap the node with any of
+            its children (starting the comparison with the left child) if the node's value is less than the child's
+            value. This swapping is continued with all other non leaf nodes from the rightmost node's index down to and
+            including 0.</p>
+
+        <img style="width: 35%" src="https://www.programiz.com/sites/tutorial2program/files/max-heap-min-heap.png"
+            alt="failed to load :P">
+
+        <h3>Sorting the Elements</h3>
+        <p>With heapifying in mind, the heap sort operates by continually heaping an array whilst removing the last
+            element from the previous heap cycle (the number of elements being heaped is reduced by 1 after every
+            heapify we do). This is continued until all elements are removed from the heap resulting in a sorted array.
+        </p>
+
+        <div style="width: 35%; aspect-ratio: 1; overflow-y: scroll;">
+            <img style="width: 100%" src="https://www.programiz.com/sites/tutorial2program/files/heap_sort.png"
+                alt="failed to load :P">
+        </div>
+
+        <h3>Advantages and Disadvantages</h3>
+        <p>Heap sort is very efficient in terms of memory usage boasting the highest performance out of both the merge
+            and quick sort. However, although the time complexity of heap sort is similar to that of quicksort and in
+            many cases better, heap sort is often slower in real systems due to the increased complexity of the heap
+            data structure. Heap sort is used over quicksort when memory usage is a problem and boasts that same issue of
+            instability with quick sort.</p>
+
+        <h3>Time Complexity and Space Complexity:</h3>
+        <p>Time Complexity: O(nLogn) (worst and best case) <br />
+            Space Complexity: O(1) <br />
+        </p>
+
     </article>
-
-    <h2>Merge Sort</h2>
-    <p>Merge sort works by separating an initial input array and then "merging" them together to a final sorted array output. The initial array is split into even halves (odd element counts allocate the remaining element to either the left or right array) recursively until only one element (or none in the case of odd elements) remains in each half. These partitions are then combined together sorting each element accordingly until all partitions are combined together.</p>
-
-    <img style="width: 35%" src="https://www.programiz.com/sites/tutorial2program/files/merge-sort-example_0.png" alt="failed to load :P">
-
-    <h3>Advantages and Disadvantages</h3>
-    <p>Merge sort is generally more efficient for larger arrays but requires much more memory than sorts such as quicksort and bubblesort. This is a consequence from the sorting algorithms external partitioning requiring extra temporary memory to store the subdivided arrays. Merge sort is also slow when applied to shorter arrays. </p>
-
-    <h3>Time Complexity and Space Complexity:</h3>
-    <p>Time Complexity: O(nLogn) (worst case and best case)<br />
-        Space Complexity: O(n) <br />
-    </p>
-
-    <h2>Quick Sort</h2>
-    <p>Quick sort works by first selecting a pivot (there are multiple ways to determine the best pivot however we will consider it the last element of the array in this case) and </p>
-
-    <img style="width: 35%" src="" alt="failed to load :P">
-
-    <h3>Advantages and Disadvantages</h3>
-    <p></p>
-
-    <h3>Time Complexity and Space Complexity:</h3>
-    <p>Time Complexity: O(nLogn) (worst case)<br />
-        Space Complexity: O(n) <br />
-    </p>
-
-
 
 </body>
 
