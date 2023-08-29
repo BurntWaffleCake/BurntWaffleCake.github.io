@@ -4,6 +4,17 @@
 <head>
     <link href="style.css">
     <style>
+        a,
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
         p {
             font-size: x-large;
         }
@@ -20,7 +31,29 @@
             font-size: 30px;
         }
 
-        #BookmarkNav > p {
+        html {
+            background-image: url("https://static.vecteezy.com/system/resources/thumbnails/027/776/783/original/background-animation-social-media-icon-doodle-hand-drawing-looping-free-video.jpg");
+            /* background-repeat: no-repeat; */
+            /* background-attachment: fixed; */
+            background-size: 100%;
+        }
+
+        body {
+            background-color: white;
+            margin: 0 10% 10% 10%;
+            padding: 5%;
+        }
+
+        #BookmarkNav {
+            background-color: lightblue;
+            border-radius: 1.5em;
+            position: fixed;
+            top: 10%;
+            right: 0;
+            width: 15%;
+        }
+
+        #BookmarkNav>p {
             text-align: center;
         }
 
@@ -34,22 +67,23 @@
             background-color: lightgray;
         }
 
-        #BookmarkNav li, #BookmarkNav ul {
+        #BookmarkNav li,
+        #BookmarkNav ul {
             padding-bottom: 5px;
         }
     </style>
 </head>
 
-<header style="margin-top: 10%;">
-    <p>Note: this page is currently not styled. A major revamp of the site is underway and will be updated
-        shortly.</p>
-    <a href="https://www.codermerlin.academy/users/soohan-cho/Digital%20Portfolio/index.html">Home</a>
+<body>
+    <header>
+        <p>Note: this page is currently not styled. A major revamp of the site is underway and will be updated
+            shortly.</p>
+        <a href="https://www.codermerlin.academy/users/soohan-cho/Digital%20Portfolio/index.html">Home</a>
 
-    <h1>Advanced Sort Algorithms</h1>
-</header>
+        <h1>Advanced Sort Algorithms</h1>
+    </header>
 
-<body style="margin: 0 20% 10% 20%;">
-    <nav id="BookmarkNav" style="position: fixed; top: 10%; right: 0; width: 15%;">
+    <nav id="BookmarkNav">
         <p><b>Bookmarks</b></p>
         <ul>
             <li><a href="#Abstract">Abstract</a></li>
@@ -74,7 +108,7 @@
                     <li><a href="#HeapSort_4">Time and Space Complexity</a></li>
                 </ul>
             </li>
-        </ul>        
+        </ul>
     </nav>
 
     <article>
@@ -95,7 +129,8 @@
 
         <h3 id="MergeSort_0">Advantages and Disadvantages</h3>
         <p>Merge sort is generally more efficient for larger arrays but requires much more memory than sorts such as
-            quicksort and bubble sort. This is a consequence from the sorting algorithms external sorting requiring extra
+            quicksort and bubble sort. This is a consequence from the sorting algorithms external sorting requiring
+            extra
             temporary memory to store the subdivided arrays. Merge sort can also be slower when applied to shorter
             arrays. Merge sort is a stable sort meaning duplicate values maintain their relative positions in the
             resultant array.</p>
@@ -178,7 +213,8 @@
         <p>Heap sort is very efficient in terms of memory usage boasting the highest performance out of both the merge
             and quick sort. However, although the time complexity of heap sort is similar to that of quicksort and in
             many cases better, heap sort is often slower in real systems due to the increased complexity of the heap
-            data structure. Heap sort is used over quicksort when memory usage is a problem and boasts that same issue of
+            data structure. Heap sort is used over quicksort when memory usage is a problem and boasts that same issue
+            of
             instability with quick sort.</p>
 
         <h3 id="HeapSort_4">Time Complexity and Space Complexity:</h3>
