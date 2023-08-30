@@ -131,6 +131,9 @@
             remains in each half. These halves are then combined together sorting each element accordingly until all
             halves are combined together.</p>
 
+        <h3>Merging Arrays</h3>
+        <p>The merge sorts entire premise revolves around the merging of subarrays to sort the larger input array.  This can be accomplished by copying the subarrays from the input array, iterating over one subarray whilst comparing it with values from the other subarray and substituting the values in sorted order into the input array. We can assume that the initial subarrays are already sorted when the merge happens meaning that once we run out of values to compare in either of the subarrays, the rest of the other subarray is already sorted and can be implemented back into the input array without any comparisons.</p>
+
         <h3 id="MergeSort_0">Advantages and Disadvantages</h3>
         <p>Merge sort is generally more efficient for larger arrays but requires much more memory than sorts such as
             quicksort and bubble sort. This is a consequence from the sorting algorithms external sorting requiring
