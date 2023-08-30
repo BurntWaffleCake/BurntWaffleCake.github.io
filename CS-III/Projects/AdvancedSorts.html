@@ -71,6 +71,10 @@
         #BookmarkNav ul {
             padding-bottom: 5px;
         }
+
+        img {
+            align-self: center;
+        }
     </style>
 </head>
 
@@ -145,15 +149,19 @@
         <h2 id="QuickSort"><u>Quick Sort</u></h2>
         <p>Quick sort works by recursively selecting a pivot (there are multiple ways to determine the best pivot
             however we will consider it as the last element of the array in this case) and partitioning the input array
-            into elements smaller than the pivot and elements larger than the pivot. The algorithm's speed depends on
+            into elements smaller than the pivot and elements larger than the pivot. This is continued until only one
+            element remains in each partition leaving the array sorted. The algorithm's speed depends on
             the way the pivot is selected and bad pivots can result in slower sorting times.</p>
 
-        <img style="width: 35%; display: block;"
-            src="https://www.programiz.com/sites/tutorial2program/files/quick-sort-partition-sixth-step.png"
-            alt="failed to load :P">
-
-        <img style="width: 55%; display: block;"
-            src="https://www.programiz.com/sites/tutorial2program/files/quick-sort_1.png" alt="failed to load :P">
+        <div style="text-align: center;">
+            <img style="width: 35%; display: block;"
+                src="https://www.programiz.com/sites/tutorial2program/files/quick-sort-partition-sixth-step.png"
+                alt="failed to load :P">
+        </div>
+        <div style="text-align: center;">
+            <img style="width: 55%; display: block;"
+                src="https://www.programiz.com/sites/tutorial2program/files/quick-sort_1.png" alt="failed to load :P">
+        </div>
 
         <h3 id="QuickSort_0">Advantages and Disadvantages</h3>
         <p>Quick sort is dependent on the pivot to determine the time complexity of the algorithm. The worst case
@@ -181,10 +189,13 @@
             not contain any children nodes. To determine which values go down which branch one can apply this rule: if
             the index of the specified element is i, the element with index 2i+1 will become the left child node and the
             element with index 2i+2 will become the right child node of the specified node. The parent of a specific
-            node can also be found using the formula (i-1)/2</p>
+            node can also be found using the formula (i-1)/2.</p>
 
-        <img style="width: 35%" src="https://www.programiz.com/sites/tutorial2program/files/array-vs-heap-indices.png"
-            alt="failed to load :P">
+        <div style="text-align: center;">
+            <img style="width: 35%"
+                src="https://www.programiz.com/sites/tutorial2program/files/array-vs-heap-indices.png"
+                alt="failed to load :P">
+        </div>
 
         <h3 id="HeapSort_1">What Is a Heap?</h3>
         <p>A heap is a complete binary tree in which all nodes follow the rule that they are greater than their
@@ -195,18 +206,24 @@
             value. This swapping is continued with all other non leaf nodes from the rightmost node's index down to and
             including 0.</p>
 
-        <img style="width: 35%" src="https://www.programiz.com/sites/tutorial2program/files/max-heap-min-heap.png"
-            alt="failed to load :P">
+        <div style="text-align: center;">
+            <img style="width: 35%" src="https://www.programiz.com/sites/tutorial2program/files/max-heap-min-heap.png"
+                alt="failed to load :P">
+        </div>
+
 
         <h3 id="HeapSort_2">Sorting the Elements</h3>
-        <p>With heapifying in mind, the heap sort operates by continually heaping an array whilst removing the last
+        <p>With heapifying in mind, the heap sort operates by continually heaping an array, swaping the root node and
+            the right-most leaf node, and removing the last
             element from the previous heap cycle (the number of elements being heaped is reduced by 1 after every
             heapify we do). This is continued until all elements are removed from the heap resulting in a sorted array.
         </p>
 
-        <div style="width: 35%; aspect-ratio: 1; overflow-y: scroll;">
-            <img style="width: 100%" src="https://www.programiz.com/sites/tutorial2program/files/heap_sort.png"
-                alt="failed to load :P">
+        <div style="border: 3px solid black; display: flex; justify-content: center; align-items: center;">
+            <div style="border: 3px solid black; width: 35%; aspect-ratio: 1; overflow-y: scroll;">
+                <img style="width: 100%" src="https://www.programiz.com/sites/tutorial2program/files/heap_sort.png"
+                    alt="failed to load :P">
+            </div>
         </div>
 
         <h3 id="HeapSort_3">Advantages and Disadvantages</h3>
