@@ -133,7 +133,12 @@
             halves are combined together.</p>
 
         <h3 id="MergeSort_0">Merging Arrays</h3>
-        <p>The merge sorts entire premise revolves around the merging of subarrays to sort the larger input array.  This can be accomplished by copying the subarrays from the input array, iterating over one subarray whilst comparing it with values from the other subarray and substituting the values in sorted order into the input array. We can assume that the initial subarrays are already sorted when the merge happens meaning that once we run out of values to compare in either of the subarrays, the rest of the other subarray is already sorted and can be implemented back into the input array without any comparisons.</p>
+        <p>The merge sorts entire premise revolves around the merging of subarrays to sort the larger input array. This
+            can be accomplished by copying the subarrays from the input array, iterating over one subarray whilst
+            comparing it with values from the other subarray and substituting the values in sorted order into the input
+            array. We can assume that the initial subarrays are already sorted when the merge happens meaning that once
+            we run out of values to compare in either of the subarrays, the rest of the other subarray is already sorted
+            and can be assigned back into the input array without any comparisons.</p>
 
         <h3 id="MergeSort_1">Advantages and Disadvantages</h3>
         <p>Merge sort is generally more efficient for larger arrays but requires much more memory than sorts such as
@@ -158,13 +163,50 @@
             the way the pivot is selected and bad pivots can result in slower sorting times.</p>
 
         <div style="text-align: center;">
-            <img style="width: 35%; display: block;"
+            <img style="width: 35%;"
                 src="https://www.programiz.com/sites/tutorial2program/files/quick-sort-partition-sixth-step.png"
                 alt="failed to load :P">
         </div>
+
+        <h3>Partitioning and Rearranging</h3>
+        <p>
+            To rearrange the input array into partitions smaller and larger than the pivot a series of comparisons and
+            swapping must happen. (1) First, we compare values starting from the first element and test whether the
+            pivot is larger than the pivot value. If the value is larger, we set a pointer on that value and move on to
+            the next. (2) We then continue to compare each element until we reach one that is smaller than the pointer
+            value we assigned. These two values (the pointer value and the smaller-than-pivot value) are swapped and our
+            pointer value is assigned the next element in the list after the initial pointer value. (3) This process is
+            then repeated through the entire array (excluding the pivot which is the last element in this case). (4) The
+            pivot value is then swapped with the last pointer value finalizing the rearranging process. This algorithm
+            guarantees that values smaller than the pivot appear right of the pivot values final index and values larger
+            than the pivot appear on the left. Later recursive partitioning will include exclude the pivot used during
+            rearranging.
+        </p>
+
         <div style="text-align: center;">
-            <img style="width: 55%; display: block;"
-                src="https://www.programiz.com/sites/tutorial2program/files/quick-sort_1.png" alt="failed to load :P">
+            <p>(1)</p>
+            <img style="width: 55%;"
+                src="https://www.programiz.com/sites/tutorial2program/files/quick-sort-partition-second-step.png"
+                alt="failed to load :P">
+                
+                <p>(2)</p>
+            <img style="width: 55%;"
+                src="https://www.programiz.com/sites/tutorial2program/files/quick-sort-partition-third-step.png"
+                alt="failed to load :P">
+
+                <p>(3)</p>
+            <img style="width: 55%;"
+                src="https://www.programiz.com/sites/tutorial2program/files/quick-sort-partition-fifth-step.png"
+                alt="failed to load :P">
+
+                <p>(4)</p>
+            <img style="width: 55%;"
+                src="https://www.programiz.com/sites/tutorial2program/files/quick-sort-partition-sixth-step.png"
+                alt="failed to load :P">
+
+                <p>(Recursively)</p>
+            <img style="width: 55%;" src="https://www.programiz.com/sites/tutorial2program/files/quick-sort_1.png"
+                alt="failed to load :P">
         </div>
 
         <h3 id="QuickSort_0">Advantages and Disadvantages</h3>
@@ -223,8 +265,8 @@
             heapify we do). This is continued until all elements are removed from the heap resulting in a sorted array.
         </p>
 
-        <div style="border: 3px solid black; display: flex; justify-content: center; align-items: center;">
-            <div style="border: 3px solid black; width: 35%; aspect-ratio: 1; overflow-y: scroll;">
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div style="width: 35%; aspect-ratio: 1; overflow-y: scroll;">
                 <img style="width: 100%" src="https://www.programiz.com/sites/tutorial2program/files/heap_sort.png"
                     alt="failed to load :P">
             </div>
