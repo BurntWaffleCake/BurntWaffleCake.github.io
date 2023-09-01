@@ -12,6 +12,7 @@
         h4,
         h5,
         h6 {
+            color: #b1c7ff;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
 
@@ -32,14 +33,11 @@
         }
 
         html {
-            background-image: url("https://static.vecteezy.com/system/resources/thumbnails/027/776/783/original/background-animation-social-media-icon-doodle-hand-drawing-looping-free-video.jpg");
-            /* background-repeat: no-repeat; */
-            /* background-attachment: fixed; */
-            background-size: 100%;
+            background: linear-gradient(#121212, #000000);
         }
 
         body {
-            background-color: white;
+            background-color: #222831;
             margin: 0 10% 10% 10%;
             padding: 5%;
         }
@@ -73,6 +71,7 @@
         }
 
         img {
+            background-color: white;
             align-self: center;
         }
     </style>
@@ -88,7 +87,7 @@
     </header>
 
     <nav id="BookmarkNav">
-        <p><b>Bookmarks</b></p>
+        <p style="color: purple;" ><b>Bookmarks<br />(click to go to)</b></p>
         <ul>
             <li><a href="#Abstract">Abstract</a></li>
             <li><a href="#MergeSort">MergeSort</a>
@@ -100,8 +99,9 @@
             </li>
             <li><a href="#QuickSort">Quicksort</a>
                 <ul>
-                    <li><a href="#QuickSort_0">Advantages and Disadvantages</a></li>
-                    <li><a href="#QuickSort_1">Time and Space Complexity</a></li>
+                    <li><a href="#QuickSort_0">Partitioning and Rearranging</a></li>
+                    <li><a href="#QuickSort_1">Advantages and Disadvantages</a></li>
+                    <li><a href="#QuickSort_2">Time and Space Complexity</a></li>
                 </ul>
             </li>
             <li><a href="#HeapSort">HeapSort</a>
@@ -123,7 +123,7 @@
             disadvantages. This article will be going through how these algorithms work and their efficiencies compared
             to other common sorting algorithms such as bubble sort.</p>
 
-        <br />
+        <hr style="width: 90%;" />
 
         <h2 id="MergeSort"><u>Merge Sort</u></h2>
         <p>Merge sort works by separating an initial input array and then "merging" them together to a final sorted
@@ -153,7 +153,7 @@
             Space Complexity: O(n) <br />
         </p>
 
-        <br />
+        <hr style="width: 90%;" />
 
         <h2 id="QuickSort"><u>Quick Sort</u></h2>
         <p>Quick sort works by recursively selecting a pivot (there are multiple ways to determine the best pivot
@@ -168,7 +168,7 @@
                 alt="failed to load :P">
         </div>
 
-        <h3>Partitioning and Rearranging</h3>
+        <h3 id="QuickSort_0">Partitioning and Rearranging</h3>
         <p>
             To rearrange the input array into partitions smaller and larger than the pivot a series of comparisons and
             swapping must happen. (1) First, we compare values starting from the first element and test whether the
@@ -209,7 +209,7 @@
                 alt="failed to load :P">
         </div>
 
-        <h3 id="QuickSort_0">Advantages and Disadvantages</h3>
+        <h3 id="QuickSort_1">Advantages and Disadvantages</h3>
         <p>Quick sort is dependent on the pivot to determine the time complexity of the algorithm. The worst case
             scenario is when the pivot is either the greatest or least value in the array. The best case scenario
             results from the pivot being near the "middle" or "center" value of the sorted array. Quick sort uses a
@@ -217,13 +217,13 @@
             array. Quick sort is an unstable algorithm meaning duplicate values do not maintain their relative positions
             in the resultant array.</p>
 
-        <h3 id="QuickSort_1">Time Complexity and Space Complexity:</h3>
+        <h3 id="QuickSort_2">Time Complexity and Space Complexity:</h3>
         <p>Time Complexity: O(n^2) (worst case)<br />
             Time Complexity: O(nLog(n)) (best case)<br />
             Space Complexity: O(Log(n)) <br />
         </p>
 
-        <br />
+        <hr style="width: 90%;" />
 
         <h2 id="HeapSort"><u>Heap Sort</u></h2>
         <h3 id="HeapSort_0">What Is a Complete Binary Tree?</h3>
