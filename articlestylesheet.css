@@ -1,89 +1,89 @@
+html {
+    height: 100%;
+}
+
 body {
-    background-color: lightgray;
-    margin: 0;
-    border: 1px solid red;
-    height: 100vh;
-}
+    display: flex;
+    flex-direction: column;
 
-header {
-    height: 5rem;
-    border:  3px solid purple;
-}
-
-header > * {
-    display: inline-block;
+    height: 100%;
+    width: 100%;
     padding: 0%;
-    position: relative;
-    vertical-align: middle;
-}
-
-p {
-    border: 1px solid blue;
-}
-
-/* Header */
-#icon {
     margin: 0%;
+
+    background-color: rgb(101, 101, 101);
 }
 
-#globalNav {
-    border: 3px solid black;
-    left: 50%;
-    transform: translateX(-50%);
+#global-nav {
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: .5em;
+
+    height: 50px;
+    width: 100%;
+    background-color: rgb(143, 143, 143)
 }
 
-#globalNav ul {
+#global-nav-icon {
+    margin-right: auto;
+    height: 100%;
+}
+
+.global-nav-link {
+    width: 7.5rem;
     text-align: center;
-    list-style: none;
+    vertical-align: middle;
+    padding: auto;
+    background-color: lightgray;
 }
 
-#globalNav ul li {
-    display: inline;
+#global-nav-extra {
+    width: 10rem;
+    margin-left: auto;
+    background-color: red;
 }
 
-/* Article */
-#articleBody {
-    height: 80;
-    display: grid;
-    grid-template-columns: 15% 70% 15%;
-    border: 5px solid pink;
-    font-size: 0%;
+#article-body {
+    display: flex;
+    flex-grow: 1;
+    background-color: gray;
 }
 
-#articleBody > * {
-    margin: 0%;
-    font-size: 1rem;
+#article-nav {
+    flex-direction: column;
+    width: 15em;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 15em;
+    background-color: rgb(169, 169, 169);
 }
 
-#articleBody article {
-    grid-column: 2;
-    border: 3px solid black;
-    padding: 2rem;    
+.article-nav-link {
+    display: block;
+    width: 100%;
+    height: 3em;
+    background-color: rgb(151, 151, 151);
+    text-align: center;
 }
 
-#rightNavBar {
-    grid-column: 1;
-    grid-row: 1 ;
-    padding: 0%;
-    border: 1px solid green;
+.article-nav-link:hover {
+    background-color: white;
 }
 
-#leftNavBar {
-    grid-column: 3;
-    border: 1px solid yellow;
+#article-body article {
+    flex-grow: 1;
+    padding: 5em;
+
+    background-color: pink;
 }
 
-@media screen and (max-width: 800px) {
-    #articleBody {
-        display: block;
-    }
-
-    #rightNavBar, #leftNavBar {
-        visibility: hidden;
-        display: none;
-    }
-
-    #articleBody article {
-        width: auto;
-    }
+#article-bookmarks {
+    flex-direction: column;
+    width: 15em;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 15em;
+    background-color: rgb(169, 169, 169);
 }
