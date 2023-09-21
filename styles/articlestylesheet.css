@@ -1,6 +1,6 @@
 html {
-    scroll-behavior: smooth;
     height: 100%;
+    margin: 0%;
 }
 
 body {
@@ -86,7 +86,7 @@ body {
     overflow: hidden;
 
     background-color: #282828;
-    background: radial-gradient(circle at center, #282828, #000000);
+    background: radial-gradient(circle at center, #3a3a3a, #000000);
 }
 
 #article-nav {
@@ -101,7 +101,6 @@ body {
     flex-basis: 15em;
 
     padding-top: 2em;
-
 }
 
 .article-nav-link {
@@ -109,7 +108,7 @@ body {
     display: flex;
     align-items: center;
 
-    padding: .5em;
+    padding: .25em;
     padding-left: 25px;
     width: 100%;
     min-height: 1.5em;
@@ -123,7 +122,7 @@ body {
     color: #d4c2ff;
 }
 
-.article-nav-header {
+.article-nav-header, .article-bookmark-header {
     display: flex;
     align-items: center;
     margin: 0%;
@@ -143,7 +142,12 @@ body {
     background-image: linear-gradient(to left, transparent, #3f3f3f);
 }
 
-#article-body article {
+#article-contents {
+    display: flex;    
+    flex-direction: column;
+
+    scroll-behavior: smooth;
+
     flex-grow: 1;
     padding: 5em;
 
@@ -160,12 +164,22 @@ body {
     background-color: transparent;
 }
 
-#article-body h1 {
+#article-contents h1 {
+    align-self: center;
+    padding: 3.5rem;
+
     margin-top: 0%;
+    width: 50%;
+
     overflow-wrap: break-word;
     text-align: center;
     font-size: 3em;
     line-height: 1em;
+}
+
+#article-contents h2, h3, p {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 #bookmark4 {
@@ -180,11 +194,18 @@ body {
 }
 
 #article-bookmarks {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #1d1d1d transparent;
+    
     flex-direction: column;
-    width: 15em;
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 15em;
+
+    width: 15em;
+    padding-top: 2rem;
+
     background-color: transparent;
 }
 
