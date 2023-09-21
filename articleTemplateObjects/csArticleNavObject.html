@@ -1,0 +1,89 @@
+<style>
+    html,
+    body {
+        overflow: hidden;
+        min-height: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    #article-nav {
+        box-sizing: border-box;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+
+        flex-direction: column;
+        width: 100%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-top: 2em;
+        /* margin: 0%; */
+    }
+
+    .article-nav-link {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+
+        padding: .25em;
+        padding-left: 25px;
+        /* width: 100%; */
+        min-height: 1.5em;
+
+        text-decoration: none;
+        font-size: large;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        text-wrap: wrap;
+
+        background-image: linear-gradient(to left, transparent, transparent);
+        color: #d4c2ff;
+    }
+
+    .article-nav-header {
+        display: flex;
+        align-items: center;
+        margin: 0%;
+        padding-left: 25px;
+        margin-bottom: 1rem;
+
+        font-size: x-large;
+        font-weight: bold;
+        text-decoration: underline;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        background-image: linear-gradient(to left, transparent, transparent);
+        color: #d4c2ff;
+    }
+
+    .article-nav-link:hover {
+        background-image: linear-gradient(to left, transparent, #3f3f3f);
+    }
+</style>
+
+<body>
+    <nav id="article-nav">
+        <a href="../mainPages/computerScience.html" target="_top" class="article-nav-link">Back</a>
+        <hr style="width: 75%;" />
+        <p class="article-nav-header">CSI ISP</p>
+        <a href="../CS-II/Essays/ISP.html" target="_top" class="article-nav-link">Overview</a>
+        <hr style="width: 75%;" />
+        <p class="article-nav-header">CSII ISP</p>
+        <a href="../CS-II/Projects/ISP/index.html" target="_top" class="article-nav-link">Overview</a>
+        <a href="../CS-II/Projects/Business Plan/index.html" target="_top" class="article-nav-link">ISP Proposal</a>
+        <a href="../CS-II/Projects/Business Plan/considered.html" target="_top" class="article-nav-link">Considered ISPs</a>
+        <a href="../CS-II/Projects/ISP/Journal.html" target="_top" class="article-nav-link">Journal</a>
+        <hr style="width: 75%;" />
+        <p class="article-nav-header">CSIII ISP</p>
+        <hr style="width: 75%;" />
+        <p class="article-nav-header">Sorting Algorithms</p>
+        <a href="../CS-III/Projects/AvancedSorts.html" target="_top" class="article-nav-link">Advanced Sort Algorithms</a>
+        <a href="../CS-II/Projects/Optimal Sort.html" target="_top" class="article-nav-link">Optimal Sorting</a>
+        <hr style="width: 75%;" />
+        <p class="article-nav-header">Essays</p>
+        <a href="../CS-II/Essays/AISentience.html" target="_top" class="article-nav-link">AI Sentience</a>
+        <a href="../CS-II/Essays/Decision Making.html" target="_top" class="article-nav-link">Decision Making</a>
+        <a href="../CS-II/Essays/FingerPrints.html" target="_top" class="article-nav-link">Fingerprints</a>
+    </nav>
+</body>
