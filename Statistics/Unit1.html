@@ -1,133 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Statistics</title>
-    <link rel="stylesheet" href="../styles/styleSheet.css">
-    <meta charset="utf-8"> 
-  </head>
-  <body>
-    <main class="mainHeader" id="Statistics">Unit 1</main>
-    <div class="navigation-bar">
-      <a href="../index.html" id="sized">TO HOME</a>
-      <a href="../mainPages/index.html" id="sized">About Me</a>
-      <div class="dropdown">
-	<a href="../mainPages/classes.html" id="sized">Classes</a>
-	<div class="dropdown-content">
-	  <a href="../mainPages/computerScience.html">Computer Science</a>
-	  <a href="../mainPages/statistics.html">Statistics</a>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../styles/articlestylesheet.css">
+	<link rel="stylexsheet" href="https://fonts.google.com/specimen/Lora">
+</head>
+
+<style>
+	.image-holder {
+		max-width: 100%;
+	}
+
+	.image-holder img {
+		background-color: white;
+		max-width: 100%;
+		height: auto;
+	}
+
+	.article-nav-header {
+		font-size: larger;
+	}
+</style>
+
+<body>
+	<object id="global-nav-object" data="../articleTemplateObjects/articleGlobalNavObject.html"></object>
+
+	<div id="article-body">
+
+		<object id="article-nav" data="../articleTemplateObjects/statArticleNavObject.html"></object>
+
+		<div class="vertical-divider"></div>
+
+		<article id="article-contents">
+
+
+
+			<h1 id="content-overview">Unit 1</h1>
+			<p>In Unit 1 we went over the basics of data-based information and learned how to gather specific attributes
+				of sets of data. We also went over types of graphs that can represent such data points as well as types
+				of variables that represent what the data means. We also went over Z scores, empirical rules, as well as
+				cumulative relative frequency graphs.</p>
+			<h2 id="content-gathering-data">Gathering Data</h2>
+			<p>A population describes a collection of individuals or objects which data can be gathered from. A sample
+				is a portion of the population randomly selected which can be used to make inferences about a said
+				population. To gather this data, a census can be used. This gathered information can then be used to
+				form descriptive statistics, a method of summarizing a given set of data, or inferential statistics, a
+				form of generalization used to make inferences about a larger population using a sample.</p>
+
+			<h2 id="content-variables">Variables</h2>
+			<p>Variables are characteristics that make a change from one individual to another and can be recorded to
+				measure change or find patterns in data which are observations collected from a sample or population.
+				There are many types of variables one of which is a Categorical(qualitative) variable that has no
+				numerical meaning or value. Another type of variable is numerical variable(quantitative) or observations
+				with a numerical meaning. numerical variables can be split into two main groups, discrete and
+				continuous. Discrete variables are specific values and are kept in a domain. It is usually used as a
+				measure of counts. Continuous variables can take any value in a domain and are usually measurements.</p>
+			<div class="image-holder">
+				<img src="https://images.slideplayer.com/15/4790993/slides/slide_13.jpg" alt="image not found">
+			</div>
+
+			<h2 id="content-graphs">Graphs</h2>
+			<p>Graphs can be split into two main groups, categorical graphs, and numerical graphs. Categorical graphs
+				show categories and can be used to compare the corresponding values between different categories.
+				Numerical graphs show numerical data and usually only contain the values for a single category unless
+				compared with another category.</p>
+			<h3 id="content-graphs-0">Types of Categorical Graphs</h3>
+			<p>Bar graphs and pie charts are examples of categorical graphs.</p>
+			<div class="image-holder">
+				<img src="https://www.mathsisfun.com/data/images/bar-chart-movies.svg" alt="image not found">
+				<img src="https://www.statisticshowto.com/wp-content/uploads/2013/08/water-use-pie-chart.png"
+					alt="image not found">
+			</div>
+			<h3 id="content-graphs-1">Types of Numerical Graphs</h3>
+			<p>Dotplots, Stemplots, and histograms are examples of Numerical graphs</p>
+			<div class="image-holder">
+				<img src="https://www.ixl.com/~media/1/DSUZcKWbDrLZoN_HubybchUdv0qlNxoSED9a60_Qdv56CWGCVv3yoISRMUk5sENZrODgoNpuwZsOtvkkhF_JWyFV1TzCJ41cNRS3Z3s0WWE.svg"
+					alt="image not found">
+				<img src="https://www.softschools.com/math/topics/images/stem_leaf_plant_img_1.jpg"
+					alt="image not found">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Histogram_of_arrivals_per_minute.svg/640px-Histogram_of_arrivals_per_minute.svg.png"
+					alt="image not found">
+			</div>
+			<h2 id="content-socs">SOCS (univariate/numerical graphs)</h2>
+			<p><b>S</b>:Shape of the distribution (unimodal, bimodal, skews, normal)<br>
+				<b>O</b>:Outliers present in the data<br>
+				<b>C</b>:Center of the data (mean, median)<br>
+				<b>S</b>:Spread of the data (IQR, Range, Standard Deviation)<br>
+				<b>+Context</b>
+			</p>
+			<h2 id="content-tendancy-variability">Measures of Central Tendancy and Variability</h2>
+			<p>
+				A parameter is a fixed value about a population while a statistic is a value calculated from a sample to
+				estimate values about a population.<br>
+				Some central tendency values include the median (middle of the data [50th percentile]), mean(average),
+				and mode(most common value) Some of these values such as the median are resistant or not affected by the
+				presence of an outlier.
+			</p>
+
+			<h2 id="content-variability">Variability</h2>
+			<p>
+				Variability can be measured in a couple of different ways. Some of these include the Range (max value -
+				the min value), IQR(interquartile range or Q3 - Q1), standard deviation(average distance from the mean),
+				and variance(average squared standard deviations).<br>
+				The standard deviation has both a sample and population variant depending on what group of data points
+				is used.
+			</p>
+			<div class="image-holder">
+				<img src="https://cdn1.byjus.com/wp-content/uploads/2021/03/variance-and-sd-formula.png"
+					alt="image not found">
+			</div>
+
+			<h2 id="content-transformations">Transformations</h2>
+			<h3 id="content-transformations-0">Linear Transformations</h3>
+			<p>
+				When adding or subtracting a random variable, measures of central tendency are affected while measures
+				of variability are not. </p>
+
+			<h3 id="content-transformations-1">Linear Combinations</h3>
+			<p>
+				Combined means can be calculated by adding or subtracting the two means while standard deviation can be
+				found by squaring then adding the two deviations then finally rooting the sum.
+			</p>
+
+			<h2 id="content-boxplots">Boxplots</h2>
+			<p>Box plots are made of 5 distinct points: minimum, quartile 1, median, quartile 3, and maximum. Boxplots
+				are simple, able to display outliers, are not subjective, and are useful for displaying continuous
+				data.<br>
+				To differentiate outliers, a lower and upper fence is applied. Anything below the lower fence and
+				anything above the upper fence is declared an outlier. These fences can be calculated by adding or
+				subtracting 1.5 times the IQR to the first and third quartiles respectively.
+			</p>
+
+			<div class="image-holder">
+				<img src="https://www.statology.org/wp-content/uploads/2021/01/upper_lower_fence2.png"
+					alt="image not found">
+			</div>
+
+			<h2 id="content-z-score">Z-Scores</h2>
+			<p>A Z-score describes the number of standard deviations a point is from the mean.</p>
+
+			<div class="image-holder">
+				<img src="https://www.simplypsychology.org/Z-score-formula.jpg" alt="image not found">
+			</div>
+
+			<h2 id="content-empirical-rule">Empirical Rule</h2>
+			<p>The empirical rule determines the number of points found in a normal curve.<br>
+				Approximately 68% of points are within 1 standard deviation from the mean.<br>
+				Approximately 95% of points are within 2 standard deviations from the mean.<br>
+				Approximately 99.7% of points are within 3 standard deviations from the mean.
+			</p>
+
+			<div class="image-holder">
+				<img src="https://i0.wp.com/statisticsbyjim.com/wp-content/uploads/2021/08/empirical_rule_graph2.png?fit=572%2C384&ssl=1"
+					alt="image not found">
+			</div>
+
+
+			<h2 id="content-relative-frequency">Cumulative Relative Frequency Graphs</h2>
+			<p>CRF graphs(cumulative relative frequency graphs) are used to plot the percentiles certain ranges of
+				points make up. The total percentage always adds up to 100% and the slope can be used to determine the
+				density of points in a certain range. For example, if the slope of a portion of the graph is very high
+				then there are a large number of points in that range.
+			</p>
+
+			<div class="image-holder">
+				<img src="https://media.cheggcdn.com/media/a2f/a2ff708e-a613-4570-b448-7984d17905ca/phpeCCQ4g.png"
+					alt="image not found">
+			</div>
+		</article>
+
+		<div class="vertical-divider"></div>
+
+		<nav id="article-bookmarks">
+			<a href="#content-overview" class="article-nav-link article-nav-header">Unit1</a>
+			<a href="#content-gathering-data" class="article-nav-link article-nav-header">Gathering Data</a>
+			<a href="#content-variables" class="article-nav-link article-nav-header">Variables</a>
+			<a href="#content-graphs" class="article-nav-link article-nav-header">Graphs</a>
+			<a href="#content-graphs-0" class="article-nav-link">Types of Categorical Graphs</a>
+			<a href="#content-graphs-1" class="article-nav-link">Types of Numerical Graphs</a>
+			<a href="#content-socs" class="article-nav-link article-nav-header">SOCS</a>
+			<a href="#content-tendancy-variability" class="article-nav-link article-nav-header">Measures of Central
+				Tendancy and Variability</a>
+			<a href="#content-variability" class="article-nav-link article-nav-header">Variability</a>
+			<a href="#content-transformations" class="article-nav-link article-nav-header">Transformations</a>
+			<a href="#content-transformations-0" class="article-nav-link">Linear Transformations</a>
+			<a href="#content-transformations-1" class="article-nav-link">Linear Combinations</a>
+			<a href="#content-boxplots" class="article-nav-link article-nav-header">Boxplots</a>
+			<a href="#content-z-score" class="article-nav-link article-nav-header">Z-Scores</a>
+			<a href="#content-empirical-rule" class="article-nav-link article-nav-header">Empirical Rule</a>
+			<a href="#content-relative-frequency" class="article-nav-link article-nav-header">Cumulative Relative
+				Frequency Graphs</a>
+
+		</nav>
 	</div>
-      </div>
-      <a href="../mainPages/why.html" id="sized">But Why?</a>
-      <a href="../CS-II/Projects/Business Plan/index.html" id="sized">ISP Proposal</a>
-    </div>
+</body>
 
-    <div class="floatContainer">
-      <div class="sideBar">
-	<a class="sidebarLink" href="Unit1.html">Unit 1</a>
-	<a class="sidebarLink" href="Unit2.html">Unit 2</a>
-	<a class="sidebarLink" href="Unit3.html">Unit 3</a>
-	<a class="sidebarLink" href="Unit4.html">Unit 4</a>
-	<a class="sidebarLink" href="Unit5.html">Unit 5</a>
-      </div>
-      <div class="mainBody">
-	<h1>Unit 1</h1>
-	<p>In Unit 1 we went over the basics of data-based information and learned how to gather specific attributes of sets of data. We also went over types of graphs that can represent such data points as well as types of variables that represent what the data means. We also went over Z scores, empirical rules, as well as cumulative relative frequency graphs.</p>
-	<h2>Gathering Data</h2>
-	<p>A population describes a collection of individuals or objects which data can be gathered from. A sample is a portion of the population randomly selected which can be used to make inferences about a said population. To gather this data, a census can be used. This gathered information can then be used to form descriptive statistics, a method of summarizing a given set of data, or inferential statistics, a form of generalization used to make inferences about a larger population using a sample.</p>
-
-	<h2>Variables</h2>
-	<p>Variables are characteristics that make a change from one individual to another and can be recorded to measure change or find patterns in data which are observations collected from a sample or population. There are many types of variables one of which is a Categorical(qualitative) variable that has no numerical meaning or value. Another type of variable is numerical variable(quantitative) or observations with a numerical meaning. numerical variables can be split into two main groups, discrete and continuous. Discrete variables are specific values and are kept in a domain. It is usually used as a measure of counts. Continuous variables can take any value in a domain and are usually measurements.</p>
-	<div class="bodyElement">
-	  <img src="https://images.slideplayer.com/15/4790993/slides/slide_13.jpg" alt="image not found">
-	</div>
-
-	<h2>Graphs</h2>
-	<p>Graphs can be split into two main groups, categorical graphs, and numerical graphs. Categorical graphs show categories and can be used to compare the corresponding values between different categories. Numerical graphs show numerical data and usually only contain the values for a single category unless compared with another category.</p>
-	<h3>Types of Categorical Graphs</h3>
-	<p>Bar graphs and pie charts are examples of categorical graphs.</p>
-	<div class="bodyElement">
-	  <img src="https://www.mathsisfun.com/data/images/bar-chart-movies.svg" alt="image not found">
-	  <img src="https://www.statisticshowto.com/wp-content/uploads/2013/08/water-use-pie-chart.png" alt="image not found">
-	</div>
-	<h3>Types of Numerical Graphs</h3>
-	<p>Dotplots, Stemplots, and histograms are examples of Numerical graphs</p>
-	<div class="bodyElement">
-	  <img src="https://www.ixl.com/~media/1/DSUZcKWbDrLZoN_HubybchUdv0qlNxoSED9a60_Qdv56CWGCVv3yoISRMUk5sENZrODgoNpuwZsOtvkkhF_JWyFV1TzCJ41cNRS3Z3s0WWE.svg" alt="image not found">
-	  <img src="https://www.softschools.com/math/topics/images/stem_leaf_plant_img_1.jpg" alt="image not found">
-	  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Histogram_of_arrivals_per_minute.svg/640px-Histogram_of_arrivals_per_minute.svg.png" alt="image not found">
-	  </div>
-	  <h2>SOCS (univariate/numerical graphs)</h2>
-	  <p><b>S</b>:Shape of the distribution (unimodal, bimodal, skews, normal)<br>
-	    <b>O</b>:Outliers present in the data<br>
-	    <b>C</b>:Center of the data (mean, median)<br>
-	    <b>S</b>:Spread of the data (IQR, Range, Standard Deviation)<br>
-	    <b>+Context</b>
-	  </p>
-	  <h2>Measures of Central Tendancy and Variability</h2>
-	<p>
-	  A parameter is a fixed value about a population while a statistic is a value calculated from a sample to estimate values about a population.<br>
-	  Some central tendency values include the median (middle of the data [50th percentile]), mean(average), and mode(most common value) Some of these values such as the median are resistant or not affected by the presence of an outlier.
-	  </p>
-
-	<h2>Variability</h2>
-	<p>
-	  Variability can be measured in a couple of different ways. Some of these include the Range (max value - the min value), IQR(interquartile range or Q3 - Q1), standard deviation(average distance from the mean), and variance(average squared standard deviations).<br>
-	  The standard deviation has both a sample and population variant depending on what group of data points is used. 
-	</p>
-	<div class="bodyElement">
-	<img src="https://cdn1.byjus.com/wp-content/uploads/2021/03/variance-and-sd-formula.png" alt="image not found">
-	</div>
-	
-	<h2>Transformations</h2>
-	<h3>Linear Transformations</h3>
-	<p>
-When adding or subtracting a random variable, measures of central tendency are affected while measures of variability are not.	</p>
-	<div class="bodyElement">
-	</div>
-	<h3>Linear Combinations</h3>
-	<p>
-	  Combined means can be calculated by adding or subtracting the two means while standard deviation can be found by squaring then adding the two deviations then finally rooting the sum.
-	</p>
-
-	<h2>Boxplots</h2>
-	<p>Box plots are made of 5 distinct points: minimum, quartile 1, median, quartile 3, and maximum. Boxplots are simple, able to display outliers, are not subjective, and are useful for displaying continuous data.<br>
-	  To differentiate outliers, a lower and upper fence is applied. Anything below the lower fence and anything above the upper fence is declared an outlier. These fences can be calculated by adding or subtracting 1.5 times the IQR to the first and third quartiles respectively.
-	</p>
-
-	<div class="bodyElement">
-	  <img src="https://www.statology.org/wp-content/uploads/2021/01/upper_lower_fence2.png" alt="image not found">
-	</div>
-
-	<h2>Z-Scores</h2>
-	<p>A Z-score describes the number of standard deviations a point is from the mean.</p>
-
-	<div class="bodyElement">
-	  <img src="https://www.simplypsychology.org/Z-score-formula.jpg" alt="image not found">
-	</div>
-
-	<h2>Empirical Rule</h2>
-	<p>The empirical rule determines the number of points found in a normal curve.<br>
-	  Approximately 68% of points are within 1 standard deviation from the mean.<br>
-	  Approximately 95% of points are within 2 standard deviations from the mean.<br>
-	  Approximately 99.7% of points are within 3 standard deviations from the mean.
-	</p>
-
-	<div class="bodyElement">
-	  <img src="https://i0.wp.com/statisticsbyjim.com/wp-content/uploads/2021/08/empirical_rule_graph2.png?fit=572%2C384&ssl=1" alt="image not found">
-	</div>
-	
-	
-	<h2>Cumulative Relative Frequency Graphs</h2>
-	<p>CRF graphs(cumulative relative frequency graphs) are used to plot the percentiles certain ranges of points make up. The total percentage always adds up to 100% and the slope can be used to determine the density of points in a certain range. For example, if the slope of a portion of the graph is very high then there are a large number of points in that range. 
-	</p>
-
-	<div class="bodyElement">
-	  <img src="https://media.cheggcdn.com/media/a2f/a2ff708e-a613-4570-b448-7984d17905ca/phpeCCQ4g.png" alt="image not found">
-	</div>	
-      </div>
-    </div>
-    <!-- <img src="bananor.png"/> -->
-    <!-- <img src="https://i.makeagif.com/media/2-09-2017/dfH0H8.gif">
-	 <img src="https://c.tenor.com/tKElFQO9vQwAAAAC/goofy-goofy-ahh.gif"> -->
-  </body>
 </html>

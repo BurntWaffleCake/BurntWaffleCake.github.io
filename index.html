@@ -1,36 +1,143 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Computer Science I</title>
-    <link rel="stylesheet" href="styles/styleSheet.css">
-    <meta charset="utf-8"> 
-  </head>
-  <body style="background-image:url('images/GalaxyBackground.gif'); background-repeat:no-repeat; background-size:100vw 100vh;">
-    <div class="homePage">
-      <div class="navigation-bar">
-	<a href="./index.html" id="sized">TO HOME</a>
-	<a href="./mainPages/index.html" id="sized">About Me</a>
-	<div class="dropdown">
-	  <a href="./mainPages/classes.html" id="sized">Classes</a>
-	  <div class="dropdown-content">
-	    <a href="./mainPages/computerScience.html">Computer Science</a>
-	    <a href="./mainPages/statistics.html">Statistics</a>
-	  </div>
-	</div>
-	<a href="./mainPages/why.html" id="sized">But Why?</a>
-	<a href="./CS-II/Projects/Business Plan/index.html" id="sized">ISP Proposal</a>
-	<a href="./Blogs.html" id="sized">Blogs</a>
-      </div>
-      <div style="text-align: center; margin-top:15%;">
-	<h1 class="MainTitle">Digital Portfolio</h1>
-	<h2 class="MainSubTitle">Soohan Cho</h2>
-      </div>
-      
-      <!-- <frame width="100%" height="100%" src="https://www.youtube.com/embed/xuZVAezwEgg?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay:1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-	<!--  <iframe class="mainHome" src="https://ykob.github.io/sketch-threejs/sketch/glitch.html" title="Home Page"></iframe>  -->
-    </div>
-  </body>
-</html>
 
-<!-- this portfolio lives at git@github.com:BurntWaffleCake/BurntWaffleCake.github.io.git :P -->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Digital Portfolio</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylexsheet" href="https://fonts.google.com/specimen/Lora">
+</head>
+
+<style>
+    html {
+        height: 100%;
+        margin: 0%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+
+        height: 100%;
+        width: 100%;
+        padding: 0%;
+        margin: 0%;
+
+        max-height: 100vh;
+
+        background-color: #282828;
+        overflow: hidden;
+    }
+
+    @keyframes pageEnter {
+        0% {
+            transform: translateY(100%);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    #home-page {
+        display: flex;
+        flex-direction: column;
+
+        scroll-behavior: smooth;
+        flex-grow: 1;
+        background-color: white;
+
+        transform: translate(-100%);
+
+        animation: 2s cubic-bezier(0,1.02,.2,1.01) 1s 1 pageEnter forwards;
+    }
+
+    #global-nav-object {
+        height: 4rem;
+    }
+
+
+    @keyframes slideInFromLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(-10%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    #home-page-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        position: absolute;
+     
+
+        height: 100%;
+        left: 10%;
+
+        color: #d4c2ff;
+        font-size: 3rem;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    }
+
+    #home-page-content h1 {
+        opacity: 0;
+
+        margin: 0%;
+        padding: 0%;
+
+        text-shadow: #716099 3px 3px;
+
+        animation: .75s ease-out 1.2s 1 slideInFromLeft forwards;
+    }
+
+    #home-page-content p {
+        opacity: 0;
+
+        margin: 0%;
+        padding: 0%;
+
+        animation: .75s ease-out 1.4s 1 slideInFromLeft forwards;
+    }
+
+</style>
+
+<body>
+    <object id="global-nav-object" data="articleTemplateObjects/articleGlobalNavObjectHome.html"></object>
+
+    <div id="home-page">
+        <script src="vanta.js/three.r134.min.js"></script>
+        <script src="vanta.js/vanta.globe.min.js"></script>
+        <script>
+            VANTA.GLOBE({
+                el: "#home-page",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0xd4c2ff,
+                backgroundColor: 0x282828
+            })
+        </script>
+
+        <div id="home-page-content">
+            <h1>Digital Portfolio</h1>
+            <p>Soohan Cho</p>  
+        </div>
+    </div>
+    <p style="position: absolute; margin: 0%; padding: 0%; bottom: 10px; left: 10px; color: gray;">Powered By: VANTA.js</p>
+</body>
+
+</html>
