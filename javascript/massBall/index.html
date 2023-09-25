@@ -66,17 +66,13 @@ aspect-ratio: 1/1;
         <label for="what-factor-input">What Factor:</label>
         <input autocomplete="off" type="number" id="simulation-what-factor" name="what-factor-input" value="0"><br><br>
         <label for="restitution-input">Restitution:</label>
-        <input autocomplete="off" type="number" id="simulation-restitutio0n" name="restitution-input" value="0.5" max="1" min="0" step=".1"><br><br>
-        <label for="ball-radius-input">Ball Radius:</label>
-        <input autocomplete="off" type="number" id="simulation-ball-radius" name="ball-radius-input" value="50"><br><br>
-        <label for="grid-resolution-input">Grid Resolution:</label>
-        <input autocomplete="off" type="number" id="simulation-grid-resolution" name="grid-resolution-input" value="35"><br><br>
-        <label for="substeps-input">Substeps:</label>
-        <input autocomplete="off" type="number" id="simulation-substeps" name="substeps-input" value="8"><br><br>
+        <input autocomplete="off" type="number" id="simulation-restitution" name="restitution-input" value="0.5" max="1" min="0" step=".1"><br><br>
+        <label for="ball-radius-input">Simulation Substeps:</label>
+        <input autocomplete="off" type="number" id="simulation-substeps" name="substeps-input" value="8" max="16" min="1"><br><br>
         <label for="render-grid-input">Render Grid:</label>
         <input autocomplete="off" type="checkbox" id="simulation-render-grid" name="render-grid-input" ><br><br>
         <label for="constant-time-input">Constant Time:</label>
-        <input autocomplete="off" type="checkbox" id="simulation-render-grid" name="constant-time-input" checked><br><br>
+        <input autocomplete="off" type="checkbox" id="simulation-constant-time" name="constant-time-input" checked><br><br>
         <input autocomplete="off" type="button" value="Clear" id="simulation-clear"><br><br>
         <input autocomplete="off" type="button" value="Reset" id="simulation-reset"><br><br>
     </form>

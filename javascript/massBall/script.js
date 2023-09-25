@@ -149,14 +149,16 @@ function updatePhysics(dt) {
         ball.testBounds()
         ball.dy += gravity * dt
         ball.dx += whatFactor * dt
-    
-        ball.render(ctx)
     }
 }
 
 function updatePhysicsSubSteps(dt) {
     for (let i = 0; i < substeps; i++) {
         updatePhysics(dt / substeps)
+    }
+
+    for (ball of balls) {
+        ball.render(ctx)
     }
 }
 
@@ -251,6 +253,40 @@ function startup() {
     window.requestAnimationFrame(loop)
 }
 
+const gravityInput = document.getElementById("simulation-gravity")
+gravityInput.addEventListener('input', (event) => {
+    let inputNum = parseInt(gravityInput.value)
+    if (isNaN(inputNum)) { gravity = 0 } else { gravity = inputNum }
+}, false)
+
+const whatFactorInput = document.getElementById("simulation-what-factor")
+whatFactorInput.addEventListener('input', (event) => {
+    let inputNum = parseInt(whatFactorInput.value)
+    if (isNaN(inputNum)) { whatFactor = 0 } else { whatFactor = inputNum }
+}, false)
+
+const restitutionInput = document.getElementById("simulation-restitution")
+restitutionInput.addEventListener('input', (event) => {
+    let inputNum = parseInt(restitutionInput.value)
+    if (isNaN(inputNum)) { restitution = 0 } else { restitution = inputNum }
+}, false)
+
+const simulationSubSteps = document.getElementById("simulation-substeps")
+simulationSubSteps.addEventListener('input', (event) => {
+    let inputNum = parseInt(simulationSubSteps.value)
+    if (isNaN(inputNum)) { substeps = 0 } else { substeps = inputNum }
+}, false)
+
+renderGridButton = document.getElementById("simulation-render-grid")
+renderGridButton.addEventListener('click', (event) => {
+    gridOn = renderGridButton.checked
+}, false)
+
+constantTimeButton = document.getElementById("simulation-constant-time")
+constantTimeButton.addEventListener('click', (event) => {
+    constantTime = constantTimeButton.checked
+}, false)
+
 const clearButton = document.getElementById("simulation-clear")
 clearButton.addEventListener('click', (event) => {
     console.log("reset clicked")
@@ -293,15 +329,15 @@ document.addEventListener('mousemove', (evt) => {
     }
 
     mouse1x = (evt.clientX - rect.left) * scaleX,   // scale mouse coordinates after they have
-        mouse1y = (evt.clientY - rect.top) * scaleY     // been adjusted to be relative to element
+    mouse1y = (evt.clientY - rect.top) * scaleY     // been adjusted to be relative to element
 }, false);
 
 document.addEventListener('keydown', (event) => {
-    event.preventDefault()
     var name = event.key;
     var code = event.code;
     // Alert the key name and key code on keydown
     if (code == "Space") {
+        event.preventDefault()
         console.log("space pressed")
 
         for (ball of balls) {
