@@ -10,6 +10,7 @@ class Box {
 
         this.w = w //box width
         this.h = h //box height
+        this.color = "rgb(255,255,255)"
     }
 
     setRotation(degrees) {
@@ -20,8 +21,49 @@ class Box {
         this.dr = degrees % 360 * Math.PI / 180
     }
 
-    testBounds() {
+    getProjection(lx, ly) {
+        let points = this.getWorldCoordinates()
+        let tlProj = projectVectorToLine(points[0].x, points[0].y, lx, ly)
+        let tlMag = Math.sqrt(tlProj.x * tlProj.x + tlProj.y * tlProj.y)
+        let min = tlMag
+        let minPoint = points[0]
+        let max = tlMag
+        let maxPoint = points[0]
+        for (let i = 1; i < points.length; i++) {
+            let projPoint = projectVectorToLine(points[i].x, points[i].y, lx, ly)
+            let pointMag = Math.sqrt(projPoint.x * projPoint.x + projPoint.y * projPoint.y)
+            if (pointMag < min) {
+                min = pointMag
+                minPoint = points[i]
+            } else if (pointMag > max) {
+                max = pointMag
+                maxPoint = points[i]
+            }
+        }
+        return { min: min, max: max, minPoint: minPoint, maxPoint: maxPoint }
+    }
 
+    testBounds() {
+        let widthProj = this.getProjection(width, 0)
+        let heightProj = this.getProjection(0, height)
+
+        if (widthProj.maxPoint.x > width || widthProj.minPoint.x < 0) {
+            if (widthProj.minPoint.x < 0) {
+                this.x -= widthProj.minPoint.x
+            } else {
+                this.x -= widthProj.maxPoint.x - width
+            }
+            this.dx = -this.dx
+        }
+
+        if (heightProj.maxPoint.y > height || heightProj.minPoint.y < 0) {
+            if (heightProj.minPoint.y < 0) {
+                this.y -= heightProj.minPoint.y
+            } else {
+                this.y -= heightProj.maxPoint.y - height
+            }
+            this.dy = -this.dy
+        }
     }
 
     getWorldCoordinates() {
@@ -49,26 +91,26 @@ class Box {
         let brr = this.r - Math.atan(-br.y / br.x)
         br = { x: this.x + brm * Math.cos(brr), y: this.y + brm * Math.sin(brr) }
 
-        return { tl: tl, tr: tr, bl: bl, br: br }
+        return [tl, tr, br, bl]
     }
 
     render(ctx) {
-        ctx.fillStyle = "rgb(255,0,0)"
+        ctx.fillStyle = this.color
         ctx.fillRect(this.x - 1.5, this.y - 1.5, 3, 3)
 
         let coords = this.getWorldCoordinates()
 
         ctx.lineWidth = 1
-        ctx.strokeStyle = "rgb(255,255,255)"
+        ctx.strokeStyle = this.color
         ctx.beginPath();
         ctx.moveTo(this.x, this.y)
-        ctx.lineTo(this.x + this.w / 2 * Math.cos(this.rotation), this.y + this.y / 2 * Math.sin(this.rotation))
+        ctx.lineTo(this.x + this.w / 2 * Math.cos(this.rotation), this.y + this.h / 2 * Math.sin(this.rotation))
 
-        ctx.moveTo(coords.tl.x, coords.tl.y)
-        ctx.lineTo(coords.tr.x, coords.tr.y)
-        ctx.lineTo(coords.br.x, coords.br.y)
-        ctx.lineTo(coords.bl.x, coords.bl.y)
-        ctx.lineTo(coords.tl.x, coords.tl.y)
+        ctx.moveTo(coords[0].x, coords[0].y)
+        for (let i = 0; i < coords.length; i++) {
+            ctx.lineTo(coords[i].x, coords[i].y)
+        }
+        ctx.lineTo(coords[0].x, coords[0].y)
         ctx.stroke()
     }
 }
@@ -91,6 +133,8 @@ function calculatePhysics(dt) {
         box.x += box.dx * dt
         box.y += box.dy * dt
         box.r += box.dr * dt
+        box.testBounds()
+
     }
 }
 
@@ -104,14 +148,30 @@ ctx.canvas.height = height
 
 let boxes = []
 
+boxes.push(new Box(width / 2, height / 2, 200, 100, 0, 100, 600, 150))
+boxes.push(new Box(width / 4, height / 6, 50, 100, 0, -500, 352, -36))
 
 
-let box1 = new Box(width / 2, height / 2, 200, 100, 20, 0, 0, 50)
-let box2 = new Box(width / 4, height / 6, 50, 100, 74, 0, 0, -34)
+function projectToAxis(axisX, axisY, box, color = "rgb(0, 255, 0)") {
+    let axis = { x: axisX, y: axisY }
+    let axisMag = Math.sqrt(axis.x * axis.x + axis.y * axis.y)
+    axis = { x: axis.x / axisMag, y: axis.y / axisMag }
 
-boxes.push(box1)
-boxes.push(box2)
-
+    let boxProj = box.getProjection(axis.x, axis.y)
+    ctx.fillStyle = color
+    ctx.fillRect(axis.x * boxProj.max - 2.5, axis.y * boxProj.max - 2.5, 5, 5)
+    ctx.fillRect(axis.x * boxProj.min - 2.5, axis.y * boxProj.min - 2.5, 5, 5)
+    ctx.strokeStyle = color
+    ctx.beginPath()
+    ctx.moveTo(axis.x * boxProj.max, axis.y * boxProj.max)
+    ctx.lineTo(boxProj.maxPoint.x, boxProj.maxPoint.y)
+    ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(axis.x * boxProj.min, axis.y * boxProj.min)
+    ctx.lineTo(boxProj.minPoint.x, boxProj.minPoint.y)
+    ctx.stroke()
+    return boxProj
+}
 
 let time = 0.0
 function loop(t) {
@@ -120,81 +180,49 @@ function loop(t) {
 
     calculatePhysics(dt)
 
-    box1.y = height/2 + 200*Math.sin(time/2)
+    for (let i = 0; i < boxes.length; i++) {
+        let box1 = boxes[i]
+        for (let n = i+1; n < boxes.length; n++) {
+            let box2 = boxes[n]
+            if (box1 === box2) { continue }
+            let box1ProjY = projectToAxis(0, height, box1)
+            let box2ProjY = projectToAxis(0, height, box2)
 
-    box1.render(ctx)
-    let box1Points = box1.getWorldCoordinates()
-    // let tlnorm = { x: box1Points.tr.x - box1Points.tl.x, y: box1Points.tr.y - box1Points.tl.y }
-    let tlnorm = {x:0, y:height}
-    box2.render(ctx)
-    let box2Points = box2.getWorldCoordinates()
+            let box1ProjX = projectToAxis(width, 0, box1, "rgb(0,255,255)")
+            let box2ProjX = projectToAxis(width, 0, box2, "rgb(0,255,255)")
 
-    for (const [pointName, point] of Object.entries(box1Points)) {
-        let projPoint = projectVectorToLine(point.x, point.y, tlnorm.x, tlnorm.y)
-        let projmag = Math.sqrt(projPoint.x*projPoint.x + projPoint.y*projPoint.y)
-
-        ctx.fillStyle = "rgb(255, 0, 0)"
-        ctx.fillRect(projPoint.x, projPoint.y, 5, 5)
-
-        ctx.fillStyle = "rgb(0, 0, 255)"
-        ctx.fillRect(projmag, 0, 5, 5)
-
-        ctx.strokeStyle = "rgb(0, 255, 0)"
-        ctx.beginPath()
-        ctx.moveTo(projPoint.x, projPoint.y)
-        ctx.lineTo(box1Points[pointName].x, box1Points[pointName].y)
-        ctx.stroke()
-        
-        ctx.strokeStyle = "rgb(255, 0, 0)"
-        ctx.beginPath()
-        ctx.moveTo(projmag, 0)
-        ctx.lineTo(box1Points[pointName].x, box1Points[pointName].y)
-        ctx.stroke()
+            if (
+                (box1ProjY.min < box2ProjY.max && box1ProjY.min > box2ProjY.min ||
+                    box1ProjY.max < box2ProjY.max && box1ProjY.max > box2ProjY.min ||
+                    box2ProjY.min < box1ProjY.max && box2ProjY.min > box1ProjY.min ||
+                    box2ProjY.max < box1ProjY.max && box2ProjY.max > box1ProjY.min
+                )
+                &&
+                (box1ProjX.min < box2ProjX.max && box1ProjX.min > box2ProjX.min ||
+                    box1ProjX.max < box2ProjX.max && box1ProjX.max > box2ProjX.min ||
+                    box2ProjX.min < box1ProjX.max && box2ProjX.min > box1ProjX.min ||
+                    box2ProjX.max < box1ProjX.max && box2ProjX.max > box1ProjX.min
+                )
+            ) {
+                console.log("collided", box1)
+                box1.dx = -box1.dx
+                box1.dy = -box1.dy
+                box2.dx = -box2.dx
+                box2.dy = -box2.dy
+            }
+        }
+        box1.render(ctx)
     }
 
-    for (const [pointName, point] of Object.entries(box2Points)) {
-        let projPoint = projectVectorToLine(point.x, point.y, tlnorm.x, tlnorm.y)
-        let projmag = Math.sqrt(projPoint.x*projPoint.x + projPoint.y*projPoint.y)
 
-        ctx.fillStyle = "rgb(255, 0, 0)"
-        ctx.fillRect(projPoint.x, projPoint.y, 5, 5)
-
-        ctx.fillStyle = "rgb(255, 0, 255)"
-        ctx.fillRect(projmag, 0, 5, 5)
-
-        ctx.strokeStyle = "rgb(0, 255, 0)"
-        ctx.beginPath()
-        ctx.moveTo(projPoint.x, projPoint.y)
-        ctx.lineTo(box2Points[pointName].x, box2Points[pointName].y)
-        ctx.stroke()
-    
-        ctx.strokeStyle = "rgb(255, 0, 0)"
-        ctx.beginPath()
-        ctx.moveTo(projmag, 0)
-        ctx.lineTo(box2Points[pointName].x, box2Points[pointName].y)
-        ctx.stroke()
-    }
-
-    // newBox.setRotation(newBox.rotation * 180 / Math.PI + 100 * dt)
-    // for (box of boxes) {
-    //     box.render(ctx)
-
-    //     let points = box.getWorldCoordinates()
-    //     let tlnorm = {x: points.tr.x-points.tl.x, y: points.tr.y-points.tl.y}
-
-    //     for (const [pointName, point] of Object.entries(points)) {
-    //         let projPoint = projectVectorToLine(point.x, point.y, tlnorm.x, tlnorm.y)
-    //         ctx.fillStyle = "rgb(255, 0, 0)"
-    //         ctx.fillRect(projPoint.x, projPoint.y, 5, 5)
-
-    //         ctx.strokeStyle = "rgb(0, 255, 0)"
-    //         ctx.beginPath()
-    //         ctx.moveTo(projPoint.x, projPoint.y)
-    //         ctx.lineTo(points[pointName].x, points[pointName].y)
-    //         ctx.stroke()
-    //     }   
+    // let points = box1.getWorldCoordinates()
+    // for (let i = 0; i < points.length; i++) {
+    //     if (i == points.length - 1) {
+    //         projectToAxis(points[points.length - 1].x - points[0].x, points[points.length - 1].y - points[0].y, box1)
+    //     } else {
+    //         projectToAxis(points[i+1].x - points[i].x, points[i+1].y - points[i].y, box1)
+    //     }
     // }
-
     time = t / 1000
     window.requestAnimationFrame(loop)
 }
