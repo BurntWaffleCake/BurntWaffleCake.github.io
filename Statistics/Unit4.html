@@ -1,134 +1,185 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Statistics</title>
-    <link rel="stylesheet" href="../styles/styleSheet.css">
-    <meta charset="utf-8"> 
-  </head>
-  <body>
-    <main class="mainHeader" id="Statistics">Unit 4</main>
-    <div class="navigation-bar">
-      <a href="../index.html" id="sized">TO HOME</a>
-      <a href="../mainPages/index.html" id="sized">About Me</a>
-      <div class="dropdown">
-	<a href="../mainPages/classes.html" id="sized">Classes</a>
-	<div class="dropdown-content">
-	  <a href="../mainPages/computerScience.html">Computer Science</a>
-	  <a href="../mainPages/statistics.html">Statistics</a>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../styles/articlestylesheet.css">
+	<link rel="stylexsheet" href="https://fonts.google.com/specimen/Lora">
+</head>
+
+<style>
+	.image-holder {
+		justify-content: center;
+		display: flex;
+		max-width: 100%;
+	}
+
+	.image-holder img {
+
+		max-width: 100%;
+		height: auto;
+		background-color: white;
+	}
+
+	.article-nav-header {
+		font-size: larger;
+	}
+</style>
+
+<body>
+	<object id="global-nav-object" data="../articleTemplateObjects/articleGlobalNavObject.html"></object>
+
+	<div id="article-body">
+
+		<object id="article-nav" data="../articleTemplateObjects/statArticleNavObject.html"></object>
+
+		<div class="vertical-divider"></div>
+
+		<article id="article-contents">
+			<h1>Unit 4</h1>
+			<h2>The Fundamental Counting Principle, Permutations and Combinations</h2>
+			<p>One way to count problems is to list all possible solutions. For example, if 3 letter codes were selected
+				using the four letters A, B, C, D with no repeats then the possible solutions would be such:<br>
+				ABC BAC CAB DAB<br>
+				ABD BAD CAD DBA<br>
+				ACB BCA CBA DBC<br>
+				ACD BDA CBD DCB<br>
+				ADB BCD CDB DCA<br>
+				ADC BDC CBA DAC<br>
+				Another way count problems is to make a factor tree and count the number of end branches. In this case,
+				there are four possible results to flipping a coin twice:
+			</p>
+			<div class="image-holder">
+				<img src="https://images.squarespace-cdn.com/content/v1/54905286e4b050812345644c/1609608174920-34RZY6EW61N8185W83LY/Rule2.jpg?format=1000w"
+					alt="image not found">
+			</div>
+			<p>
+				A procedure P can broken into n successive ordered stages such that it is S<sub>1</sub>, S<sub>2</sub>
+				... S<sub>n</sub>. If S<sub>1</sub> can occur r<sub>1</sub> ways and S<sub>2</sub> can occur
+				r<sub>2</sub> ways ansd so forth until n, then S<sub>n</sub> can occur r<sub>n</sub> ways. We multiply
+				all of the r values together meaning the number of ways P can occur is r<sub>1</sub> * r<sub>2</sub> ...
+				S<sub>n</sub>.
+			</p>
+
+			<h3>Permutations</h3>
+			<p>A counting problem where the order of elements does matter and each element can't be used more than once.
+			</p>
+			<h3>Combinations</h3>
+			<p>A counting problem where the order of the elements does not matter and each element cannot be used more
+				that once.</p>
+			<div class="image-holder">
+				<img src="https://www.thoughtco.com/thmb/nY5kgY3_pY5m3Occl-711QG3jI0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/comb-5716dd163df78c3fa2e68194.jpg"
+					alt="image not found">
+			</div>
+
+			<h2>Probability and Venn Diagrams</h2>
+			<h3>Sample Space</h3>
+			<p>The collection of all possible outcomes of a chance experiment. Ex. Rolling a dice: S = {1,2,3,4,5,6}
+			</p>
+
+			<h3>Event</h3>
+			<p>Any collection of outcomes from the sample space. Ex. Rolling a prime #: E = {2,3,5} </p>
+
+			<h3>Venn Diagram</h3>
+			<p>Used to display relationships between events and are helpful in calculating probabilities.</p>
+
+			<h3>Complement</h3>
+			<p>Consists of all outcomes that are not in the event. Ex. rolling an even # complement: E<sup>c</sup> =
+				{1,3,5}</p>
+
+			<div class="image-holder">
+				<img src="https://mathonline.wdfiles.com/local--files/the-relative-complement-and-complement-of-a-set/Screen%20Shot%202015-09-12%20at%206.26.52%20PM.png"
+					alt="image not found">
+			</div>
+
+			<h3>Union</h3>
+			<p>The event A or B happening; consists of all outcomes that are in at least one of the two events (it can
+				be both). Ex. Rolling a prime # or even #: E = {2,3,4,5,6} E = A ∪ B</p>
+
+
+			<h3>Intersection</h3>
+			<p>The event A and B happening; consists of all outcomes that are in both events. Ex. Grabbing a red card
+				and a 2: E = {2 hearts, 2 diamonds} E = A ∩ B</p>
+
+			<div class="image-holder">
+				<img src="https://www.researchgate.net/publication/332453167/figure/fig1/AS:748486492450816@1555464494152/A-Venn-diagram-of-unions-and-intersections-for-two-sets-A-and-B-and-their-complements.png"
+					alt="image not found">
+			</div>
+
+			<h3>Mutually Exclusive (disjoint)</h3>
+			<p>Two outcomes have no outcomes in common.</p>
+
+			<div class="image-holder">
+				<img src="https://www.math-only-math.com/images/disjoint-of-sets-using-Venn-diagram.png"
+					alt="image not found">
+			</div>
+
+			<h2>Basic Rules of Probability, Conditional Probability, Tree Diagrams</h2>
+			<h3>Probability</h3>
+			<p>Denoted by P(event): Amount of favorable Outcomes / Total amount of outcomes [This equation is true if
+				outcomes are equally likely]</p>
+
+			<h3>Experimental Probability</h3>
+			<p>The relative frequency at which a change experiment actually occurs.</p>
+
+			<h3>Law of Large Numbers</h3>
+			<p>As the number of repetitions of a chance experiment increases, the difference between the theoretical and
+				experimental probability approaches zero.</p>
+
+			<h3>Basic Rulse of Probability</h3>
+			<p>Independence - Two events are independent if knowing that one will occur does not change the probability
+				that the other occurs. Check if two probabilities are independent using: P(A) * P (B) = P(A and B),
+				P(A|B) = P(A), or P(B|A) = P(B)<br><br></p>
+
+			<p>Rule 1 - Legitimate Values: for any even, 0 ≤ P(E) ≤ 1</p>
+			<p>Rule 2 - Sample Space: if S is the sample space, P(S [all possible values] ) = 1 </p>
+			<p>Rule 3 - Complement: for any event E, P(E) + P(not E) = 1 </p>
+			<p>Rule 4 - A and B (Multiplication): If two event A & B are independent: P(A and B) = P(A) * P(B), If two
+				events are not dependent(general solution): P(A and B) = P(A) * P(B|A)</p>
+			<p>Rule 5 - A or B (Addition): If two events are disjoint: P(E or F) = P(E) + P(F), If two events are not
+				disjoint(general solution): P(E) + P(F) - P(E and F)</p>
+			<p>Rule 6 - At least one: The probability of at least one outcome happening is 1 minus the probability that
+				no outcome happens. P(at least 1) = 1 - P(none happens)</p>
+			<p>Rule 7 - Conditional Probability: A probability that takes into account a given condition: P(B|A) = P(A
+				and B)/P(A), P(B|A) = P(and)/P(Given)</p>
+
+			<h3>Two Way Tables</h3>
+			<p>Consists of the numbers of conditions met as well as their totals.</p>
+
+			<div class="image-holder">
+				<img src="https://mathbitsnotebook.com/Algebra1/StatisticsReg/2wayPrac1.JPG" alt="image not found">
+			</div>
+
+			<h3>Tree Diagrams</h3>
+			<p>Consists of the possible outcomes organizing them into separate branches</p>
+
+			<div class="image-holder">
+				<img src="https://images.squarespace-cdn.com/content/v1/54905286e4b050812345644c/1609608755815-O6AGQDR3TEGPTUF2Y7DA/04.jpg"
+					alt="image not found">
+			</div>
+
+		</article>
+
+		<div class="vertical-divider"></div>
+
+		<nav id="article-bookmarks">
+			<a href="#content-overview" class="article-nav-link article-nav-header">Unit2</a>
+			<a href="#content-linear-regression" class="article-nav-link article-nav-header">Linear Regression</a>
+			<a href="#content-computer-data" class="article-nav-link article-nav-header">Interpreting Computer Generated
+				Data</a>
+			<a href="#content-facts" class="article-nav-link article-nav-header">Notable Regression Facts</a>
+			<a href="#content-outliers" class="article-nav-link">Outliers and Influential Points</a>
+			<a href="#content-residuals" class="article-nav-link">Residuals</a>
+			<a href="#content-residual-plots" class="article-nav-link article-nav-header">Residual Plots</a>
+			<a href="#content-non-linear-regression" class="article-nav-link article-nav-header">Non-linear
+				Regression</a>
+		</nav>
 	</div>
-      </div>
-      <a href="../mainPages/why.html" id="sized">But Why?</a>
-      <a href="../CS-II/Projects/Business Plan/index.html" id="sized">ISP Proposal</a>
-    </div>
-
-    <div class="floatContainer">
-      <div class="sideBar">
-	<a class="sidebarLink" href="Unit1.html">Unit 1</a>
-	<a class="sidebarLink" href="Unit2.html">Unit 2</a>
-	<a class="sidebarLink" href="Unit3.html">Unit 3</a>
-	<a class="sidebarLink" href="Unit4.html">Unit 4</a>
-	<a class="sidebarLink" href="Unit5.html">Unit 5</a>
-      </div>
-      <div class="mainBody">
-	<h1>Unit 4</h1>
-	<h2>The Fundamental Counting Principle, Permutations and Combinations</h2>
-	<p>One way to count problems is to list all possible solutions. For example, if 3 letter codes were selected using the four letters A, B, C, D with no repeats then the possible solutions would be such:<br>
-	  ABC BAC CAB DAB<br>
-	  ABD BAD CAD DBA<br>
-	  ACB BCA CBA DBC<br>
-	  ACD BDA CBD DCB<br>
-	  ADB BCD CDB DCA<br>
-	  ADC BDC CBA DAC<br>
-	  Another way count problems is to make a factor tree and count the number of end branches. In this case, there are four possible results to flipping a coin twice:
-	</p>
-	<div class="bodyElement">
-	  <img src="https://images.squarespace-cdn.com/content/v1/54905286e4b050812345644c/1609608174920-34RZY6EW61N8185W83LY/Rule2.jpg?format=1000w" alt="image not found">
-	</div>
-	<p>
-	  A procedure P can broken into n successive ordered stages such that it is S<sub>1</sub>, S<sub>2</sub> ... S<sub>n</sub>. If S<sub>1</sub> can occur r<sub>1</sub> ways and S<sub>2</sub> can occur r<sub>2</sub> ways ansd so forth until n, then S<sub>n</sub> can occur r<sub>n</sub> ways. We multiply all of the r values together meaning the number of ways P can occur is r<sub>1</sub> * r<sub>2</sub> ... S<sub>n</sub>.
-	</p>
-
-	<h3>Permutations</h3>
-	<p>A counting problem where the order of elements does matter and each element can't be used more than once. 
-	</p>
-	<h3>Combinations</h3>
-	<p>A counting problem where the order of the elements does not matter and each element cannot be used more that once.</p>
-	<div class="bodyElement">
-	  <img src="https://www.thoughtco.com/thmb/nY5kgY3_pY5m3Occl-711QG3jI0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/comb-5716dd163df78c3fa2e68194.jpg" alt="image not found">
-	</div>
-
-	<h2>Probability and Venn Diagrams</h2>
-	<h3>Sample Space</h3>
-	<p>The collection of all possible outcomes of a chance experiment. Ex. Rolling a dice: S = {1,2,3,4,5,6} </p>
-	
-	<h3>Event</h3>
-	<p>Any collection of outcomes from the sample space. Ex. Rolling a prime #: E = {2,3,5} </p>
-
-	<h3>Venn Diagram</h3>
-	<p>Used to display relationships between events and are helpful in calculating probabilities.</p>
-
-	<h3>Complement</h3>
-	<p>Consists of all outcomes that are not in the event. Ex. rolling an even # complement: E<sup>c</sup> = {1,3,5}</p>
-
-	<div class="bodyElement">
-	  <img src="https://mathonline.wdfiles.com/local--files/the-relative-complement-and-complement-of-a-set/Screen%20Shot%202015-09-12%20at%206.26.52%20PM.png" alt="image not found">
-	</div>
-	
-	<h3>Union</h3>
-	<p>The event A or B happening; consists of all outcomes that are in at least one of the two events (it can be both). Ex. Rolling a prime # or even #: E = {2,3,4,5,6}  E = A ∪ B</p>
-
-
-	<h3>Intersection</h3>
-	<p>The event A and B happening; consists of all outcomes that are in both events. Ex. Grabbing a red card and a 2: E = {2 hearts, 2 diamonds} E = A ∩ B</p>
-
-	<div class="bodyElement">
-	  <img src="https://www.researchgate.net/publication/332453167/figure/fig1/AS:748486492450816@1555464494152/A-Venn-diagram-of-unions-and-intersections-for-two-sets-A-and-B-and-their-complements.png" alt="image not found">
-	</div>
-	
-	<h3>Mutually Exclusive (disjoint)</h3>
-	<p>Two outcomes have no outcomes in common.</p>
-	
-	<div class="bodyElement">
-	  <img src="https://www.math-only-math.com/images/disjoint-of-sets-using-Venn-diagram.png" alt="image not found">
-	</div>
-	
-	<h2>Basic Rules of Probability, Conditional Probability, Tree Diagrams</h2>
-	<h3>Probability</h3>
-	<p>Denoted by P(event): Amount of favorable Outcomes / Total amount of outcomes [This equation is true if outcomes are equally likely]</p>
-
-	<h3>Experimental Probability</h3>
-	<p>The relative frequency at which a change experiment actually occurs.</p>
-
-	<h3>Law of Large Numbers</h3>
-	<p>As the number of repetitions of a chance experiment increases, the difference between the theoretical and experimental probability approaches zero.</p>
-
-	<h3>Basic Rulse of Probability</h3>
-	<p>Independence - Two events are independent if knowing that one will occur does not change the probability that the other occurs. Check if two probabilities are independent using: P(A) * P (B) = P(A and B), P(A|B) = P(A), or P(B|A) = P(B)<br><br></p>
-	
-	<p>Rule 1 - Legitimate Values: for any even, 0 ≤ P(E) ≤ 1</p>
-	<p>Rule 2 - Sample Space: if S is the sample space, P(S [all possible values] ) = 1 </p>
-	<p>Rule 3 - Complement: for any event E, P(E) + P(not E) = 1 </p>
-	<p>Rule 4 - A and B (Multiplication): If two event A & B are independent: P(A and B) = P(A) * P(B), If two events are not dependent(general solution): P(A and B) = P(A) * P(B|A)</p>
-	<p>Rule 5 - A or B (Addition): If two events are disjoint: P(E or F) = P(E) + P(F), If two events are not disjoint(general solution): P(E) + P(F) - P(E and F)</p>
-	<p>Rule 6 - At least one: The probability of at least one outcome happening is 1 minus the probability that no outcome happens. P(at least 1) = 1 - P(none happens)</p>
-	<p>Rule 7 - Conditional Probability: A probability that takes into account a given condition: P(B|A) = P(A and B)/P(A), P(B|A) = P(and)/P(Given)</p>
-
-	<h3>Two Way Tables</h3>
-	<p>Consists of the numbers of conditions met as well as their totals.</p>
-	
-	<div class="bodyElement">
-	  <img src="https://mathbitsnotebook.com/Algebra1/StatisticsReg/2wayPrac1.JPG" alt="image not found">
-	</div>
-
-	<h3>Tree Diagrams</h3>
-	<p>Consists of the possible outcomes organizing them into separate branches</p>
-	
-	<div class="bodyElement">
-	  <img src="https://images.squarespace-cdn.com/content/v1/54905286e4b050812345644c/1609608755815-O6AGQDR3TEGPTUF2Y7DA/04.jpg" alt="image not found">
-	</div>
-		
-      </div>
-    </div>
 </body>
+
 </html>

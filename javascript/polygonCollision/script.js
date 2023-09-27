@@ -365,8 +365,8 @@ ctx.canvas.height = height
 
 let boxes = []
 
-const gravity = 1000
-const restitution = 0
+const gravity = 0
+const restitution = 1
 
 let time = 0.0
 function loop(t) {
@@ -435,7 +435,7 @@ function loop(t) {
 function startup() {
     console.log("Starting simulation")
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 100; i++) {
         boxes.push(new Box(
             Math.random() * width,
             Math.random() * height,
@@ -443,8 +443,8 @@ function startup() {
             25 + Math.random() * 75,
             360 * Math.random(),
             150 - Math.random() * 300,
-            150 - Math.random() * 300,0))
-            // 150 - Math.random() * 300))
+            150 - Math.random() * 300,
+            150 - Math.random() * 300))
     }
 
     window.requestAnimationFrame(loop)

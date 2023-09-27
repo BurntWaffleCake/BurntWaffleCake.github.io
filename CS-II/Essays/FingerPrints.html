@@ -1,82 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Computer Science I</title>
-    <link rel="stylesheet" href="../../styles/styleSheet.css">
-    <meta charset="utf-8"> 
-  </head>
-  <body>
-    <main class="mainHeader">FingerPrints</main>
-    <div class="navigation-bar">
-     <a href="../../index.html" id="sized">TO HOME</a>
-     <a href="../../mainPages/index.html" id="sized">About Me</a>
-     <div class="dropdown">
-       <a href="../../mainPages/classes.html" id="sized">Classes</a>
-       <div class="dropdown-content">
-	 <a href="../../mainPages/computerScience.html">Computer Science</a>
-	 <a href="../../mainPages/statistics.html">Statistics</a>
-       </div>
-     </div>
-     <a href="../../mainPages/why.html" id="sized">But Why?</a>
-     <a href="../Projects/Business Plan/index.html" id="sized">ISP Proposal</a>
-    </div>
 
-    <div class="floatContainer">
-      <div class="sideBar">
-	<a class="sidebarLink" href="ISP.html">ISP CSI</a>
-	<a class="sidebarLink" href="FingerPrints.html">FingerPrints</a>
-	<a class="sidebarLink" href="AISentience.html">AI Sentience</a>
-	<a class="sidebarLink" href="../Projects/Optimal Sort.html">Optimal Sort</a>
-	<a class="sidebarLink" href="../Projects/ISP/index.html">ISP CSII</a>
-	<a class="sidebarLink" href="Decision Making.html">Decision Making</a>
-	       <a class="sidebarLink" href="../Projects/ISP/Journal.html">ISP Journal</a>
-      </div>
-      <div class="mainBody">
-	<h2 class="runningHeader">FINGERPRINTS</h2>
-	<p class="apaHeading"><b>FingerPrints: A Brief Summary of Web Security</b><br>
-	  Soohan Cho<br>
-	  Allen ISD STEAM Center <br>
-	  Computer Science II<br>
-	  Dr. Ben-Yaakov<br>
-	  Septemper 20, 2022
-	</p>
-	
-	<h2>Fingerprints and HTTPS Keys</h2>
-	<p> A HTTPS web-connection is a secure version of a http connection (hence the s at the end .>.). The purpose of this extra security is to "ensure the intregrety and confidentiality of data sent between the server and user" (web.dev, 2020). The integrety of the information is maintained in order to prevent external modification to said data by a MITM (man-in-the-middle) when being sent between the user and server. This is especially important as web connections could be spoofed in order to trick users from believing a fake website as the real version of said website. A MITM is an interceptor of the information being sent between the server and user who is able to modify or read off of the data. This ability to read and modify data can be used to target especially sensitive data such as passwords, band account details, and many others as such. In order to prevent or detect this from happening, a key is used to encrypt the data.      
-	</p>
-	<h2>Keys</h2>
-	<p>
-	  There are two types of keys. A public key and a private key. A public key is used to encrypt data and is available for everyone to see. A private key is kept secret to the public and is only avaiable to look at by the sender and user. The private key is used to decrypt the data after it was encrypted by the pubilic key. 
-	</p>
-	<div class="bodyElement">
-	  <img src="../../images/CS-II/Essays/FingerPrints/public-key-encryption.png" alt="image not found">
-	  	</div>
-	<h2>Hashes</h2>
-	<p>Cryptographic hashes (or digests) are "are complex mathematical algorithms which carefully process every single bit of what they digest"(Gibson Research Corporation, 2020) and are used to "fingerprint" certificates in order to validate any changes made. A good hash is able to change more than half of the bits that represent the fingerprint no matter how small the change is. This is used to validate certificates due to the sensitivity of the fingerprint which allows for us to precisely see whether or not the fingerprint has been tampered with. These certificates are then managed by a CA or certificate authority who keep a library of reliable certificates of different companies such as Amazon, Google, whilst verifying the certificates for various websites.</p>
-	<div class="bodyElement">
-	  <img  src="../../images/CS-II/Essays/FingerPrints/1371587691772 (1).png" alt="image not found">
-	  <img src="../../images/CS-II/Essays/FingerPrints/800px-Fingerprint.svg.png" alt="image not found">
-	</div>
-	<h2>Proxy SSL Interception</h2>
-	<p>SSL Interception is used to spoof a users targeted web connection and then send information gained from tracking the user to the actual website. This can be used to record any actions taken as the SSL is the connection taking the inputs and is often employed by schools and other entities in order to gather information about their websites traffic. There is no visual way to tell between the actual web server and the spoofed web connection but comparing the fingerprints is a viable way to tell whether or not one is being intercepted or not. This is due to the fact that fingerprints change drastically when modified even a little. This also corelated with the use of keys in order to encrypt and decrypt information. The private key and public key (although mathematically different) are one of a pair and one is required for hte other and equivalently in the other direction. This poses a problem for the interceptor, however, as private keys are held in secret by the genuine web server and is unvailable to look at by the interceptor. This in turn means that the interception requires a different public and private key in order to provide a spoofed certificate which does not exist on the actual web server..</p>
-	<div class="bodyElement">
-	  <img src="../../images/CS-II/Essays/FingerPrints/ssl-proxy-diagram.png" alt="image not found">
-	</div>
-	<h2>The Art of Being False</h2>
-	<p>There are cases when examining these differences in keys and fingerprints that problematic conclusions can be reached. We call these cases false positives and false negatives. A false positive can be reached when someone incorrectly diduces that their web connection is being intercepted. In other words, a false conclusion is reached about an issue that hasn't happened. One of the ways such a conclusion can be reached is if the address for the website is sligtly different. For example, www.google.com and google.com are similar and reach the same webserver; however, the small change in the address results in a <b>VERY DIFFERENT</b> fingerprint which can cause someone to think that they are being intercepeted. On the other hand, a false negative is a user's or systems inability or failure to prevent an interception. For example, due to the configurability of SSL Interception appliances, there are times when interception is deliberately not done (for high level executives and such). It can then be falsely concluded that no interception is being done when in reality it may only be for that specifed user or web connection.</p>
-	<h2>Do They Have the Rights?</h2>
-	<p>The surveilance technology available for the government and other bodies to use has greatly advances as web technology has evolved. This presents us with the question of: do these bodies have the right to manage our information using these techniques? The question many seem like a simple one, as we have been taught that surveilance is terrible and that we should fight for our privacy, but in reality the solution to such a problem may be more complex than we first think. A dilema is reached between security and privacy as security is needed for bodies like the government and school in order to ensure the safety of the citizen while privacy is a human right that has been emphasized especially due to the fast advancement in technologies. In my opinion, these bodies are allowed to surveile me but not record sensitive data such as passwords, important values (social security number and such), and other data that can be extremely detrimental if ever leaked to the public. Although an argument can be made about what exactly is "sensitive data", there should be some limitations to what these overarching entities are able to access and intercept.</p>
+<html>
 
-	<div class="mxgraph" style="max-width:90vw;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-08-25T23:51:14.600Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36 Edg/104.0.1293.63\&quot; etag=\&quot;1TIkb78_dDf2vc3d8m9V\&quot; version=\&quot;20.2.7\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;C5RBs43oDa-KdzZeNtuy\&quot; name=\&quot;Page-1\&quot;&gt;5VpbV+M2EP41PoUHOL7k+si9tMDplm0pfVNsxdYiW15ZIUl/fUcX37NglmadEh5ia3SxPDPf6JsxlncWr644SqNbFmBquXawsrxzy4U/24WLlKy1ZGIPtCDkJNAipxTck3+wEdpGuiABzmoDBWNUkLQu9FmSYF/UZIhztqwPmzNaf2qKQtwS3PuItqUPJBCReQt3XMp/xiSM8ic7o6nuiVE+2LxJFqGALSsi78LyzjhjQt/FqzNMpfJyvTxcrx/ozdPo6pdP2Vf0x+mvn+/+PNKLXb5lSvEKHCfiu5e2b7+c8nFyGQ5m48d5cvG3Q26PPL30M6ILoy/zrmKdKxAHoE/TZFxELGQJohel9JSzRRJg+RgbWuWYG8ZSEDog/IKFWBvnQAvBQBSJmJpe/Uz5oIbNXnlhMy5jC+7jF94y9zvEQyxeGOcWVgU4YBZjwdcwj2OKBHmubw4ZvwyLcaXu4cao/w2mcFqmuIcNi7Y9KAXsSL0vIyLwfYrUuy8Bvpu0+oy5wKvv0GtbD2aVo2GObRMSXNu0lyXAnBw1UQVcE3tLuhvuhRu7Hd140Kcbuy1T3KFnEiKBVeSXP5G+TeWelHO4NptLdwIFwGUmgz7memQiYz5JArlV9etT4j8Vq1CmGgROj5bFS3s6r4NlzhJhDOuA8k5DirLMuEImOHsqTg85ujgK7G3izBvXceZMN+BsuAFnjr0toE33AmiDjkCb9Am0QcsUoL8nRZG4QgsDiPAmRmySFOCJcbJQDaQgmOIES4QtJDAPDB8japJAs8NjuN7guahgUPfp6XL544+HweJs2x0Muu0Q+xFBOOkIQqdXFE46Hnc+uCaZE193GCweNKQJQBfSDsDcYXHe0Q2QI1JysCRqexmSb7uMsIG7Qj+Av3j0Es+sIr/SeCZZuSUcHPYGWxJX0jJ3sNXDdOdw7Iz3AsdO19PUGfUJZKd9nm5GcoAFIjTTp2IB0xg9yc5swXExMovA0eGCKQBPwVLhLsMiXxGpfR2QeQ5qkiU/CdXBMQrW+4BMz905ZLr7kU9qwHWpi/SaUebbrFgj8zlTE8Fhkzo8Z0wIFlsmpTRZIslEgVSTTeoeyx19XcgC3ml59zlaxLOUE9BxpRdgq07P/jjuj4PkYLp7kGyXx+7YhwRlV95bqUH3UeZpV44fcbbXBnHeGyXV1BPOFaHPB6QMAlFWWfk3piJTjlV30CjGenbDuHrF0tTF1t4RkttpzznD2Yawep1lC1VVkCG6Ek0TFMPAEZXNGVCjUSjvIPnxI8sUKa5+P7Py7zuXMALFMpYmsywtrF6NwhGLZ4usv7K40zCEM+kaNN2tBU27DVJdY92QE8bK7WbSfODngiShMoTAAI9USBs2sd33hwhnOKxpvGCSvX2HcPcjpXO7pnRurymd207pGpXLeqx6mfipGCZ5Jl6lmkmSklSaVE+vCEomJg2sLPhK+PpwJHI02jkS6bXjYT8kEvTK139VG49yseNh3jxfmcV1a21Vy9xbBHbnjPC95HMzmfG8ac1nJl7DFfTGzKzSG95KmibTxskx+gGkyWuHow9KmTu7kef9F270Vus7tjeumT/n0Fs1v9suY9Q4c/WwgDMG+YKuFS3TlFgPYgm2at/wGiR510jxpFnc658Uexsy12+SYlWw1R9T/iekeNo4dvsnxV7b8fPML3LyzO9EluyupUMXar6uqFklgFQTsstyVkv9oExR17PmQ2eMMg6SRAIICBShtCFClIQJNH0sHwsCaRriI3piOmISBPRbhq2H5G3Z9mjYhNMG43r2BuM2z9EOxoVm+b+NOgiW/yHqXfwL&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
-	<script src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
-	<br>
-	<br>
-	<br>
-	<div class="references"> 
-	  <h2>References</h2>
-	  <p>Gibson, S., & CORPORATION, G. R. (n.d.). Grc | SSL tls HTTPS web server certificate fingerprints. Home of Gibson Research Corporation . https://www.grc.com/fingerprints.htm#top</p>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../styles/articlestylesheet.css">
+	<link rel="stylesheet" href="https://fonts.google.com/specimen/Lora">
+</head>
+
+<style>
+	.image-holder {
+		max-width: 100%;
+	}
+
+	.image-holder img {
+		max-width: 100%;
+		height: auto;
+		background-color: white;
+	}
+
+	.article-nav-header {
+		font-size: larger;
+	}
+</style>
+
+<body>
+	<object id="global-nav-object" data="../../articleTemplateObjects/articleGlobalNavObject.html"></object>
+
+	<div id="article-body">
+
+		<object data="../../articleTemplateObjects/csArticleNavObject.html"></object>
+
+		<div class="vertical-divider"></div>
+
+		<article id="article-contents">
+			<h2 class="runningHeader">FINGERPRINTS</h2>
+			<p class="apaHeading"><b>FingerPrints: A Brief Summary of Web Security</b><br>
+				Soohan Cho<br>
+				Allen ISD STEAM Center <br>
+				Computer Science II<br>
+				Dr. Ben-Yaakov<br>
+				Septemper 20, 2022
+			</p>
+
+			<h1>Fingerprints</h1>
+			<h2>Fingerprints and HTTPS Keys</h2>
+			<p> A HTTPS web-connection is a secure version of a http connection (hence the s at the end .>.). The
+				purpose of this extra security is to "ensure the intregrety and confidentiality of data sent between the
+				server and user" (web.dev, 2020). The integrety of the information is maintained in order to prevent
+				external modification to said data by a MITM (man-in-the-middle) when being sent between the user and
+				server. This is especially important as web connections could be spoofed in order to trick users from
+				believing a fake website as the real version of said website. A MITM is an interceptor of the
+				information being sent between the server and user who is able to modify or read off of the data. This
+				ability to read and modify data can be used to target especially sensitive data such as passwords, band
+				account details, and many others as such. In order to prevent or detect this from happening, a key is
+				used to encrypt the data.
+			</p>
+			<h2>Keys</h2>
+			<p>
+				There are two types of keys. A public key and a private key. A public key is used to encrypt data and is
+				available for everyone to see. A private key is kept secret to the public and is only avaiable to look
+				at by the sender and user. The private key is used to decrypt the data after it was encrypted by the
+				pubilic key.
+			</p>
+			<div class="image-holder">
+				<img src="../../images/CS-II/Essays/FingerPrints/public-key-encryption.png" alt="image not found">
+			</div>
+			<h2>Hashes</h2>
+			<p>Cryptographic hashes (or digests) are "are complex mathematical algorithms which carefully process every
+				single bit of what they digest"(Gibson Research Corporation, 2020) and are used to "fingerprint"
+				certificates in order to validate any changes made. A good hash is able to change more than half of the
+				bits that represent the fingerprint no matter how small the change is. This is used to validate
+				certificates due to the sensitivity of the fingerprint which allows for us to precisely see whether or
+				not the fingerprint has been tampered with. These certificates are then managed by a CA or certificate
+				authority who keep a library of reliable certificates of different companies such as Amazon, Google,
+				whilst verifying the certificates for various websites.</p>
+			<div class="image-holder">
+				<img src="../../images/CS-II/Essays/FingerPrints/1371587691772 (1).png" alt="image not found">
+				<img src="../../images/CS-II/Essays/FingerPrints/800px-Fingerprint.svg.png" alt="image not found">
+			</div>
+			<h2>Proxy SSL Interception</h2>
+			<p>SSL Interception is used to spoof a users targeted web connection and then send information gained from
+				tracking the user to the actual website. This can be used to record any actions taken as the SSL is the
+				connection taking the inputs and is often employed by schools and other entities in order to gather
+				information about their websites traffic. There is no visual way to tell between the actual web server
+				and the spoofed web connection but comparing the fingerprints is a viable way to tell whether or not one
+				is being intercepted or not. This is due to the fact that fingerprints change drastically when modified
+				even a little. This also corelated with the use of keys in order to encrypt and decrypt information. The
+				private key and public key (although mathematically different) are one of a pair and one is required for
+				hte other and equivalently in the other direction. This poses a problem for the interceptor, however, as
+				private keys are held in secret by the genuine web server and is unvailable to look at by the
+				interceptor. This in turn means that the interception requires a different public and private key in
+				order to provide a spoofed certificate which does not exist on the actual web server..</p>
+			<div class="image-holder">
+				<img src="../../images/CS-II/Essays/FingerPrints/ssl-proxy-diagram.png" alt="image not found">
+			</div>
+			<h2>The Art of Being False</h2>
+			<p>There are cases when examining these differences in keys and fingerprints that problematic conclusions
+				can be reached. We call these cases false positives and false negatives. A false positive can be reached
+				when someone incorrectly diduces that their web connection is being intercepted. In other words, a false
+				conclusion is reached about an issue that hasn't happened. One of the ways such a conclusion can be
+				reached is if the address for the website is sligtly different. For example, www.google.com and
+				google.com are similar and reach the same webserver; however, the small change in the address results in
+				a <b>VERY DIFFERENT</b> fingerprint which can cause someone to think that they are being intercepeted.
+				On the other hand, a false negative is a user's or systems inability or failure to prevent an
+				interception. For example, due to the configurability of SSL Interception appliances, there are times
+				when interception is deliberately not done (for high level executives and such). It can then be falsely
+				concluded that no interception is being done when in reality it may only be for that specifed user or
+				web connection.</p>
+			<h2>Do They Have the Rights?</h2>
+			<p>The surveilance technology available for the government and other bodies to use has greatly advances as
+				web technology has evolved. This presents us with the question of: do these bodies have the right to
+				manage our information using these techniques? The question many seem like a simple one, as we have been
+				taught that surveilance is terrible and that we should fight for our privacy, but in reality the
+				solution to such a problem may be more complex than we first think. A dilema is reached between security
+				and privacy as security is needed for bodies like the government and school in order to ensure the
+				safety of the citizen while privacy is a human right that has been emphasized especially due to the fast
+				advancement in technologies. In my opinion, these bodies are allowed to surveile me but not record
+				sensitive data such as passwords, important values (social security number and such), and other data
+				that can be extremely detrimental if ever leaked to the public. Although an argument can be made about
+				what exactly is "sensitive data", there should be some limitations to what these overarching entities
+				are able to access and intercept.</p>
+
+			<div class="mxgraph" style="max-width:90vw;border:1px solid transparent;"
+				data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-08-25T23:51:14.600Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36 Edg/104.0.1293.63\&quot; etag=\&quot;1TIkb78_dDf2vc3d8m9V\&quot; version=\&quot;20.2.7\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;C5RBs43oDa-KdzZeNtuy\&quot; name=\&quot;Page-1\&quot;&gt;5VpbV+M2EP41PoUHOL7k+si9tMDplm0pfVNsxdYiW15ZIUl/fUcX37NglmadEh5ia3SxPDPf6JsxlncWr644SqNbFmBquXawsrxzy4U/24WLlKy1ZGIPtCDkJNAipxTck3+wEdpGuiABzmoDBWNUkLQu9FmSYF/UZIhztqwPmzNaf2qKQtwS3PuItqUPJBCReQt3XMp/xiSM8ic7o6nuiVE+2LxJFqGALSsi78LyzjhjQt/FqzNMpfJyvTxcrx/ozdPo6pdP2Vf0x+mvn+/+PNKLXb5lSvEKHCfiu5e2b7+c8nFyGQ5m48d5cvG3Q26PPL30M6ILoy/zrmKdKxAHoE/TZFxELGQJohel9JSzRRJg+RgbWuWYG8ZSEDog/IKFWBvnQAvBQBSJmJpe/Uz5oIbNXnlhMy5jC+7jF94y9zvEQyxeGOcWVgU4YBZjwdcwj2OKBHmubw4ZvwyLcaXu4cao/w2mcFqmuIcNi7Y9KAXsSL0vIyLwfYrUuy8Bvpu0+oy5wKvv0GtbD2aVo2GObRMSXNu0lyXAnBw1UQVcE3tLuhvuhRu7Hd140Kcbuy1T3KFnEiKBVeSXP5G+TeWelHO4NptLdwIFwGUmgz7memQiYz5JArlV9etT4j8Vq1CmGgROj5bFS3s6r4NlzhJhDOuA8k5DirLMuEImOHsqTg85ujgK7G3izBvXceZMN+BsuAFnjr0toE33AmiDjkCb9Am0QcsUoL8nRZG4QgsDiPAmRmySFOCJcbJQDaQgmOIES4QtJDAPDB8japJAs8NjuN7guahgUPfp6XL544+HweJs2x0Muu0Q+xFBOOkIQqdXFE46Hnc+uCaZE193GCweNKQJQBfSDsDcYXHe0Q2QI1JysCRqexmSb7uMsIG7Qj+Av3j0Es+sIr/SeCZZuSUcHPYGWxJX0jJ3sNXDdOdw7Iz3AsdO19PUGfUJZKd9nm5GcoAFIjTTp2IB0xg9yc5swXExMovA0eGCKQBPwVLhLsMiXxGpfR2QeQ5qkiU/CdXBMQrW+4BMz905ZLr7kU9qwHWpi/SaUebbrFgj8zlTE8Fhkzo8Z0wIFlsmpTRZIslEgVSTTeoeyx19XcgC3ml59zlaxLOUE9BxpRdgq07P/jjuj4PkYLp7kGyXx+7YhwRlV95bqUH3UeZpV44fcbbXBnHeGyXV1BPOFaHPB6QMAlFWWfk3piJTjlV30CjGenbDuHrF0tTF1t4RkttpzznD2Yawep1lC1VVkCG6Ek0TFMPAEZXNGVCjUSjvIPnxI8sUKa5+P7Py7zuXMALFMpYmsywtrF6NwhGLZ4usv7K40zCEM+kaNN2tBU27DVJdY92QE8bK7WbSfODngiShMoTAAI9USBs2sd33hwhnOKxpvGCSvX2HcPcjpXO7pnRurymd207pGpXLeqx6mfipGCZ5Jl6lmkmSklSaVE+vCEomJg2sLPhK+PpwJHI02jkS6bXjYT8kEvTK139VG49yseNh3jxfmcV1a21Vy9xbBHbnjPC95HMzmfG8ac1nJl7DFfTGzKzSG95KmibTxskx+gGkyWuHow9KmTu7kef9F270Vus7tjeumT/n0Fs1v9suY9Q4c/WwgDMG+YKuFS3TlFgPYgm2at/wGiR510jxpFnc658Uexsy12+SYlWw1R9T/iekeNo4dvsnxV7b8fPML3LyzO9EluyupUMXar6uqFklgFQTsstyVkv9oExR17PmQ2eMMg6SRAIICBShtCFClIQJNH0sHwsCaRriI3piOmISBPRbhq2H5G3Z9mjYhNMG43r2BuM2z9EOxoVm+b+NOgiW/yHqXfwL&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}">
+			</div>
+			<script src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+			<br>
+			<br>
+			<br>
+			<div class="references">
+				<h2>References</h2>
+				<p>Gibson, S., & CORPORATION, G. R. (n.d.). Grc | SSL tls HTTPS web server certificate fingerprints.
+					Home of Gibson Research Corporation . https://www.grc.com/fingerprints.htm#top</p>
+			</div>
+		</article>
+
+		<div class="vertical-divider"></div>
+
+		<nav id="article-bookmarks">
+		</nav>
 	</div>
-      </div>
-    </div>
-  </body>
+</body>
+
 </html>

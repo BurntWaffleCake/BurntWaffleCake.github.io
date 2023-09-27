@@ -1,142 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Statistics</title>
-    <link rel="stylesheet" href="../styles/styleSheet.css">
-    <meta charset="utf-8"> 
-  </head>
-  <body>
-    <main class="mainHeader" id="Statistics">Unit 8</main>
-    <div class="navigation-bar">
-      <a href="../index.html" id="sized">TO HOME</a>
-      <a href="../mainPages/index.html" id="sized">About Me</a>
-      <div class="dropdown">
-	<a href="../mainPages/classes.html" id="sized">Classes</a>
-	<div class="dropdown-content">
-	  <a href="../mainPages/computerScience.html">Computer Science</a>
-	  <a href="../mainPages/statistics.html">Statistics</a>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../styles/articlestylesheet.css">
+	<link rel="stylexsheet" href="https://fonts.google.com/specimen/Lora">
+</head>
+
+<style>
+	.image-holder {
+		justify-content: center;
+		display: flex;
+		max-width: 100%;
+	}
+
+	.image-holder img {
+
+		max-width: 100%;
+		height: auto;
+		background-color: white;
+	}
+
+	.article-nav-header {
+		font-size: larger;
+	}
+</style>
+
+<body>
+	<object id="global-nav-object" data="../articleTemplateObjects/articleGlobalNavObject.html"></object>
+
+	<div id="article-body">
+
+		<object id="article-nav" data="../articleTemplateObjects/statArticleNavObject.html"></object>
+
+		<div class="vertical-divider"></div>
+
+		<article id="article-contents">
+			<h1>Unit 8</h1>
+			<h2>Chi-Square(χ2) Testing</h2>
+			<p style="text-indent: 0">
+				Used to test the counts of categorical data <br>
+				3 Different Types: <br>
+				<b>Goodness of fit</b> (GOF), used for univariate data <br>
+				<b>Independence</b> used for bivariate data <br>
+				<b>Homogeniety</b> used for bivariate data <br>
+				Different degrees of freedom (df) hav different curves <br>
+				skewed right, as df increases, curve shifts toward right and becomes more like a normal curve <br>
+			</p>
+
+			<h3>Assumptions for Chi-Square Testing</h3>
+			<p style="text-indent: 0">
+				Simple Random Sample <br>
+				all expected counts >= 5 **Must list expected counts**
+			</p>
+
+			<h3>Chi-Squared Test Statistic Formula</h3>
+			<div class="bodyElement">
+				<img src="https://www.gstatic.com/education/formulas2/472522532/en/chi_squared_test.svg"
+					alt="image not found">
+			</div>
+			<p style="text-indent: 0">
+				To find p-value, use χ2cdf() on calculator. χ2 is your LB and 1E99 for UB. df depends on what type of χ2
+				you are doing.
+			</p>
+
+			<h3>Steps for χ2 Test</h3>
+			<p style="text-indent: 0">
+				Step 1: State hypothesis (written words for χ2)<br>
+				Step 2: Check assumptions (randomness and expected counts >= 5) write down name of test<br>
+				Step 3: Calculations (χ2, df, p-value, α)<br>
+				Step 4: Conclusion (same format as other tests, suggests that there is evidence that the <i>Alternative
+					Hypothesis</i> is true or not, prompt can be worded towards null hypothesis so be careful)
+			</p>
+
+			<br>
+
+			<h3>χ2 Goodnes of Fit (GOF) Test</h3>
+			<p style="text-indent: 0">
+				Uses univariate data<br>
+				Used to see how well the observed counts "fit" what we expect the count to be<br>
+				df = {# of categories} - 1
+			</p>
+			<h3>GOF Hypothesis</h3>
+			<p style="text-indent: 0">
+				Ho: All proportions of {context} are equal to {expected proportions}<br>
+				Ha: At least on proportion of {context} is not the same as {expected proportions}
+			</p>
+
+			<br>
+
+			<h3>Expected Counts and Degrees of freedom Formulas (Independence and Homogeniety)</h3>
+			<p>
+				expected counts = (row total * column total) / table total<br>
+				df = (row # - 1)(column # - 1)
+			</p>
+			<h3>χ2 Test for Independence</h3>
+			<p style="text-indent: 0">
+				Used with categorical, bivariate data<br>
+				Used to see if two variables are associated (dependent) or not associated (independent)<br>
+				Key phrasing: independent/dependent, associated, related to, affected by, etc.<br>
+				Assumptions and formulas are same as GOF ^
+			</p>
+			<h3>Independence Hypothesis</h3>
+			<p style="text-indent: 0">
+				Ho: {two variables} are independent<br>
+				Ha: {two variables} are dependent<br>
+			</p>
+
+			<br>
+
+			<h3>χ2 Test for Homogeniety</h3>
+			<p style="text-indent: 0">
+				Used with bivariate categorical data<br>
+				Used to see if two populations are the same (homogenous) or not<br>
+				Key Phrasing: is different from a difference between, is the same, etc.<br>
+				Everything is the same as an independence test except hypothesis
+			</p>
+			<h3>Homogeniety Hypothesis</h3>
+			<p style="text-indent: 0">
+				Ho: All the proportions of {first variable} are the same for {second variable}<br>
+				Ha: At least on of the proportions of {first variable} is different for {second variable}
+			</p>
+
+			<br>
+
+			<h3>Regression Inference with Computer Outputs</h3>
+			<div class="bodyElement">
+				<img src="https://img.crackap.com/ap/statistics/br/p594.jpg" alt="image not found">
+			</div>
+			<p style="text-indent: 0">
+				Degrees of freedom: df = n - 2 (Because there are two variables x and y)<br>
+				Confidence Interval Equation: b ± t* (SEb) (slope ± t* * Standard Error of slope)
+			</p>
+
+			<h3>Hypothesis</h3>
+			<p style="text-indent: 0">
+				Ho: β = 0 (where β is the population slope of ... {context})<br>
+				Ha: β ≠ 0
+			</p>
+			<h3>Calculations</h3>
+			<p style="text-indent: 0">
+				t = (b - β) / SEb<br>
+				p-value = 2 * tcdf(LB, UB, d) (df = n - 2)
+			</p>
+
+		</article>
+
+		<div class="vertical-divider"></div>
+
+		<nav id="article-bookmarks">
+			<a href="#content-overview" class="article-nav-link article-nav-header">Unit2</a>
+			<a href="#content-linear-regression" class="article-nav-link article-nav-header">Linear Regression</a>
+			<a href="#content-computer-data" class="article-nav-link article-nav-header">Interpreting Computer Generated
+				Data</a>
+			<a href="#content-facts" class="article-nav-link article-nav-header">Notable Regression Facts</a>
+			<a href="#content-outliers" class="article-nav-link">Outliers and Influential Points</a>
+			<a href="#content-residuals" class="article-nav-link">Residuals</a>
+			<a href="#content-residual-plots" class="article-nav-link article-nav-header">Residual Plots</a>
+			<a href="#content-non-linear-regression" class="article-nav-link article-nav-header">Non-linear
+				Regression</a>
+		</nav>
 	</div>
-      </div>
-      <a href="../mainPages/why.html" id="sized">But Why?</a>
-      <a href="../CS-II/Projects/Business Plan/index.html" id="sized">ISP Proposal</a>
-    </div>
+</body>
 
-    <div class="floatContainer">
-      <div class="sideBar">
-	<a class="sidebarLink" href="Unit1.html">Unit 1</a>
-	<a class="sidebarLink" href="Unit2.html">Unit 2</a>
-	<a class="sidebarLink" href="Unit3.html">Unit 3</a>
-	<a class="sidebarLink" href="Unit4.html">Unit 4</a>
-	<a class="sidebarLink" href="Unit5.html">Unit 5</a>
-	<a class="sidebarLink" href="Unit8.html">Unit 8</a>
-      </div>
-      
-      <div class="mainBody" style="padding-top: 50px">
-	<h1>Unit 8</h1>
-	<h2>Chi-Square(χ2) Testing</h2>
-	<p style="text-indent: 0">
-	  Used to test the counts of categorical data <br>
-	  3 Different Types: <br>
-	  <b>Goodness of fit</b> (GOF), used for univariate data <br>
-	  <b>Independence</b> used for bivariate data <br>
-	  <b>Homogeniety</b> used for bivariate data <br>
-	  Different degrees of freedom (df) hav different curves <br>
-	  skewed right, as df increases, curve shifts toward right and becomes more like a normal curve <br>
-	</p>
-	
-	<h3>Assumptions for Chi-Square Testing</h3>
-	<p style="text-indent: 0">
-	  Simple Random Sample <br>
-	  all expected counts >= 5 **Must list expected counts**
-	</p>
-	
-	<h3>Chi-Squared Test Statistic Formula</h3>
-	<div class="bodyElement">
-	  <img src="https://www.gstatic.com/education/formulas2/472522532/en/chi_squared_test.svg" alt="image not found">
-	</div>
-	<p style="text-indent: 0">
-	  To find p-value, use χ2cdf() on calculator. χ2 is your LB and 1E99 for UB. df depends on what type of χ2 you are doing. 
-	</p>
-	
-	<h3>Steps for χ2 Test</h3>
-	<p style="text-indent: 0">
-	  Step 1: State hypothesis (written words for χ2)<br>
-	  Step 2: Check assumptions (randomness and expected counts >= 5) write down name of test<br>
-	  Step 3: Calculations (χ2, df, p-value, α)<br>
-	  Step 4: Conclusion (same format as other tests, suggests that there is evidence that the <i>Alternative Hypothesis</i> is true or not, prompt can be worded towards null hypothesis so be careful)
-	</p>
-
-	<br>
-
-	<h3>χ2 Goodnes of Fit (GOF) Test</h3>
-	<p style="text-indent: 0">
-	  Uses univariate data<br>
-	  Used to see how well the observed counts "fit" what we expect the count to be<br>
-	  df = {# of categories} - 1
-	</p>
-	<h3>GOF Hypothesis</h3>
-	<p style="text-indent: 0">
-	  Ho: All proportions of {context} are equal to {expected proportions}<br>
-	  Ha: At least on proportion of {context} is not the same as {expected proportions}
-	</p>
-	
-	<br>
-
-	<h3>Expected Counts and Degrees of freedom Formulas (Independence and Homogeniety)</h3>
-	<p>
-	  expected counts = (row total * column total) / table total<br>
-	  df = (row # - 1)(column # - 1)
-	</p>
-	<h3>χ2 Test for Independence</h3>
-	<p style="text-indent: 0">
-	  Used with categorical, bivariate data<br>
-	  Used to see if two variables are associated (dependent) or not associated (independent)<br>
-	  Key phrasing: independent/dependent, associated, related to, affected by, etc.<br>
-	  Assumptions and formulas are same as GOF ^
-	</p>
-	<h3>Independence Hypothesis</h3>
-	<p style="text-indent: 0">
-	  Ho: {two variables} are independent<br>
-	  Ha: {two variables} are dependent<br>
-	</p>
-	
-	<br>
-
-	<h3>χ2 Test for Homogeniety</h3>
-	<p style="text-indent: 0">
-	  Used with bivariate categorical data<br>
-	  Used to see if two populations are the same (homogenous) or not<br>
-	  Key Phrasing: is different from a difference between, is the same, etc.<br>
-	  Everything is the same as an independence test except hypothesis
-	</p>
-	<h3>Homogeniety Hypothesis</h3>
-	<p style="text-indent: 0">
-	  Ho: All the proportions of {first variable} are the same for {second variable}<br>
-	  Ha: At least on of the proportions of {first variable} is different for {second variable}
-	</p>
-
-	<br>
-
-	<h3>Regression Inference with Computer Outputs</h3>
-	<div class="bodyElement">
-	  <img src="https://img.crackap.com/ap/statistics/br/p594.jpg" alt="image not found">
-	</div>
-	<p style="text-indent: 0">
-	  Degrees of freedom: df = n - 2 (Because there are two variables x and y)<br>
-	  Confidence Interval Equation: b ± t* (SEb) (slope ± t* * Standard Error of slope)
-	</p>
-
-	<h3>Hypothesis</h3>
-	<p style="text-indent: 0">
-	  Ho: β = 0 (where β is the population slope of ... {context})<br>
-	  Ha: β ≠ 0
-	</p>
-	<h3>Calculations</h3>
-	<p style="text-indent: 0">
-	  t = (b - β) / SEb<br>
-	  p-value = 2 * tcdf(LB, UB, d)  (df = n - 2)
-	</p>
-      </div>
-    </div>
-  </body>
 </html>
