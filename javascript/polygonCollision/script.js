@@ -148,8 +148,24 @@ ctx.canvas.height = height
 
 let boxes = []
 
-boxes.push(new Box(width / 2, height / 2, 200, 100, 0, 100, 600, 150))
-boxes.push(new Box(width / 4, height / 6, 50, 100, 0, -500, 352, -36))
+boxes.push(new Box(width / 2, height / 2, 200, 100, 0, 0, 0, 0))
+boxes.push(new Box(width / 4, height / 6, 50, 100, 0, 0, 0, 0))
+
+function generateBox() {
+    let w = Math.random() * 50 + 25
+    let h = Math.random() * 50 + 25
+    boxes.push(new Box(
+        w + (Math.random() * (width - w)),
+        h + (Math.random() * (height - h)),
+        w,
+        h,
+        0,
+        Math.random() * 500 - 250,
+        Math.random() * 500 - 250,
+        0,
+    )
+    )
+}
 
 
 function projectToAxis(axisX, axisY, box, color = "rgb(0, 255, 0)") {
@@ -158,18 +174,18 @@ function projectToAxis(axisX, axisY, box, color = "rgb(0, 255, 0)") {
     axis = { x: axis.x / axisMag, y: axis.y / axisMag }
 
     let boxProj = box.getProjection(axis.x, axis.y)
-    ctx.fillStyle = color
-    ctx.fillRect(axis.x * boxProj.max - 2.5, axis.y * boxProj.max - 2.5, 5, 5)
-    ctx.fillRect(axis.x * boxProj.min - 2.5, axis.y * boxProj.min - 2.5, 5, 5)
-    ctx.strokeStyle = color
-    ctx.beginPath()
-    ctx.moveTo(axis.x * boxProj.max, axis.y * boxProj.max)
-    ctx.lineTo(boxProj.maxPoint.x, boxProj.maxPoint.y)
-    ctx.stroke()
-    ctx.beginPath()
-    ctx.moveTo(axis.x * boxProj.min, axis.y * boxProj.min)
-    ctx.lineTo(boxProj.minPoint.x, boxProj.minPoint.y)
-    ctx.stroke()
+    // ctx.fillStyle = color
+    // ctx.fillRect(axis.x * boxProj.max - 2.5, axis.y * boxProj.max - 2.5, 5, 5)
+    // ctx.fillRect(axis.x * boxProj.min - 2.5, axis.y * boxProj.min - 2.5, 5, 5)
+    // ctx.strokeStyle = color
+    // ctx.beginPath()
+    // ctx.moveTo(axis.x * boxProj.max, axis.y * boxProj.max)
+    // ctx.lineTo(boxProj.maxPoint.x, boxProj.maxPoint.y)
+    // ctx.stroke()
+    // ctx.beginPath()
+    // ctx.moveTo(axis.x * boxProj.min, axis.y * boxProj.min)
+    // ctx.lineTo(boxProj.minPoint.x, boxProj.minPoint.y)
+    // ctx.stroke()
     return boxProj
 }
 
@@ -182,7 +198,7 @@ function loop(t) {
 
     for (let i = 0; i < boxes.length; i++) {
         let box1 = boxes[i]
-        for (let n = i+1; n < boxes.length; n++) {
+        for (let n = i + 1; n < boxes.length; n++) {
             let box2 = boxes[n]
             if (box1 === box2) { continue }
             let box1ProjY = projectToAxis(0, height, box1)
@@ -204,14 +220,15 @@ function loop(t) {
                     box2ProjX.max < box1ProjX.max && box2ProjX.max > box1ProjX.min
                 )
             ) {
-                console.log("collided", box1)
                 box1.dx = -box1.dx
                 box1.dy = -box1.dy
                 box2.dx = -box2.dx
                 box2.dy = -box2.dy
+                box1.color = "rgb(255, 0, 0)"
             }
         }
         box1.render(ctx)
+        box1.color = "rgb(255,255,255)"
     }
 
 
@@ -229,6 +246,11 @@ function loop(t) {
 
 function startup() {
     console.log("Starting simulation")
+
+    for (let i = 0; i < 10; i++) {
+        generateBox()
+    }
+
     window.requestAnimationFrame(loop)
 }
 
