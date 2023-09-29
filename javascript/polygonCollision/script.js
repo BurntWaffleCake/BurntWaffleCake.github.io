@@ -365,8 +365,8 @@ ctx.canvas.height = height
 
 let boxes = []
 
-const gravity = 1000
-const restitution = 0
+const gravity = 0
+const restitution = .5
 
 let time = 0.0
 function loop(t) {
@@ -412,9 +412,9 @@ function loop(t) {
                 if (result.colliding) {
                     // console.log("collided")
     
-                    let collisionPoint = getCollidingPoint(box1, box2)
-                    ctx.fillStyle = "rgb(255, 0, 0)"
-                    ctx.fillRect(collisionPoint.x - 1.5, collisionPoint.y - 1.5, 10, 10)
+                    // let collisionPoint = getCollidingPoint(box1, box2)
+                    // ctx.fillStyle = "rgb(255, 0, 0)"
+                    // ctx.fillRect(collisionPoint.x - 1.5, collisionPoint.y - 1.5, 10, 10)
                     resolveCollision(box1, box2, result.mtx, result.normal)
                 }
             }
@@ -435,16 +435,16 @@ function loop(t) {
 function startup() {
     console.log("Starting simulation")
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
         boxes.push(new Box(
             Math.random() * width,
             Math.random() * height,
-            25 + Math.random() * 75,
-            25 + Math.random() * 75,
+            50 + Math.random() * 50 ,
+            50 + Math.random() * 50,
             360 * Math.random(),
             150 - Math.random() * 300,
-            150 - Math.random() * 300,0))
-            // 150 - Math.random() * 300))
+            150 - Math.random() * 300,
+            150 - Math.random() * 300))
     }
 
     window.requestAnimationFrame(loop)
