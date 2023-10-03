@@ -127,17 +127,7 @@ class Box {
         let axis2Mag = Math.sqrt(axis2.x * axis2.x + axis2.y * axis2.y)
         axis2.x = axis2.x / axis2Mag
         axis2.y = axis2.y / axis2Mag
-
-        // let axis3 = { x: points[3].x - points[2].x, y: points[3].y - points[2].y }
-        // let axis3Mag = Math.sqrt(axis3.x * axis3.x + axis3.y * axis3.y)
-        // axis3.x = axis3.x / axis3Mag
-        // axis3.y = axis3.y / axis3Mag
-
-        // let axis4 = { x: points[0].x - points[3].x, y: points[0].y - points[3].y }
-        // let axis4Mag = Math.sqrt(axis4.x * axis4.x + axis4.y * axis4.y)
-        // axis4.x = axis4.x / axis4Mag
-        // axis4.y = axis4.y / axis4Mag
-        return [axis1, axis2]//, axis3, axis4]
+        return [axis1, axis2]
     }
 
     toWorldSpace(x, y) {
@@ -159,10 +149,22 @@ class Box {
         return [tl, tr, br, bl]
     }
 
+    getFaces() {
+        let faces = []
+        let coords = this.getWorldCoordinates()
+        coords.array.forEach(element, index, array => {
+            if (index < array.length - 1) {
+                faces.push({element - array[index + 1], 1})
+            } else {
+                faces.push()
+            }
+        });
+    }
+
     render(ctx) {
         ctx.fillStyle = this.color
         ctx.fillRect(this.x - 1.5, this.y - 1.5, 3, 3)
-
+ls``
         let coords = this.getWorldCoordinates()
 
         ctx.strokeStyle = this.color
@@ -194,6 +196,10 @@ function drawLineTo(x, y, tox, toy, color = "rgb(255,255,255)") {
 
 function round(value, decimals) {
     return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+}
+
+function getPointsBelow() {
+
 }
 
 function getCollidingPoint(box1, box2, normal) {
@@ -268,46 +274,18 @@ function projectVectorToLine(x, y, lx, ly) {
     return { x: projX, y: projY }
 }
 
-function projectToAxis(axisX, axisY, box, color) {
-    let axis = { x: axisX, y: axisY }
-    let axisMag = Math.sqrt(axis.x * axis.x + axis.y * axis.y)
-    axis = { x: axis.x / axisMag, y: axis.y / axisMag }
-    let boxProj = box.getProjection(axis.x, axis.y)
-
-    if (color != undefined) {
-        // ctx.fillStyle = color
-        // ctx.fillRect(axis.x * boxProj.max - 2.5, axis.y * boxProj.max - 2.5, 5, 5)
-        // ctx.fillRect(axis.x * boxProj.min - 2.5, axis.y * boxProj.min - 2.5, 5, 5)
-        // ctx.strokeStyle = color
-        // ctx.beginPath()
-        // ctx.moveTo(axis.x * boxProj.max, axis.y * boxProj.max)
-        // ctx.lineTo(boxProj.maxPoint.x, boxProj.maxPoint.y)
-        // ctx.stroke()
-        // ctx.beginPath()
-        // ctx.moveTo(axis.x * boxProj.min, axis.y * boxProj.min)
-        // ctx.lineTo(boxProj.minPoint.x, boxProj.minPoint.y)
-        // ctx.stroke()
-    }
-    return boxProj
-}
-
 function testBoxCollision(box1, box2) {
-    let satAxis = box1.getCollisionAxis()
-    let satAxis2 = box2.getCollisionAxis()
-    satAxis = satAxis.concat(box2.getCollisionAxis())
+    let satAxisBox1 = box1.getCollisionAxis()
+    let satAxisBox2 = box2.getCollisionAxis()
 
     var colliding = true
     let mvt = Number.MAX_VALUE
     let normal = undefined
+    let satShape = undefined // true: box1, false: box2
 
-    // ctx.strokeStyle = "rgb(0,255,0)"
-
-    for (axis of satAxis) {
-        // ctx.moveTo(width / 2, height / 2)
-        // ctx.lineTo(width / 2 + 50 * axis.x, height / 2 + 50 * axis.y)
-
-        let box1Proj = projectToAxis(axis.x, axis.y, box1)
-        let box2Proj = projectToAxis(axis.x, axis.y, box2)
+    for (axis of satAxisBox1) {
+        let box1Proj = box1.getProjection(axis.x, axis.y)
+        let box2Proj = box2.getProjection(axis.x, axis.y)
 
         let overlap = testProjectionOverlap(box1Proj, box2Proj)
 
@@ -316,35 +294,37 @@ function testBoxCollision(box1, box2) {
         } else if (overlap < mvt) {
             mvt = overlap
             normal = axis
+            satShape = true
         }
-
-        // ctx.fillStyle = box1.color
-        // ctx.fillRect(box1Proj.max * axis.x / 2 + width / 2 - 1.5, box1Proj.max * axis.y / 2 + height / 2 - 1.5, 3, 3)
-        // ctx.fillRect(box1Proj.min * axis.x / 2 + width / 2 - 1.5, box1Proj.min * axis.y / 2 + height / 2 - 1.5, 3, 3)
-
-        // ctx.fillStyle = box2.color
-        // ctx.fillRect(box2Proj.max * axis.x / 2 + width / 2 - 1.5, box2Proj.max * axis.y / 2 + height / 2 - 1.5, 3, 3)
-        // ctx.fillRect(box2Proj.min * axis.x / 2 + width / 2 - 1.5, box2Proj.min * axis.y / 2 + height / 2 - 1.5, 3, 3)
-
     }
 
-    // ctx.stroke()
+    for (axis of satAxisBox2) {
+        let box1Proj = box1.getProjection(axis.x, axis.y)
+        let box2Proj = box2.getProjection(axis.x, axis.y)
+
+        let overlap = testProjectionOverlap(box1Proj, box2Proj)
+
+        if (!overlap) {
+            colliding = false
+        } else if (overlap < mvt) {
+            mvt = overlap
+            normal = axis
+            satShape = false
+        }
+    }
 
     if (colliding) {
-        // box2.color = "rgb(255,0,255)"
         let dot = normal.x * (box2.x - box1.x) + normal.y * (box2.y - box1.y)
-
-        // ctx.beginPath()
-        // ctx.strokeStyle = "rgb(0,0,255)"
-        // ctx.moveTo(width / 2, height / 2)
-        // ctx.lineTo(width / 2 + 50 * normal.x, height / 2 + 50 * normal.y)
-
-        // ctx.moveTo(box1.x, box1.y)
-        // ctx.lineTo(box1.x + normal.x * mvt, box1.y + normal.y * mvt)
 
         if (dot < 0) {
             normal.x = -normal.x
             normal.y = -normal.y
+        }
+
+        if (satShape) { //axis is from box1
+            for 
+        } else { //axis is from box2
+
         }
 
         ctx.beginPath()
@@ -365,7 +345,7 @@ function testBoxCollision(box1, box2) {
 
         // ctx.stroke()
 
-        return { colliding: true, mtx: mvt, normal: normal }
+        return { colliding: true, mtx: mvt, normal: normal, incidentFace: {} }
     } else {
         box2.color = "rgb(255,255,255)"
         return { colliding: false }
@@ -518,8 +498,8 @@ function loop(t) {
         closestBox.dy = mouseDelta.y * 50
     }
 
-    for (let c = 0; c < 8; c++) {
-        let cdt = dt / 8
+    for (let c = 0; c < 1; c++) {
+        let cdt = dt / 1
         calculatePhysics(cdt)
 
         for (let i = 0; i < boxes.length; i++) {
@@ -554,38 +534,38 @@ function loop(t) {
 function startup() {
     console.log("Starting simulation")
 
-    let newBox = new Box(
-        Math.random() * width,
-        Math.random() * height,
-        25 + Math.random() * 55,
-        25 + Math.random() * 55,
-        360 * Math.random(),
-        150 - Math.random() * 300,
-        150 - Math.random() * 300,
-        150 - Math.random() * 300)
+    // let newBox = new Box(
+    //     Math.random() * width,
+    //     Math.random() * height,
+    //     25 + Math.random() * 55,
+    //     25 + Math.random() * 55,
+    //     360 * Math.random(),
+    //     150 - Math.random() * 300,
+    //     150 - Math.random() * 300,
+    //     150 - Math.random() * 300)
 
-    newBox.m = 0
-    newBox.anchored = true
+    // newBox.m = 0
+    // newBox.anchored = true
 
-    boxes.push(newBox)
+    // boxes.push(newBox)
 
-    for (let i = 0; i < 35; i++) {
-        boxes.push(new Box(
-            Math.random() * width,
-            Math.random() * height,
-            25 + Math.random() * 55,
-            25 + Math.random() * 55,
-            360 * Math.random(),
-            150 - Math.random() * 300,
-            150 - Math.random() * 300,
-            150 - Math.random() * 300))
-    }
+    // for (let i = 0; i < 35; i++) {
+    //     boxes.push(new Box(
+    //         Math.random() * width,
+    //         Math.random() * height,
+    //         25 + Math.random() * 55,
+    //         25 + Math.random() * 55,
+    //         360 * Math.random(),
+    //         150 - Math.random() * 300,
+    //         150 - Math.random() * 300,
+    //         150 - Math.random() * 300))
+    // }
 
-    // let boxa = new Box(width / 2, height / 2, 1000, 50, 0)
-    // boxa.anchored = true
-    // let boxb = new Box(width / 2, height / 2, 50, 50, 0)
+    let boxa = new Box(width / 2, height / 2, 500, 50, 0)
+    boxa.anchored = true
+    let boxb = new Box(width / 2, height / 2, 50, 50, 0)
 
-    // boxes.push(boxa, boxb)
+    boxes.push(boxa, boxb)
     window.requestAnimationFrame(loop)
 }
 
