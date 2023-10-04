@@ -31,14 +31,23 @@ export class Polygon {
         this.vel = new Vector2(0, 0);
         this.rot = 0;
 
-        this.fillColor = "rgb(255, 255, 255)"
+        this.fillColor// = "rgb(255, 255, 255)"
         this.strokeColor = "rgb(255, 255, 255)"
+    }
+
+    getRotRadians() {
+        return this.rot * Math.PI / 180;
+    }
+
+    toObjectSpace(vector = Vector2.prototype) {
+        let delta = vector.clone().subtract(this.pos)
+        return this.toWorldSpace(delta)
     }
 
     toWorldSpace(vector) {
         return new Vector2(
-            this.pos.x + vector.x * Math.cos(this.rot) - vector.y * Math.sin(this.rot),
-            this.pos.y + vector.x * Math.sin(this.rot) + vector.y * Math.cos(this.rot),
+            this.pos.x + vector.x * Math.cos(this.getRotRadians()) - vector.y * Math.sin(this.getRotRadians()),
+            this.pos.y + vector.x * Math.sin(this.getRotRadians()) + vector.y * Math.cos(this.getRotRadians()),
         )
     }
 
@@ -53,7 +62,7 @@ export class Polygon {
     render(ctx = CanvasRenderingContext2D) {
         ctx.strokeStyle = this.strokeColor;
         ctx.fillStyle = this.fillColor;
-        
+
         let worldCoords = this.getWorldCoordinates();
 
         ctx.beginPath();
@@ -63,7 +72,10 @@ export class Polygon {
         }
         ctx.lineTo(worldCoords[0].x, worldCoords[0].y);
 
-        ctx.fill()
+        // ctx.moveTo(this.pos.x, this.pos.y);
+        // ctx.lineTo()
+
+        // ctx.fill()
         ctx.stroke()
     }
 }
