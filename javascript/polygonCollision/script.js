@@ -20,7 +20,7 @@ class Box {
 
         this.color = "rgb(255,255,255)"
         this.e = .5
-        
+
         this.i = 1 / 12 * this.m * (w * w + h * h)
         if (this.i <= 0) {
             this.invi = 0
@@ -164,7 +164,6 @@ class Box {
     render(ctx) {
         ctx.fillStyle = this.color
         ctx.fillRect(this.x - 1.5, this.y - 1.5, 3, 3)
-ls``
         let coords = this.getWorldCoordinates()
 
         ctx.strokeStyle = this.color

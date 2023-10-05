@@ -56,4 +56,9 @@ export class Vector2 {
     cross(vector) {
         return this.x * vector.y - this.y * vector.x
     }
+
+    set(x, y) {
+        this.x = x
+        this.y = y
+    }
 }
