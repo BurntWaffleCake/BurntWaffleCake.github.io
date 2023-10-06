@@ -30,13 +30,30 @@ export class Polygon {
         this.rot = rot;
         this.rotVel = initRotVel;
 
-        this.mass
+        this.mass = this.getArea()
         this.invMass
         this.i
         this.invI
 
         this.fillColor = "rgb(255, 255, 255)"
         this.strokeColor = "rgb(255, 255, 255)"
+
+        this.selfProjection = []
+        for (let side of this.sides) {
+            this.selfProjection.push(this.projectToAxis(side.normal))
+        }
+        }
+
+    getArea() {
+        let crossSum = 0;
+        for (let i = 0; i < this.points.length - 1; i++) {
+            let a = this.points[i];
+            let b = this.points[i+1];
+            crossSum += a.cross(b)
+        }
+        crossSum += this.points[this.points.length-1].cross(this.points[0])
+
+        return Math.abs(crossSum) / 2
     }
 
     getRotRadians() {
@@ -65,7 +82,7 @@ export class Polygon {
 
     applyImpulse(impulse, pos, normal) {
         this.vel.add()
-        
+
         box1.dx += impulseVec.x * box1.invm
         box1.dy += impulseVec.y * box1.invm
         box2.dx += impulseVec.x * -box2.invm
@@ -126,27 +143,88 @@ export class Polygon {
         ctx.restore();
     }
 
+    projectToAxis(axis) {
+        let points = this.getWorldCoordinates()
+
+        let max = points[0]
+        let maxMag = max.projectToAxis(axis)
+
+        let min = points[0]
+        let minMag = maxMag
+
+        for (let i = 1; i< points.length; i++) {
+            let point = points[i]
+            let mag = point.projectToAxis(axis)
+
+            if (mag < minMag) {
+                min = point
+                minMag = mag
+            } else if (mag > maxMag) {
+                max = point
+                maxMag = mag
+            }
+        }
+        return {minPoint: min, minMag: minMag, maxPoint: max, maxMag: maxMag}
+    }
+
+    segmentOverlaps(min1, max1, min2, max2) {
+        let overlap = Math.max(0, Math.min(max1, max2) - Math.max(min1, min2))
+
+        if (overlap > 0) {
+            return overlap
+        }
+        return false
+    }
+
+    testProjection(polygon) {
+        let minOverlap = Number.MAX_VALUE
+        let minFace
+        for (let i = 0; i<this.sides.length; i++) {
+            let face = this.sides[i]
+            let selfProj = this.selfProjection[i]
+            let compProj = polygon.projectToAxis(face.normal)
+
+            let overlap = this.segmentOverlaps(selfProj.minMag, selfProj.maxMag, compProj.minMag, compProj.maxMag)
+            if (overlap == false) {
+                return false
+            } else if (minOverlap > overlap) {
+                minOverlap = overlap
+                minFace = face
+            }
+        }
+        return {overlap: minOverlap, face: minFace}
+    }
+
+    testCollision(polygon) {
+        let selfOverlap = this.testProjection(polygon)
+        let compOverlap = polygon.testProjection(this)
+        if (selfOverlap == false || compOverlap == false) {return false} else { return {self: selfOverlap.face, comp: compOverlap.face} }
+    }
+
     tick(dt, t) {
         this.pos.add(this.vel.clone().scale(dt));
-        // this.vel.set(100 * Math.cos(t), 0)
         this.rot += this.rotVel * dt
     }
 }
 
 export class Box extends Polygon {
     constructor(pos = new Vector2(0, 0), size = new Vector2(50, 50), rot = 0, initVel = new Vector2(0, 0), initRotVel = 0) {
+        let xHalf = size.x / 2
+        let yHalf = size.y / 2
+
         super(
             [
-                new Vector2(-size.x, size.y),
-                new Vector2(size.x, size.y),
-                new Vector2(size.x, -size.y),
-                new Vector2(-size.x, -size.y)
+                new Vector2(-xHalf, yHalf),
+                new Vector2(xHalf, yHalf),
+                new Vector2(xHalf, -yHalf),
+                new Vector2(-xHalf, -yHalf)
             ],
             pos,
             rot,
             initVel,
             initRotVel
         )
+
         this.size = size
         this.topLeft = this.points[0]
     }
@@ -161,13 +239,7 @@ export class RegularPolygon extends Polygon {
             points.push(new Vector2(radius * Math.cos(-rad * i), radius * Math.sin(-rad * i)))
         }
 
-        super(
-            points,
-            pos,
-            rot,
-            initVel,
-            initRotVel
-        )
+        super(points, pos, rot, initVel, initRotVel)
 
         this.radius = radius
     }

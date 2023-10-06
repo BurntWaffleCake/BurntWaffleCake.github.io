@@ -10,7 +10,7 @@ export class Vector2 {
     }
 
     magnitude() {
-        return Math.sqrt(this.x*this.x + this.y*this.y);
+        return Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
     add(vector) {
@@ -49,8 +49,13 @@ export class Vector2 {
         return new Vector2(this.x, this.y)
     }
 
+    projectToAxis(axis) {
+        return ((this.x * axis.x + this.y * axis.y) / (axis.x * axis.x + axis.y * axis.y)) * axis.x
+             + ((this.x * axis.x + this.y * axis.y) / (axis.x * axis.x + axis.y * axis.y)) * axis.y
+    }
+
     dot(vector) {
-        return this.x*vector.x + this.y*vector.y
+        return this.x * vector.x + this.y * vector.y
     }
 
     cross(vector) {
