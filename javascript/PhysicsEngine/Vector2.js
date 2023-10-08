@@ -13,6 +13,12 @@ export class Vector2 {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
+    rotate(rad) {
+        this.x = this.x * Math.cos(rad) - this.y * Math.sin(rad)
+        this.y = this.x * Math.sin(rad) + this.y * Math.cos(rad)
+        return this
+    }
+
     add(vector) {
         this.x += vector.x;
         this.y += vector.y;
