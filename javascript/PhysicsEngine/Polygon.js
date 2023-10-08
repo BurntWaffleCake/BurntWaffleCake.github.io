@@ -194,23 +194,24 @@ export class Polygon {
 
             let overlap = this.segmentOverlaps(selfProj.minMag, selfProj.maxMag, compProj.minMag, compProj.maxMag)
             if (overlap === false) {
-                return false
+                colliding = false
             } else if (overlap < minOverlap) {
                 minOverlap = overlap
                 minFace = new Face(this.toWorldSpace(face.from), this.toWorldSpace(face.to))
             }
 
-            // let selfMinAxis = axis.clone().scale(selfProj.minMag / 5).add(this.pos)
-            // let selfMaxAxis = axis.clone().scale(selfProj.maxMag / 5).add(this.pos)
-            // let compMinAxis = axis.clone().scale(compProj.minMag / 5).add(this.pos)
-            // let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(this.pos)
+            let selfMinAxis = axis.clone().scale(selfProj.minMag / 5).add(this.pos)
+            let selfMaxAxis = axis.clone().scale(selfProj.maxMag / 5).add(this.pos)
+            let compMinAxis = axis.clone().scale(compProj.minMag / 5).add(this.pos)
+            let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(this.pos)
 
-            // ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
-            // ctx.fillRect(selfMinAxis.x-2.5, selfMinAxis.y-2.5, 5, 5)
-            // ctx.fillRect(selfMaxAxis.x-2.5, selfMaxAxis.y-2.5, 5, 5)
-            // ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
-            // ctx.fillRect(compMinAxis.x-2.5, compMinAxis.y-2.5, 5, 5)
-            // ctx.fillRect(compMaxAxis.x-2.5, compMaxAxis.y-2.5, 5, 5)
+            // console.log(selfMinAxis)
+            ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
+            ctx.fillRect(selfMinAxis.x-2.5, selfMinAxis.y-2.5, 5, 5)
+            ctx.fillRect(selfMaxAxis.x-2.5, selfMaxAxis.y-2.5, 5, 5)
+            ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
+            ctx.fillRect(compMinAxis.x-2.5, compMinAxis.y-2.5, 5, 5)
+            ctx.fillRect(compMaxAxis.x-2.5, compMaxAxis.y-2.5, 5, 5)
 
         }
 
@@ -222,23 +223,24 @@ export class Polygon {
 
             let overlap = this.segmentOverlaps(selfProj.minMag, selfProj.maxMag, compProj.minMag, compProj.maxMag)
             if (overlap === false) {
-                return false
+                colliding = false
             } else if (overlap < minOverlap) {
                 minOverlap = overlap
                 minFace = new Face(polygon.toWorldSpace(face.from), polygon.toWorldSpace(face.to))
             }
 
-            // let selfMinAxis = axis.clone().scale(selfProj.minMag / 5).add(polygon.pos)
-            // let selfMaxAxis = axis.clone().scale(selfProj.maxMag / 5).add(polygon.pos)
-            // let compMinAxis = axis.clone().scale(compProj.minMag / 5).add(polygon.pos)
-            // let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(polygon.pos)
+            let selfMinAxis = axis.clone().scale(selfProj.minMag / 5).add(polygon.pos)
+            let selfMaxAxis = axis.clone().scale(selfProj.maxMag / 5).add(polygon.pos)
+            let compMinAxis = axis.clone().scale(compProj.minMag / 5).add(polygon.pos)
+            let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(polygon.pos)
 
-            // ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
-            // ctx.fillRect(selfMinAxis.x-2.5, selfMinAxis.y-2.5, 5, 5)
-            // ctx.fillRect(selfMaxAxis.x-2.5, selfMaxAxis.y-2.5, 5, 5)
-            // ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
-            // ctx.fillRect(compMinAxis.x-2.5, compMinAxis.y-2.5, 5, 5)
-            // ctx.fillRect(compMaxAxis.x-2.5, compMaxAxis.y-2.5, 5, 5)
+            // console.log(selfMinAxis)
+            ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
+            ctx.fillRect(selfMinAxis.x-2.5, selfMinAxis.y-2.5, 5, 5)
+            ctx.fillRect(selfMaxAxis.x-2.5, selfMaxAxis.y-2.5, 5, 5)
+            ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
+            ctx.fillRect(compMinAxis.x-2.5, compMinAxis.y-2.5, 5, 5)
+            ctx.fillRect(compMaxAxis.x-2.5, compMaxAxis.y-2.5, 5, 5)
         }
 
         if (!colliding) { return false }
