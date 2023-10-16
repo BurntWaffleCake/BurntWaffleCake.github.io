@@ -14,14 +14,50 @@ export class Face {
     center() {
         return this.to.clone().subtract(this.from).scale(.5).add(this.from);
     }
+
+    rotate(center, rad) {
+        this.from = center.clone().subtract(this.from).rotate(rad).add(center)
+        this.to = center.clone().subtract(this.to).rotate(rad).add(center)
+        return this
+    }
+
+    clone() {
+        return new Face(this.from, this.to)
+    }
+
+    render(ctx) {
+        ctx.beginPath();
+        ctx.strokeStyle = "rgb(255, 255, 255)"
+        ctx.moveTo(this.from.x, this.from.y)
+        ctx.moveTo(this.to.x, this.to.y)
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.strokeStyle = "rgb(255,255,0)"
+        ctx.arc(this.from.x, this.from.y, 5, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.strokeStyle = "rgb(255,0,255)"
+        ctx.arc(this.to.x, this.to.y, 5, 0, 2 * Math.PI);
+        ctx.stroke();
+    }
 }
 
 export class Polygon {
     constructor(points, pos = new Vector2(0, 0), rot = 0, initVel = new Vector2(0, 0), initRotVel = 0) {
         this.points = points;
+        let maxPoint = this.points[this.points.length - 1]
+        this.radius = maxPoint.magnitude()
         this.sides = [];
         for (let i = 0; i < points.length - 1; i++) {
             this.sides.push(new Face(points[i], points[i + 1]))
+
+            let point = this.points[this.points.length - 1 - i]
+            let mag = point.magnitude()
+            if (mag > this.radius) {
+                this.radius = mag
+            }
         }
         this.sides.push(new Face(points[points.length - 1], points[0]))
 
@@ -31,27 +67,22 @@ export class Polygon {
         this.rotVel = initRotVel;
 
         this.mass = this.getArea()
-        this.invMass
-        this.i
-        this.invI
+        this.invMass = 1 / this.mass
+        this.i =
+            this.invI
 
         this.fillColor = "rgb(255, 255, 255)"
         this.strokeColor = "rgb(255, 255, 255)"
-
-        this.selfProjection = []
-        for (let side of this.sides) {
-            this.selfProjection.push(this.projectToAxis(side.normal))
-        }
-        }
+    }
 
     getArea() {
         let crossSum = 0;
         for (let i = 0; i < this.points.length - 1; i++) {
             let a = this.points[i];
-            let b = this.points[i+1];
+            let b = this.points[i + 1];
             crossSum += a.cross(b)
         }
-        crossSum += this.points[this.points.length-1].cross(this.points[0])
+        crossSum += this.points[this.points.length - 1].cross(this.points[0])
 
         return Math.abs(crossSum) / 2
     }
@@ -78,6 +109,16 @@ export class Polygon {
             worldPoints.push(this.toWorldSpace(point));
         }
         return worldPoints;
+    }
+
+    getWorldFaces() {
+        let points = this.getWorldCoordinates()
+        let sides = []
+        for (let i = 0; i < points.length - 1; i++) {
+            sides.push(new Face(points[i], points[i + 1]))
+        }
+        sides.push(new Face(points[points.length - 1], points[0]))
+        return sides
     }
 
     applyImpulse(impulse, pos, normal) {
@@ -139,6 +180,11 @@ export class Polygon {
                 ctx.fillRect(worldPoint.x + (worldNormal.x - this.pos.x) * 25, worldPoint.y + (worldNormal.y - this.pos.y) * 25, 3, 3)
             }
             ctx.stroke()
+
+            ctx.strokeStyle = "rgb(0, 255, 0)"
+            ctx.beginPath();
+            ctx.arc(this.pos.x, this.pos.y, this.radius, 0, 2 * Math.PI);
+            ctx.stroke();
         }
 
         ctx.restore();
@@ -154,7 +200,7 @@ export class Polygon {
         let min = points[0]
         let minMag = maxMag
 
-        for (let i = 1; i< points.length; i++) {
+        for (let i = 1; i < points.length; i++) {
             let point = points[i]
             let mag = point.projectToAxis(axis)
             // let mag = point.dot(point)
@@ -167,7 +213,7 @@ export class Polygon {
                 maxMag = mag
             }
         }
-        return {minPoint: min, minMag: minMag, maxPoint: max, maxMag: maxMag}
+        return { minPoint: min, minMag: minMag, maxPoint: max, maxMag: maxMag }
     }
 
     segmentOverlaps(min1, max1, min2, max2) {
@@ -182,75 +228,114 @@ export class Polygon {
     bruteForceTestCollision(polygon, ctx) {
         let minOverlap = Number.MAX_VALUE
         let minFace
+        let minDis = Number.MAX_VALUE
+        let self = true
 
         let colliding = true
 
         for (let face of this.sides) {
-            let axis = face.normal.clone().rotate(this.getRotRadians())
-            // console.log(axis)
+            let axis = this.toWorldSpace(face.normal.clone()).subtract(this.pos)
 
             let selfProj = this.projectToAxis(axis)
             let compProj = polygon.projectToAxis(axis)
 
             let overlap = this.segmentOverlaps(selfProj.minMag, selfProj.maxMag, compProj.minMag, compProj.maxMag)
-            if (overlap === false) {
-                colliding = false
-            } else if (overlap < minOverlap) {
+            let dis = this.toWorldSpace(face.center()).subtract(polygon.pos).magnitude()
+            if (overlap == false) {
+                return false
+            } else if (overlap < minOverlap && dis < minDis) {
                 minOverlap = overlap
                 minFace = new Face(this.toWorldSpace(face.from), this.toWorldSpace(face.to))
+                minDis = dis
             }
-
+            /* debug render 
             let selfMinAxis = axis.clone().scale(selfProj.minMag / 5).add(this.pos)
             let selfMaxAxis = axis.clone().scale(selfProj.maxMag / 5).add(this.pos)
             let compMinAxis = axis.clone().scale(compProj.minMag / 5).add(this.pos)
             let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(this.pos)
 
-            // console.log(selfMinAxis)
             ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
             ctx.fillRect(selfMinAxis.x-2.5, selfMinAxis.y-2.5, 5, 5)
             ctx.fillRect(selfMaxAxis.x-2.5, selfMaxAxis.y-2.5, 5, 5)
             ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
             ctx.fillRect(compMinAxis.x-2.5, compMinAxis.y-2.5, 5, 5)
             ctx.fillRect(compMaxAxis.x-2.5, compMaxAxis.y-2.5, 5, 5)
-
+             */
         }
 
         for (let face of polygon.sides) {
+            let axis = polygon.toWorldSpace(face.normal.clone()).subtract(polygon.pos)
 
             let selfProj = this.projectToAxis(axis)
             let compProj = polygon.projectToAxis(axis)
 
             let overlap = this.segmentOverlaps(selfProj.minMag, selfProj.maxMag, compProj.minMag, compProj.maxMag)
-            if (overlap === false) {
-                colliding = false
-            } else if (overlap < minOverlap) {
+            let dis = polygon.toWorldSpace(face.center()).subtract(this.pos).magnitude()
+            if (overlap == false) {
+                return false
+            } else if (overlap < minOverlap && dis < minDis) {
                 minOverlap = overlap
                 minFace = new Face(polygon.toWorldSpace(face.from), polygon.toWorldSpace(face.to))
+                minDis = dis
+                self = false
             }
-
+            /* debug render 
             let selfMinAxis = axis.clone().scale(selfProj.minMag / 5).add(polygon.pos)
             let selfMaxAxis = axis.clone().scale(selfProj.maxMag / 5).add(polygon.pos)
             let compMinAxis = axis.clone().scale(compProj.minMag / 5).add(polygon.pos)
             let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(polygon.pos)
 
-            // console.log(selfMinAxis)
+            console.log(selfMinAxis)
             ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
             ctx.fillRect(selfMinAxis.x-2.5, selfMinAxis.y-2.5, 5, 5)
             ctx.fillRect(selfMaxAxis.x-2.5, selfMaxAxis.y-2.5, 5, 5)
             ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
             ctx.fillRect(compMinAxis.x-2.5, compMinAxis.y-2.5, 5, 5)
             ctx.fillRect(compMaxAxis.x-2.5, compMaxAxis.y-2.5, 5, 5)
+            */
+        }
+
+        if (self) { // axis is from this polygon
+            let worldFaces = polygon.getWorldFaces()
+
+            let perFace = worldFaces[0]
+            let minDot = Math.abs(perFace.normal.dot(minFace.normal))
+
+            for (let i = 1; i < worldFaces.length; i++) {
+                let face = worldFaces[i]
+                let faceDot = Math.abs(face.normal.dot(minFace.normal))
+                if (minDot > faceDot) {
+                    minDot = faceDot
+                    perFace = face
+                }
+            }
+            perFace.render(ctx)
+        } else { // axis is from other polygon
+            let worldFaces = this.getWorldFaces()
+
+            let perFace = worldFaces[0]
+            let minDot = Math.abs(perFace.normal.dot(minFace.normal))
+
+            for (let i = 1; i < worldFaces.length; i++) {
+                let face = worldFaces[i]
+                let faceDot = Math.abs(face.normal.dot(minFace.normal))
+                if (minDot > faceDot) {
+                    minDot = faceDot
+                    perFace = face
+                }
+            }
+            perFace.render(ctx)
         }
 
         if (!colliding) { return false }
-        return {overlap: minOverlap, face: minFace}
+        return { overlap: minOverlap, face: minFace }
     }
 
 
     testProjection(polygon) {
         let minOverlap = Number.MAX_VALUE
         let minFace
-        for (let i = 0; i<this.sides.length; i++) {
+        for (let i = 0; i < this.sides.length; i++) {
             let face = this.sides[i]
             let selfProj = this.selfProjection[i]
             let compProj = polygon.projectToAxis(face.normal)
@@ -263,7 +348,7 @@ export class Polygon {
                 minFace = face
             }
         }
-        return {overlap: minOverlap, face: minFace}
+        return { overlap: minOverlap, face: minFace }
     }
 
     testCollision(polygon) {
@@ -280,7 +365,7 @@ export class Polygon {
             minFace = compOverlap.face
         }
 
-        if (selfOverlap == false || compOverlap == false) {return false} else { return {overlap: minOverlap, face: minFace} }
+        if (selfOverlap == false || compOverlap == false) { return false } else { return { overlap: minOverlap, face: minFace } }
     }
 
     tick(dt, t) {
@@ -313,16 +398,16 @@ export class Box extends Polygon {
 }
 
 export class RegularPolygon extends Polygon {
-    constructor(pos = new Vector2(0, 0), radius = 25, resolution = 6, rot = 0, initVel = new Vector2(0, 0), initRotVel = 0) {
+    constructor(pos = new Vector2(0, 0), size = new Vector2(25, 25), resolution = 6, rot = 0, initVel = new Vector2(0, 0), initRotVel = 0) {
         let points = []
 
         let rad = 2 * Math.PI / resolution - 0
         for (let i = 0; i < resolution; i++) {
-            points.push(new Vector2(radius * Math.cos(-rad * i), radius * Math.sin(-rad * i)))
+            points.push(new Vector2(size.x * Math.cos(-rad * i), size.y * Math.sin(-rad * i)))
         }
 
         super(points, pos, rot, initVel, initRotVel)
 
-        this.radius = radius
+        this.size = size
     }
 }
