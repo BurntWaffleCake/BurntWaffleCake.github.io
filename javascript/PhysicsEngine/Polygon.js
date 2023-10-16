@@ -216,7 +216,6 @@ export class Polygon {
         }
 
         for (let face of polygon.sides) {
-            let axis = face.normal.clone().rotate(polygon.getRotRadians())
 
             let selfProj = this.projectToAxis(axis)
             let compProj = polygon.projectToAxis(axis)
