@@ -1,46 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 
 <head>
-  <title>Computer Science I</title>
-  <link rel="stylesheet" href="../styles/styleSheet.css">
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../styles/articlestylesheet.css">
+  <link rel="stylesheet" href="https://fonts.google.com/specimen/Lora">
 </head>
 
+<style>
+  .image-holder {
+    max-width: 100%;
+  }
+
+  .image-holder img {
+    max-width: 100%;
+    height: auto;
+    background-color: white;
+  }
+
+  .article-nav-header {
+    font-size: larger;
+  }
+</style>
+
 <body>
+  <object id="global-nav-object" data="../../articleTemplateObjects/articleGlobalNavObject.html"></object>
 
-  <main class="mainHeader">Computer Science</main>
-  <div class="navigation-bar">
-    <a href="../index.html" id="sized">TO HOME</a>
-    <a href="index.html" id="sized">About Me</a>
-    <div class="dropdown">
-      <a href="classes.html" id="sized">Classes</a>
-      <div class="dropdown-content">
-        <a href="computerScience.html">Computer Science</a>
-        <a href="statistics.html">Statistics</a>
-      </div>
-    </div>
-    <a href="why.html" id="sized">But Why?</a>
-    <a href="../CS-II/Projects/Business Plan/index.html" id="sized">ISP Proposal</a>
-  </div>
-  <div class="floatContainer">
-    <div class="sideBar">
-      <a class="sidebarLink" href="../CS-II/Essays/ISP.html">ISP CSI</a>
-      <a class="sidebarLink" href="../CS-II/Essays/FingerPrints.html">FingerPrints</a>
-      <a class="sidebarLink" href="../CS-II/Essays/AISentience.html">AI Sentience</a>
-      <a class="sidebarLink" href="../CS-II/Projects/Optimal Sort.html">Optimal Sort</a>
-      <a class="sidebarLink" href="../CS-II/Projects/ISP/index.html">ISP CSII</a>
-      <a class="sidebarLink" href="../CS-II/Essays/Decision Making.html">Decision Making</a>
-      <a class="sidebarLink" href="../CS-II/Projects/ISP/Journal.html">ISP Journal</a>
-      <a class="sidebarLink" href="../CS-III/Projects/AdvancedSorts.html">Advanced Sorting Algorithms</a>
-    </div>
-    <div class="mainBody">
-      <h2 class="runningHeader"></h2>
-      <h2>Computer Science</h2>
-      <p>: a branch of science that deals with the theory of computation or the design of computers</p>
-    </div>
-  </div>
+  <div id="article-body">
+    <object data="../../articleTemplateObjects/csArticleNavObject.html"></object>
 
+    <div class="vertical-divider"></div>
+
+    <article id="article-contents">
+      <h1>Computer Science</h1>
+      <h2>What is Computer Science?</h2>
+      <p>Computer science is the study of algorithms, data structures, and the principles of computing. It encompasses
+        the design, analysis, and implementation of computer systems, software, and applications. Computer scientists
+        develop and use computational techniques to solve problems, automate tasks, and process information efficiently.
+        This field covers a wide range of topics, from programming and software development to artificial intelligence,
+        algorithms, databases, and computer architecture. Computer science plays a crucial role in shaping our digital
+        world, from the software that powers our devices to the algorithms that drive modern technology and the
+        internet.</p>
+    </article>
+
+    <div class="vertical-divider"></div>
+
+    <nav id="article-bookmarks">
+    </nav>
+  </div>
 </body>
 
 </html>

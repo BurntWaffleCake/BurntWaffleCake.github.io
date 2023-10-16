@@ -1,59 +1,166 @@
-
 <!DOCTYPE html>
-<html lang="en">
- <head>
-    <title>Computer Science I</title>
-    <link rel="stylesheet" href="../styles/styleSheet.css">
-    <meta charset="utf-8"> 
-  </head>
-  <body>
-    <main class="mainHeader">About Me</main>
-    <div class="navigation-bar">
-      <a href="../index.html" id="sized">TO HOME</a>
-      <a href="index.html" id="sized">About Me</a>
-      <div class="dropdown">
-	<a href="classes.html" id="sized">Classes</a>
-	<div class="dropdown-content">
-	  <a href="computerScience.html">Computer Science</a>
-	  <a href="statistics.html">Statistics</a>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>About Me</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="">
+</head>
+
+<style>
+	html {
+		font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		height: 100%;
+		margin: 0%;
+	}
+
+	body {
+		display: flex;
+		flex-direction: column;
+
+		height: 100%;
+		width: 100%;
+		padding: 0%;
+		margin: 0%;
+
+		max-height: 100vh;
+
+		color: lightgray;
+		background-color: #282828;
+		overflow: hidden;
+	}
+
+	#global-nav-object {
+		height: 4rem;
+	}
+
+	#about-me-content {
+		padding: 0%;
+		margin: 0%;
+		flex: 1;
+
+		overflow: scroll;
+		scrollbar-width: 0;
+		scroll-behavior: smooth;
+		scroll-snap-type: y mandatory;
+	}
+
+	.section {
+		display: flex;
+		justify-content: center;
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		scroll-snap-align: start;
+		flex-direction: column;
+	}
+
+	#main-header {
+		margin: 0;
+		/* border: 3px solid red; */
+		position: relative;
+
+		height: fit-content;
+		font-size: 10rem;
+		margin-left: 4rem;
+	}
+
+	#interests {
+		display: flex;
+		flex-direction: row;
+		padding: 1rem;
+		gap: 1rem;
+	}
+
+	#interests div {
+		display: flex;
+
+		flex: 1;
+		border: 1px solid red;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	#interests div * {
+		padding: 0;
+		margin: 0;
+		/* border: 3px solid red; */
+		text-align: justify;
+	}
+</style>
+
+<body>
+	<object id="global-nav-object" data="../articleTemplateObjects/articleGlobalNavObjectHome.html"></object>
+
+	<div id="vanta"></div>
+
+	<div id="about-me-content">
+		<script src="../vanta.js/three.r134.min.js"></script>
+		<script src="../vanta.js/vanta.globe.min.js"></script>
+		<script>
+			VANTA.GLOBE({
+				el: "#about-me-content",
+				mouseControls: true,
+				touchControls: true,
+				gyroControls: false,
+				minHeight: 200.00,
+				minWidth: 200.00,
+				scale: 1.00,
+				scaleMobile: 1.00,
+				color: 0xd4c2ff,
+				backgroundColor: 0x282828
+			})
+		</script>
+
+		<div id="intro" class="section">
+			<h1 id="main-header">About Me</h1>
+			<h2 style="color: white; font-size: 3rem; margin-left: 4rem; height: fit-content;">Soohan Cho</h2>
+		</div>
+
+		<div id="interests" class="section">
+			<div style="display: flex;">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Animated_pink_cat.gif"
+					style="width: 100%; object-fit: contain;">
+			</div>
+			<div style="padding: 5rem;">
+				<h1 style="font-size: 4rem;">Some Stuff</h1>
+				<p style="font-size: 2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus sem
+					dui, at vestibulum ante consequat nec. Ut cursus fringilla egestas. Vivamus ac leo sem. Praesent
+					tristique quis nunc ut sagittis. Quisque vitae arcu non sem scelerisque molestie. Aliquam erat
+					volutpat. Curabitur nunc tellus, pulvinar ac nisi vel, volutpat sodales ante. Mauris quam tortor,
+					molestie non congue id, finibus eget mi. Aenean volutpat, nibh sit amet varius mollis, velit mi
+					viverra justo, at tincidunt mauris lacus eget mauris. Sed dictum lacus neque, in consequat magna
+					condimentum eu. Donec lacinia semper ante eget dictum. Curabitur pretium, justo ut fermentum
+					accumsan, diam velit dapibus tellus, sit amet pulvinar lectus neque non ligula.</p>
+			</div>
+		</div>
+
+		<div id="interests" class="section">
+			<div style="padding: 5rem;">
+				<h1 style="font-size: 4rem;">Some Stuff</h1>
+				<p style="font-size: 2rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus sem
+					dui, at vestibulum ante consequat nec. Ut cursus fringilla egestas. Vivamus ac leo sem. Praesent
+					tristique quis nunc ut sagittis. Quisque vitae arcu non sem scelerisque molestie. Aliquam erat
+					volutpat. Curabitur nunc tellus, pulvinar ac nisi vel, volutpat sodales ante. Mauris quam tortor,
+					molestie non congue id, finibus eget mi. Aenean volutpat, nibh sit amet varius mollis, velit mi
+					viverra justo, at tincidunt mauris lacus eget mauris. Sed dictum lacus neque, in consequat magna
+					condimentum eu. Donec lacinia semper ante eget dictum. Curabitur pretium, justo ut fermentum
+					accumsan, diam velit dapibus tellus, sit amet pulvinar lectus neque non ligula.</p>
+			</div>
+			<div style="display: flex;">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Animated_pink_cat.gif"
+					style="width: 100%; object-fit: contain;">
+			</div>
+		</div>
+
 	</div>
-      </div>
-      <a href="why.html" id="sized">But Why?</a>
-      <a href="../CS-II/Projects/Business Plan/index.html" id="sized">ISP Proposal</a>
-    </div>
+</body>
 
-    
-    <table class="aboutme-bar">
-      <tr>
-	<td>
-	  <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Animated_pink_cat.gif" alt="have you tried not getting tracked?">
-	</td>
-	<td>
-	  <h1>Soohan Cho</h1>
-	  <p>
-	    Hello! My name is Soohan Cho and this is a page about me!<br>
-	    I am currently a Junior at Allen High School am working towards majoring computer science. I have a great interest in topics surrounding computer science including the mathematics and logic behind it. I want to work towards learning many things about various coding languages and their kinks.<br>
-	    Use the links above to navigate through my digital portfolio.<br>
-	    Adios Amigos.
-	  </p>
-	</td>
-      </tr>
-    </table>    
-
-    <table class="aboutme-bar">
-      <tr>
-	<td>
-	  <p>
-	    The purpose of this website is to document various projects, essays and discussions about me and my shenanigans. There are a variety of topics that I have written about many of which include different computer science topics such as AI and sorting algorithms.
-	  </p>
-	</td>
-	<td>
-	  <img src="https://media.edutopia.org/styles/responsive_2880px_16x9/s3/masters/d7_images/cover_media/robinson-169hero-portfolio-shutterstock.jpg" alt="have you tried not getting tracked?">
-	</td>
-      </tr>
-    </table>    
-
-  </body>
 </html>
-
-<!-- this portfolio lives at git@github.com:BurntWaffleCake/BurntWaffleCake.github.io.git :P -->
