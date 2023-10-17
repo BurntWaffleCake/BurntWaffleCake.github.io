@@ -47,6 +47,7 @@
 		flex: 1;
 
 		overflow: scroll;
+		overflow-x: hidden;
 		scrollbar-width: 0;
 		scroll-behavior: smooth;
 		scroll-snap-type: y mandatory;
@@ -102,23 +103,6 @@
 	<div id="vanta"></div>
 
 	<div id="about-me-content">
-		<script src="../vanta.js/three.r134.min.js"></script>
-		<script src="../vanta.js/vanta.globe.min.js"></script>
-		<script>
-			VANTA.GLOBE({
-				el: "#about-me-content",
-				mouseControls: true,
-				touchControls: true,
-				gyroControls: false,
-				minHeight: 200.00,
-				minWidth: 200.00,
-				scale: 1.00,
-				scaleMobile: 1.00,
-				color: 0xd4c2ff,
-				backgroundColor: 0x282828
-			})
-		</script>
-
 		<div id="intro" class="section">
 			<h1 id="main-header">About Me</h1>
 			<h2 style="color: white; font-size: 3rem; margin-left: 4rem; height: fit-content;">Soohan Cho</h2>
