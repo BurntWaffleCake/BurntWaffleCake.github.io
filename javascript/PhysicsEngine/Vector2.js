@@ -9,6 +9,13 @@ export class Vector2 {
         return new Vector2(this.x / mag, this.y / mag);
     }
 
+    normalize() {
+        let mag = this.magnitude()
+        this.x = this.x / mag
+        this.y = this.y / mag
+        return this
+    }
+
     magnitude() {
         return Math.sqrt(this.x * this.x + this.y * this.y);
     }

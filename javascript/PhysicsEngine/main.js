@@ -38,6 +38,7 @@ function render(dt) {
 }
 
 function calculate(dt, t) {
+    if (paused) {return}
     for (let polygon of polygons) {
         polygon.tick(dt, t)
     }
@@ -64,13 +65,16 @@ function updateCanvasSize() {
 function startup() {
     updateCanvasSize();
 
-    poly1 = new polyModule.Box(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(100, 50), 65, undefined, 0)
+    // poly1 = new polyModule.Box(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(100, 50), 65, undefined, -60)
+    // polygons.push(poly1)
+
+    poly1 = new polyModule.RegularPolygon(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(50, 100), 10, 0, undefined, -20)
     polygons.push(poly1)
 
     // poly2 = new polyModule.Box(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(100, 150), -20, undefined, -20)
     // polygons.push(poly2)
 
-    poly2 = new polyModule.RegularPolygon(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(50, 50), 6, 0, undefined, 0   )
+    poly2 = new polyModule.RegularPolygon(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(150, 50), 6, 0, undefined, 10)
     polygons.push(poly2)
     // for (let i = 0; i < 10; i++) {
     //     polygons.push(
@@ -90,4 +94,12 @@ window.requestAnimationFrame(startup);
 
 document.addEventListener('mousemove', (event) => {
     poly1.pos.set(event.clientX, event.clientY)
+})
+
+let paused = false
+document.addEventListener('keypress', (event) => {
+    console.log(event)
+    if (event.key === " ") {
+        paused = !paused
+    }
 })
