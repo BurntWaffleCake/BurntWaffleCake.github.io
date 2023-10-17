@@ -2,6 +2,15 @@ import { Vector2 } from "./Vector2.js"
 
 const debug = true
 
+function minDisToLineSeg(v, w, p) {
+    let l2 = w.clone().subtract(v).magnitude() ** 2
+    if (l2 == 0) { return p.clone().subtract(v).magnitude() }
+
+    let t = Math.max(0, Math.min(1, p.clone().subtract(v).dot(w.clone().subtract(v))) / l2)
+    let projection = v.clone().add(w.clone().subtract(v).scale(t))
+    return p.clone().subtract(projection).magnitude()
+}
+
 export class Face {
     constructor(from, to) {
         this.from = from.clone()
@@ -70,8 +79,8 @@ export class Polygon {
 
         this.mass = this.getArea()
         this.invMass = 1 / this.mass
-        this.i
-        this.invI
+        this.i = 1 / 2 * this.mass * this.radius * this.radius
+        this.invI = 1 / this.i
 
         this.fillColor = "rgb(255, 255, 255)"
         this.strokeColor = "rgb(255, 255, 255)"
@@ -227,13 +236,87 @@ export class Polygon {
         return false
     }
 
+    findCollidingPoints(polygon, ctx) {
+        let points = []
+        let minDis = Number.MAX_SAFE_INTEGER
+
+        for (let point of polygon.points) {
+            for (let face of this.sides) {
+                let dis = minDisToLineSeg(this.toWorldSpace(face.from), this.toWorldSpace(face.to), polygon.toWorldSpace(point))
+
+                if (dis < minDis) {
+                    minDis = dis;
+                    points = [polygon.toWorldSpace(point)]
+                } else if (dis == minDis) {
+                    points.push(polygon.toWorldSpace(point))
+                }
+            }
+        }
+
+        for (let point of this.points) {
+            for (let face of polygon.sides) {
+                let dis = minDisToLineSeg(polygon.toWorldSpace(face.from), polygon.toWorldSpace(face.to), this.toWorldSpace(point))
+
+                if (dis < minDis) {
+                    minDis = dis;
+                    points = [this.toWorldSpace(point)]
+                } else if (dis == minDis) {
+                    points.push(this.toWorldSpace(point))
+                }
+            }
+        }
+
+        console.log(points)
+        for (let point of points) {
+            console.log(point)
+            ctx.fillStyle = "rgb(255,0,0)"
+            ctx.fillRect(point.x, point.y, 10, 10)
+        }
+
+        return points
+    }
+
+    resolveCollision(polygon, mvt, normal, collisionPoint) {
+        let collArm1 = collisionPoint.clone().subtract(this.pos)
+        let rotVel1 = new Vector2(-this.rotVel * collArm1.y, this.rotVel * collArm1.x)
+        let closVel1 = this.vel.clone().add(rotVel1)
+
+        let collArm2 = collisionPoint.clone().subtract(polygon.pos)
+        let rotVel2 = new Vector2(-polygon.rotVel * collArm2.y, polygon.rotVel * collArm2.x)
+        let closVel2 = polygon.vel.clone().add(rotVel2)
+
+        // console.log(collArm1, rotVel1, closVel1)
+        // console.log(collArm2, rotVel2, closVel2)
+
+        let impAug1 = collArm1.cross(normal)
+        impAug1 = impAug1 * impAug1 * this.invI
+        let impAug2 = collArm2.cross(normal)
+        impAug2 = impAug2 * impAug2 * polygon.invI
+
+        // console.log(impAug1, impAug2)
+
+        let relVel = closVel1.clone().subtract(closVel2)
+        let sepVel = relVel.dot(normal)
+        let newSepVel = -sepVel * Math.min(this.e, polygon.e)
+        let vsepDiff = newSepVel - sepVel
+
+        // console.log(relVel, sepVel, newsepVel, vsepDiff)
+        let impulse = vsepDiff / (this.invMass + polygon.invMass + impAug1 + impAug2)
+        let impulseVec = normal.clone().scale(impulse)
+
+        // console.log(impulse, impulseVec)
+
+        // console.log(impulseVec.x * box1.invm, impulseVec.y * box1.invm)
+        this.vel.add(impulseVec.clone().scale(this.invMass))
+        polygon.vel.subtract(impulseVec.clone().scale(-polygon.invm))
+
+        this.rotVel += this.invI * collArm1.cross(impulseVec)
+        polygon.rotVel += polygon.invI * collArm2.cross(impulseVec)
+    }
+
     bruteForceTestCollision(polygon, ctx) {
         let minOverlap = Number.MAX_VALUE
-        let maxDot = -Number.MAX_VALUE
-        let minFace
-        let self = true
-
-        let colliding = true
+        let normal
 
         for (let face of this.sides) {
             let axis = this.toWorldSpace(face.normal.clone()).subtract(this.pos)
@@ -246,7 +329,7 @@ export class Polygon {
                 return false
             } else if (overlap < minOverlap) {
                 minOverlap = overlap
-                minFace = new Face(this.toWorldSpace(face.from), this.toWorldSpace(face.to))
+                normal = axis
             }
             /* debug render
             let selfMinAxis = axis.clone().scale(selfProj.minMag / 5).add(this.pos)
@@ -274,8 +357,7 @@ export class Polygon {
                 return false
             } else if (overlap < minOverlap) {
                 minOverlap = overlap
-                minFace = new Face(polygon.toWorldSpace(face.from), polygon.toWorldSpace(face.to))
-                self = false
+                normal = axis
             }
             /* debug render
             let selfMinAxis = axis.clone().scale(selfProj.minMag / 5).add(polygon.pos)
@@ -292,7 +374,6 @@ export class Polygon {
             ctx.fillRect(compMaxAxis.x-2.5, compMaxAxis.y-2.5, 5, 5)
             */
         }
-        console.log(maxDot)
 
         // if (self) { // axis is from this polygon
         //     let worldFaces = polygon.getWorldFaces()
@@ -326,8 +407,18 @@ export class Polygon {
         //     perFace.render(ctx)
         // }
 
-        if (!colliding) { return false }
-        return { overlap: minOverlap, face: minFace }
+        let delta = polygon.pos.clone().subtract(this.pos).normalize()
+        console.log(delta, delta.dot(normal))
+        if (delta.dot(normal) < 0) {
+            normal.scale(-1)
+        }
+
+        this.pos.subtract(normal.clone().scale(minOverlap / 2))
+        polygon.pos.add(normal.clone().scale(minOverlap / 2))
+
+        let collisionPoints = this.findCollidingPoints(polygon, ctx)
+        console.log(collisionPoints)
+        return { mvt: minOverlap, normal: normal, point: collisionPoints[0]}
     }
 
 
@@ -393,6 +484,8 @@ export class Box extends Polygon {
 
         this.size = size
         this.topLeft = this.points[0]
+        this.i = 1 / 12 * this.mass * (this.size.x*this.size.x + this.size.y*this.size.y)
+        this.invI = 1 / this.i
     }
 }
 
