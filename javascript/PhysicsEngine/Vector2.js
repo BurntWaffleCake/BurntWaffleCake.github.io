@@ -63,8 +63,9 @@ export class Vector2 {
     }
 
     projectToAxis(axis) {
-        return ((this.x * axis.x + this.y * axis.y) / (axis.x * axis.x + axis.y * axis.y)) * axis.x
-             + ((this.x * axis.x + this.y * axis.y) / (axis.x * axis.x + axis.y * axis.y)) * axis.y
+        let divResult = (this.x * axis.x + this.y * axis.y) / (axis.x * axis.x + axis.y * axis.y)
+        return divResult * axis.x * axis.x
+             + divResult * axis.y * axis.y
     }
 
     dot(vector) {

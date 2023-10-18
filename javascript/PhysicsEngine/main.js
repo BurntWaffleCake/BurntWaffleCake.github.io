@@ -17,17 +17,13 @@ function render(dt) {
     clearCanvas(ctx);
 
     let result = poly1.bruteForceTestCollision(poly2, ctx)
-    console.log(poly1.pos)
     if (result == false) {
         poly2.strokeColor = "rgb(255,255,255)"
         poly1.strokeColor = "rgb(255,255,255)"
     } else {
         poly1.resolveCollision(poly2, result.mvt, result.normal, result.point)
-        
         poly1.strokeColor = "rgb(255,0,0)"
         poly2.strokeColor = "rgb(255,0,0)"
-
-        ctx.fillStyle = "rgb(255,255,255)"
 
         // console.log(result.normal.clone().scale(result.mvt/2))
         // poly1.pos.subtract(result.normal.clone().scale(result.mvt/2))
@@ -42,7 +38,7 @@ function render(dt) {
 }
 
 function calculate(dt, t) {
-    if (paused) {return}
+    if (paused) { return }
     for (let polygon of polygons) {
         polygon.tick(dt, t)
 
@@ -94,17 +90,17 @@ function updateCanvasSize() {
 function startup() {
     updateCanvasSize();
 
-    // poly1 = new polyModule.Box(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(100, 50), 65, undefined, -60)
+    // poly1 = new polyModule.Box(new Vector2(ctx.canvas.width / 2 , ctx.canvas.height / 2), new Vector2(300, 100), 65, undefined, -0)
     // polygons.push(poly1)
 
-    poly1 = new polyModule.RegularPolygon(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(100, 100), 10, 0, undefined, -20)
+    poly1 = new polyModule.RegularPolygon(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(100, 100), 50, 0, undefined, -20)
     polygons.push(poly1)
 
-    poly2 = new polyModule.Box(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(500
-        , 50), 0, undefined, 0)
+    poly2 = new polyModule.Box(new Vector2(ctx.canvas.width / 2 , ctx.canvas.height / 2), new Vector2(300, 100), 0, undefined, 0)
     // polygons.push(poly2)
 
-    // poly2 = new polyModule.RegularPolygon(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(150, 150), 6, 0, undefined, 10)
+    // poly2 = new polyModule.RegularPolygon(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(100, 150), 50, 0, undefined, 10)
+    // poly2 = new polyModule.Wall(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), 500, 0, new Vector2(0, 0), 0)
     polygons.push(poly2)
     // for (let i = 0; i < 10; i++) {
     //     polygons.push(
@@ -122,13 +118,35 @@ function startup() {
 }
 window.requestAnimationFrame(startup);
 
+var prevMouseEvent = undefined
 document.addEventListener('mousemove', (event) => {
+    if (!mouse1down) { return }
     poly1.pos.set(event.clientX, event.clientY)
+
+    if (prevMouseEvent != undefined) {
+        let delta = {x: event.clientX - prevMouseEvent.clientX, y: event.clientY - prevMouseEvent.clientY}
+
+        poly1.vel.set(delta.x * 50, delta.y * 50)
+    }
+
+    prevMouseEvent = event
+})
+
+var mouse1down = false
+var mouse2down = false
+document.addEventListener('mousedown', (event) => {
+    if (event.buttons == 1) { mouse1down = true; return }
+    else if (event.buttons == 2) { mouse2down = true; return }
+
+})
+
+document.addEventListener('mouseup', (event) => {
+    if (mouse1down) { mouse1down = false; return }
+    else if (mouse2down) { mouse2down = false; return }
 })
 
 let paused = false
 document.addEventListener('keypress', (event) => {
-    console.log(event)
     if (event.key === " ") {
         paused = !paused
     }
