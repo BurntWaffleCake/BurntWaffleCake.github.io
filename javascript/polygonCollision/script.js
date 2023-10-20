@@ -149,17 +149,17 @@ class Box {
         return [tl, tr, br, bl]
     }
 
-    getFaces() {
-        let faces = []
-        let coords = this.getWorldCoordinates()
-        coords.array.forEach(element, index, array => {
-            if (index < array.length - 1) {
-                faces.push({element - array[index + 1], 1})
-            } else {
-                faces.push()
-            }
-        });
-    }
+    // getFaces() {
+    //     let faces = []
+    //     let coords = this.getWorldCoordinates()
+    //     coords.array.forEach(element, index, array => {
+    //         if (index < array.length - 1) {
+    //             faces.push({element - array[index + 1], 1})
+    //         } else {
+    //             faces.push()
+    //         }
+    //     });
+    // }
 
     render(ctx) {
         ctx.fillStyle = this.color
@@ -320,11 +320,11 @@ function testBoxCollision(box1, box2) {
             normal.y = -normal.y
         }
 
-        if (satShape) { //axis is from box1
-            for 
-        } else { //axis is from box2
+        // if (satShape) { //axis is from box1
+        //     for 
+        // } else { //axis is from box2
 
-        }
+        // }
 
         ctx.beginPath()
         ctx.strokeStyle = "rgb(255,0,0)"
@@ -463,8 +463,8 @@ ctx.canvas.height = height
 
 let boxes = []
 
-const gravity = 1000
-const restitution = 0
+const gravity = 0
+const restitution = 1
 
 let time = 0.0
 function loop(t) {
@@ -520,8 +520,6 @@ function loop(t) {
 
     }
 
-
-
     for (box of boxes) {
         box.render(ctx)
     }
@@ -533,38 +531,18 @@ function loop(t) {
 function startup() {
     console.log("Starting simulation")
 
-    // let newBox = new Box(
-    //     Math.random() * width,
-    //     Math.random() * height,
-    //     25 + Math.random() * 55,
-    //     25 + Math.random() * 55,
-    //     360 * Math.random(),
-    //     150 - Math.random() * 300,
-    //     150 - Math.random() * 300,
-    //     150 - Math.random() * 300)
+    for (let i = 0; i < 35; i++) {
+        boxes.push(new Box(
+            Math.random() * width,
+            Math.random() * height,
+            25 + Math.random() * 55,
+            25 + Math.random() * 55,
+            360 * Math.random(),
+            150 - Math.random() * 300,
+            150 - Math.random() * 300,
+            150 - Math.random() * 300))
+    }
 
-    // newBox.m = 0
-    // newBox.anchored = true
-
-    // boxes.push(newBox)
-
-    // for (let i = 0; i < 35; i++) {
-    //     boxes.push(new Box(
-    //         Math.random() * width,
-    //         Math.random() * height,
-    //         25 + Math.random() * 55,
-    //         25 + Math.random() * 55,
-    //         360 * Math.random(),
-    //         150 - Math.random() * 300,
-    //         150 - Math.random() * 300,
-    //         150 - Math.random() * 300))
-    // }
-
-    let boxa = new Box(width / 2, height / 2, 500, 50, 0)
-    boxa.anchored = true
-    let boxb = new Box(width / 2, height / 2, 50, 50, 0)
-
-    boxes.push(boxa, boxb)
     window.requestAnimationFrame(loop)
 }
 

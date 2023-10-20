@@ -95,7 +95,10 @@ export class Polygon {
         this.rot = rot * Math.PI / 180;
         this.rotVel = initRotVel * Math.PI / 180;
 
-        this.e = 1
+        this.e = 0.5
+
+        this.lockRot = false
+        this.anchored = false
 
         this.mass = this.getArea()
         this.invMass = 1 / this.mass
@@ -449,6 +452,14 @@ export class Polygon {
     }
 
     tick(dt, t) {
+        if (this.anchored) {
+            this.vel.set(0,0)
+            this.rotVel = 0
+            return
+        } else if (this.lockRot) {
+            this.rotVel = 0
+            return
+        }
         this.pos.add(this.vel.clone().scale(dt));
         this.rot += this.rotVel * dt
     }
