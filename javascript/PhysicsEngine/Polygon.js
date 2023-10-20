@@ -1,6 +1,6 @@
 import { Vector2 } from "./Vector2.js"
 
-const debug = true
+const debug = false
 
 function minDisToLineSeg(a, b, e) {
     let ab = b.clone().subtract(a)
@@ -96,6 +96,7 @@ export class Polygon {
         this.i = 1 / 2 * this.mass * this.radius * this.radius
         this.invI = 1 / this.i
 
+        // this.fillColor = "rgb("+ String(Math.floor(Math.random() * 255)) +","+ String(Math.floor(Math.random() * 255)) +","+ String(Math.floor(Math.random() * 255)) +")"
         this.fillColor = "rgb(255, 255, 255)"
         this.strokeColor = "rgb(255, 255, 255)"
     }
@@ -164,6 +165,7 @@ export class Polygon {
 
         ctx.fillStyle = this.fillColor
         ctx.strokeStyle = this.strokeColor
+        console.log(this.fillColor)
 
         //draw polygon
         ctx.moveTo(worldCoords[0].x, worldCoords[0].y);
@@ -171,7 +173,9 @@ export class Polygon {
             ctx.lineTo(point.x, point.y);
         }
         ctx.lineTo(worldCoords[0].x, worldCoords[0].y);
+        ctx.fill()
         ctx.stroke()
+     
 
         if (debug) {
             //draw foward
@@ -255,11 +259,6 @@ export class Polygon {
                 if (dis < minDis) {
                     minDis = dis;
                     collPoint = polygon.toWorldSpace(point)
-
-                    let center = this.toWorldSpace(face.center())
-                    ctx.font = "16pt Arial"
-                    ctx.fillStyle = "rgb(255, 0, 0)"
-                    ctx.fillText(String(dis), center.x, center.y)
                 }
             }
         }
@@ -271,24 +270,29 @@ export class Polygon {
                 if (dis < minDis) {
                     minDis = dis;
                     collPoint = this.toWorldSpace(point)
-
-                    let center = face.center()
-                    ctx.font = "16pt Arial"
-                    ctx.fillStyle = "rgb(255, 0, 0)"
-                    ctx.fillText(toString(dis), polygon.toWorldSpace(center.x), polygon.toWorldSpace(center.y))
                 }
             }
         }
 
-        ctx.fillStyle = "rgb(255,0,0)"
-        ctx.fillRect(collPoint.x, collPoint.y, 10, 10)
+        if (debug) {
+            ctx.fillStyle = "rgb(255,0,0)"
+            ctx.fillRect(collPoint.x, collPoint.y, 10, 10)
+        }
 
         return collPoint
     }
 
     resolveCollision(polygon, mvt, normal, collisionPoint) {
-        this.pos.subtract(normal.clone().scale(mvt / 2))
-        polygon.pos.add(normal.clone().scale(mvt / 2))
+        if (this.anchored && polygon.anchored) {
+            return
+        } else if (this.anchored) {
+            polygon.pos.add(normal.clone().scale(mvt / 2))
+        } else if (polygon.anchored) {
+            this.pos.subtract(normal.clone().scale(mvt / 2))
+        } else {
+            this.pos.subtract(normal.clone().scale(mvt / 2))
+            polygon.pos.add(normal.clone().scale(mvt / 2))
+        }
 
         let collArm1 = collisionPoint.clone().subtract(this.pos)
         let rotVel1 = new Vector2(-this.rotVel * collArm1.y, this.rotVel * collArm1.x)
@@ -349,12 +353,14 @@ export class Polygon {
             let compMinAxis = axis.clone().scale(compProj.minMag / 5).add(this.pos)
             let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(this.pos)
 
-            ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
-            ctx.fillRect(selfMinAxis.x - 2.5, selfMinAxis.y - 2.5, 5, 5)
-            ctx.fillRect(selfMaxAxis.x - 2.5, selfMaxAxis.y - 2.5, 5, 5)
-            ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
-            ctx.fillRect(compMinAxis.x - 2.5, compMinAxis.y - 2.5, 5, 5)
-            ctx.fillRect(compMaxAxis.x - 2.5, compMaxAxis.y - 2.5, 5, 5)
+            if (debug) {
+                ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
+                ctx.fillRect(selfMinAxis.x - 2.5, selfMinAxis.y - 2.5, 5, 5)
+                ctx.fillRect(selfMaxAxis.x - 2.5, selfMaxAxis.y - 2.5, 5, 5)
+                ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
+                ctx.fillRect(compMinAxis.x - 2.5, compMinAxis.y - 2.5, 5, 5)
+                ctx.fillRect(compMaxAxis.x - 2.5, compMaxAxis.y - 2.5, 5, 5)
+            }
         }
 
         for (let face of polygon.sides) {
@@ -374,13 +380,15 @@ export class Polygon {
             let selfMaxAxis = axis.clone().scale(selfProj.maxMag / 5).add(polygon.pos)
             let compMinAxis = axis.clone().scale(compProj.minMag / 5).add(polygon.pos)
             let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(polygon.pos)
-
-            ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
-            ctx.fillRect(selfMinAxis.x - 2.5, selfMinAxis.y - 2.5, 5, 5)
-            ctx.fillRect(selfMaxAxis.x - 2.5, selfMaxAxis.y - 2.5, 5, 5)
-            ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
-            ctx.fillRect(compMinAxis.x - 2.5, compMinAxis.y - 2.5, 5, 5)
-            ctx.fillRect(compMaxAxis.x - 2.5, compMaxAxis.y - 2.5, 5, 5)
+            
+            if (debug) {
+                ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
+                ctx.fillRect(selfMinAxis.x - 2.5, selfMinAxis.y - 2.5, 5, 5)
+                ctx.fillRect(selfMaxAxis.x - 2.5, selfMaxAxis.y - 2.5, 5, 5)
+                ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
+                ctx.fillRect(compMinAxis.x - 2.5, compMinAxis.y - 2.5, 5, 5)
+                ctx.fillRect(compMaxAxis.x - 2.5, compMaxAxis.y - 2.5, 5, 5)
+            }
         }
 
         ctx.strokeStyle = "rgb(255,0,0)"
@@ -388,8 +396,6 @@ export class Polygon {
         ctx.moveTo(this.pos.x, this.pos.y)
         ctx.lineTo(this.pos.x + normal.x * minOverlap, this.pos.y + normal.y * minOverlap)
         ctx.stroke()
-
-
 
         let delta = polygon.pos.clone().subtract(this.pos).normalize()
         if (delta.dot(normal) < 0) {
