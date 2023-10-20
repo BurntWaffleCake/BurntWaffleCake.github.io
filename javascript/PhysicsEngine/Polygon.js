@@ -12,22 +12,13 @@ function minDisToLineSeg(a, b, e) {
 
     if (ab_be > 0) {
         return (e.clone().subtract(b).magnitude())
-    } else if  (ab_ae < 0) {
+    } else if (ab_ae < 0) {
         return (e.clone().subtract(a).magnitude())
     } else {
-        let mod = Math.sqrt(ab.x * ae.x + ab.y * ae.y)
-        return Math.abs(ab.x * ae.y - ab.x * ae.x) / mod
+        let mod = Math.sqrt(ab.x * ab.x + ab.y * ab.y)
+        return Math.abs(ab.x * ae.y - ab.y * ae.x) / mod
     }
 }
-
-// function minDisToLineSeg(v, w, p) {
-//     let l2 = w.clone().subtract(v).magnitude() ** 2
-//     if (l2 == 0) { return p.clone().subtract(v).magnitude() }
-
-//     let t = Math.max(0, Math.min(1, p.clone().subtract(v).dot(w.clone().subtract(v))) / l2)
-//     let projection = v.clone().add(w.clone().subtract(v).scale(t))
-//     return p.clone().subtract(projection).magnitude()
-// }
 
 export class Face {
     constructor(from, to) {
@@ -155,16 +146,10 @@ export class Polygon {
         return sides
     }
 
-    applyImpulse(impulse, pos, normal) {
-        this.vel.add()
-
-        box1.dx += impulseVec.x * box1.invm
-        box1.dy += impulseVec.y * box1.invm
-        box2.dx += impulseVec.x * -box2.invm
-        box2.dy += impulseVec.y * -box2.invm
-
-        box1.dr += box1.invi * cross(collArm1.x, collArm1.y, impulseVec.x, impulseVec.y)
-        box2.dr -= box2.invi * cross(collArm2.x, collArm2.y, impulseVec.x, impulseVec.y)
+    applyImpulse(impulse, pos) {
+        let collArm = pos.clone().subtract(this.pos)
+        this.vel.add(impulse.clone().scale(this.invMass))
+        this.rotVel += this.invI * collArm.cross(impulse)
     }
 
     render(ctx = CanvasRenderingContext2D) {
@@ -259,8 +244,8 @@ export class Polygon {
         return false
     }
 
-    findCollidingPoints(polygon, ctx) {
-        let points = []
+    findCollidingPoint(polygon, ctx) {
+        let collPoint = undefined
         let minDis = Number.MAX_SAFE_INTEGER
 
         for (let point of polygon.points) {
@@ -269,11 +254,13 @@ export class Polygon {
 
                 if (dis < minDis) {
                     minDis = dis;
-                    points = [polygon.toWorldSpace(point)]
+                    collPoint = polygon.toWorldSpace(point)
+
+                    let center = this.toWorldSpace(face.center())
+                    ctx.font = "16pt Arial"
+                    ctx.fillStyle = "rgb(255, 0, 0)"
+                    ctx.fillText(String(dis), center.x, center.y)
                 }
-                //  else if (dis == minDis) {
-                //     points.push(polygon.toWorldSpace(point))
-                // }
             }
         }
 
@@ -283,20 +270,20 @@ export class Polygon {
 
                 if (dis < minDis) {
                     minDis = dis;
-                    points = [this.toWorldSpace(point)]
+                    collPoint = this.toWorldSpace(point)
+
+                    let center = face.center()
+                    ctx.font = "16pt Arial"
+                    ctx.fillStyle = "rgb(255, 0, 0)"
+                    ctx.fillText(toString(dis), polygon.toWorldSpace(center.x), polygon.toWorldSpace(center.y))
                 }
-                //  else if (dis == minDis) {
-                //     points.push(this.toWorldSpace(point))
-                // }
             }
         }
 
-        for (let point of points) {
-            ctx.fillStyle = "rgb(255,0,0)"
-            ctx.fillRect(point.x, point.y, 10, 10)
-        }
+        ctx.fillStyle = "rgb(255,0,0)"
+        ctx.fillRect(collPoint.x, collPoint.y, 10, 10)
 
-        return points
+        return collPoint
     }
 
     resolveCollision(polygon, mvt, normal, collisionPoint) {
@@ -363,11 +350,11 @@ export class Polygon {
             let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(this.pos)
 
             ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
-            ctx.fillRect(selfMinAxis.x-2.5, selfMinAxis.y-2.5, 5, 5)
-            ctx.fillRect(selfMaxAxis.x-2.5, selfMaxAxis.y-2.5, 5, 5)
+            ctx.fillRect(selfMinAxis.x - 2.5, selfMinAxis.y - 2.5, 5, 5)
+            ctx.fillRect(selfMaxAxis.x - 2.5, selfMaxAxis.y - 2.5, 5, 5)
             ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
-            ctx.fillRect(compMinAxis.x-2.5, compMinAxis.y-2.5, 5, 5)
-            ctx.fillRect(compMaxAxis.x-2.5, compMaxAxis.y-2.5, 5, 5)
+            ctx.fillRect(compMinAxis.x - 2.5, compMinAxis.y - 2.5, 5, 5)
+            ctx.fillRect(compMaxAxis.x - 2.5, compMaxAxis.y - 2.5, 5, 5)
         }
 
         for (let face of polygon.sides) {
@@ -389,11 +376,11 @@ export class Polygon {
             let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(polygon.pos)
 
             ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
-            ctx.fillRect(selfMinAxis.x-2.5, selfMinAxis.y-2.5, 5, 5)
-            ctx.fillRect(selfMaxAxis.x-2.5, selfMaxAxis.y-2.5, 5, 5)
+            ctx.fillRect(selfMinAxis.x - 2.5, selfMinAxis.y - 2.5, 5, 5)
+            ctx.fillRect(selfMaxAxis.x - 2.5, selfMaxAxis.y - 2.5, 5, 5)
             ctx.fillStyle = (overlap) ? "rgb(255, 0 ,255)" : "rgb(255,0,0)"
-            ctx.fillRect(compMinAxis.x-2.5, compMinAxis.y-2.5, 5, 5)
-            ctx.fillRect(compMaxAxis.x-2.5, compMaxAxis.y-2.5, 5, 5)
+            ctx.fillRect(compMinAxis.x - 2.5, compMinAxis.y - 2.5, 5, 5)
+            ctx.fillRect(compMaxAxis.x - 2.5, compMaxAxis.y - 2.5, 5, 5)
         }
 
         ctx.strokeStyle = "rgb(255,0,0)"
@@ -402,7 +389,6 @@ export class Polygon {
         ctx.lineTo(this.pos.x + normal.x * minOverlap, this.pos.y + normal.y * minOverlap)
         ctx.stroke()
 
-        console.log(minOverlap)
 
 
         let delta = polygon.pos.clone().subtract(this.pos).normalize()
@@ -410,8 +396,8 @@ export class Polygon {
             normal.scale(-1)
         }
 
-        let collisionPoints = this.findCollidingPoints(polygon, ctx)
-        return { mvt: minOverlap, normal: normal, point: collisionPoints[0]}
+        let collisionPoint = this.findCollidingPoint(polygon, ctx)
+        return { mvt: minOverlap, normal: normal, point: collisionPoint }
     }
 
 
@@ -453,7 +439,7 @@ export class Polygon {
 
     tick(dt, t) {
         if (this.anchored) {
-            this.vel.set(0,0)
+            this.vel.set(0, 0)
             this.rotVel = 0
             return
         } else if (this.lockRot) {
@@ -485,7 +471,7 @@ export class Box extends Polygon {
 
         this.size = size
         this.topLeft = this.points[0]
-        this.i = 1 / 12 * this.mass * (this.size.x*this.size.x + this.size.y*this.size.y)
+        this.i = 1 / 12 * this.mass * (this.size.x * this.size.x + this.size.y * this.size.y)
         this.invI = 1 / this.i
     }
 }

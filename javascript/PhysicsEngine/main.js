@@ -24,6 +24,9 @@ function render(dt) {
 
 function calculate(dt, t) {
     if (paused) { return }
+
+    poly1.applyImpulse(new Vector2(5000 * dt, 0), poly1.pos.clone().add(new Vector2(0, 0)))
+
     for (let polygon of polygons) {
         for (let i = 0; i < 2; i++) {
             let dti = dt / 2
@@ -93,7 +96,7 @@ function startup() {
 
     poly2 = new polyModule.Box(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(300, 100), 0, undefined, 0)
     // polygons.push(poly2)
-    // poly2.anchored = true
+    poly2.anchored = true
     // poly2 = new polyModule.RegularPolygon(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(100, 150), 50, 0, undefined, 10)
     // poly2 = new polyModule.Wall(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), 500, 0, new Vector2(0, 0), 0)
     polygons.push(poly2)
