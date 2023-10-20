@@ -51,8 +51,8 @@ function calculate(dt, t) {
     if (paused) { return }
 
     for (let polygon of polygons) {
-        for (let i = 0; i < 2; i++) {
-            let dti = dt / 2
+        for (let i = 0; i < 1; i++) {
+            let dti = dt / 1
             polygon.tick(dti, t)
             polygon.vel.y += 1000 * dti
 
@@ -64,7 +64,7 @@ function calculate(dt, t) {
                 if (collPoly === polygon) { continue }
                 let result = polygon.bruteForceTestCollision(collPoly, ctx)
                 if (result == false) { continue }
-                polygon.resolveCollision(collPoly, result.mvt, result.normal, result.point)
+                polygon.resolveCollision(collPoly, result.mvt, result.normal, result.point, ctx)
             }
         }
 
@@ -81,7 +81,8 @@ function loop(t) {
 
     if (mouse1down) {
         let delta = new Vector2(prevMouseEvent.clientX, prevMouseEvent.clientY).subtract(poly1.pos)
-        poly1.applyImpulse(delta.scale(poly1.mass / 2), poly1.pos)
+        // poly1.applyImpulse(delta.scale(poly1.mass / 2), poly1.pos)
+        poly1.pos.set(prevMouseEvent.clientX, prevMouseEvent.clientY)
     }
 
     calculate(dt, t / 1000);
@@ -103,35 +104,36 @@ function startup() {
     // polygons.push(poly1)
 
     poly1 = new polyModule.RegularPolygon(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(200, 100), 30, 0, undefined, -20)
+    // poly1.anchored = true
 
     polygons.push(poly1)
 
     poly2 = new polyModule.Box(new Vector2(ctx.canvas.width / 2, ctx.canvas.height - 100), new Vector2(3000, 100), 5, undefined, 0)
-    // polygons.push(poly2)
+    polygons.push(poly2)
     poly2.anchored = true
     // poly2 = new polyModule.RegularPolygon(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), new Vector2(100, 150), 50, 0, undefined, 10)
     // poly2 = new polyModule.Wall(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), 500, 0, new Vector2(0, 0), 0)
-    polygons.push(poly2)
-    for (let i = 0; i < 10; i++) {
-        polygons.push(
-            new polyModule.RegularPolygon(
-                new Vector2(ctx.canvas.width * Math.random(), ctx.canvas.height * Math.random()),
-                new Vector2(25 + Math.random() * 100, 25 + Math.random() * 100),
-                3,
-                0,
-                undefined,
-                180 * Math.random()
-            )
+    // polygons.push(poly2)
+    // for (let i = 0; i < 10; i++) {
+    //     polygons.push(
+    //         new polyModule.RegularPolygon(
+    //             new Vector2(ctx.canvas.width * Math.random(), ctx.canvas.height * Math.random()),
+    //             new Vector2(25 + Math.random() * 100, 25 + Math.random() * 100),
+    //             3 + Math.floor(Math.random() * 3),
+    //             0,
+    //             undefined,
+    //             180 * Math.random()
+    //         )
 
-            // new polyModule.Box(
-            //     new Vector2(ctx.canvas.width * Math.random(), ctx.canvas.height * Math.random()),
-            //     new Vector2(25 + Math.random() * 100, 25 + Math.random() * 100),
-            //     0,
-            //     undefined,
-            //     180 * Math.random(),
-            // )
-        )
-    }
+    //         // new polyModule.Box(
+    //         //     new Vector2(ctx.canvas.width * Math.random(), ctx.canvas.height * Math.random()),
+    //         //     new Vector2(25 + Math.random() * 100, 25 + Math.random() * 100),
+    //         //     0,
+    //         //     undefined,
+    //         //     180 * Math.random(),
+    //         // )
+    //     )
+    // }
 
     window.requestAnimationFrame(loop);
 }

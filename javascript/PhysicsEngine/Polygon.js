@@ -1,6 +1,6 @@
 import { Vector2 } from "./Vector2.js"
 
-const debug = false
+const debug = true
 
 function minDisToLineSeg(a, b, e) {
     let ab = b.clone().subtract(a)
@@ -86,7 +86,7 @@ export class Polygon {
         this.rot = rot * Math.PI / 180;
         this.rotVel = initRotVel * Math.PI / 180;
 
-        this.e = 0.5
+        this.e = .5
 
         this.lockRot = false
         this.anchored = false
@@ -120,7 +120,7 @@ export class Polygon {
     toObjectSpace(vector = Vector2.prototype) {
         let delta = vector.clone().subtract(this.pos)
         return this.toWorldSpace(delta)
-    }
+    }   
 
     toWorldSpace(vector) {
         return new Vector2(
@@ -149,6 +149,7 @@ export class Polygon {
 
     applyImpulse(impulse, pos) {
         let collArm = pos.clone().subtract(this.pos)
+        console.log(impulse.clone().scale(this.invMass))
         this.vel.add(impulse.clone().scale(this.invMass))
         this.rotVel += this.invI * collArm.cross(impulse)
     }
@@ -165,7 +166,6 @@ export class Polygon {
 
         ctx.fillStyle = this.fillColor
         ctx.strokeStyle = this.strokeColor
-        console.log(this.fillColor)
 
         //draw polygon
         ctx.moveTo(worldCoords[0].x, worldCoords[0].y);
@@ -173,7 +173,7 @@ export class Polygon {
             ctx.lineTo(point.x, point.y);
         }
         ctx.lineTo(worldCoords[0].x, worldCoords[0].y);
-        ctx.fill()
+        // ctx.fill()
         ctx.stroke()
      
 
@@ -282,9 +282,9 @@ export class Polygon {
         return collPoint
     }
 
-    resolveCollision(polygon, mvt, normal, collisionPoint) {
+    resolveCollision(polygon, mvt, normal, collisionPoint, ctx) {
         if (this.anchored && polygon.anchored) {
-            return
+            // return
         } else if (this.anchored) {
             polygon.pos.add(normal.clone().scale(mvt / 2))
         } else if (polygon.anchored) {
@@ -327,7 +327,13 @@ export class Polygon {
         this.rotVel += this.invI * collArm1.cross(impulseVec)
         polygon.rotVel -= polygon.invI * collArm2.cross(impulseVec)
 
-        // console.log(this.vel, polygon.vel)
+
+        console.log(normal.dot(impulseVec))
+        let normalForce = normal.dot(impulseVec)
+        let frictionDirection = new Vector2(-normal.y, normal.x)
+
+        this.applyImpulse(frictionDirection.scale(normalForce), collisionPoint.clone())
+        polygon.applyImpulse(frictionDirection.scale(-normalForce), collisionPoint.clone())
     }
 
     bruteForceTestCollision(polygon, ctx) {
