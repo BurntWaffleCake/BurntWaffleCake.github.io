@@ -86,7 +86,9 @@ export class Polygon {
         this.rot = rot * Math.PI / 180;
         this.rotVel = initRotVel * Math.PI / 180;
 
-        this.e = 0.5
+        this.e = .9
+        this.df = 0.2
+        this.sf = .4
 
         this.lockRot = false
         this.anchored = false
@@ -165,7 +167,6 @@ export class Polygon {
 
         ctx.fillStyle = this.fillColor
         ctx.strokeStyle = this.strokeColor
-        console.log(this.fillColor)
 
         //draw polygon
         ctx.moveTo(worldCoords[0].x, worldCoords[0].y);
@@ -173,23 +174,24 @@ export class Polygon {
             ctx.lineTo(point.x, point.y);
         }
         ctx.lineTo(worldCoords[0].x, worldCoords[0].y);
-        ctx.fill()
+        // ctx.fill()
         ctx.stroke()
-     
+
+        //draw foward
+        ctx.beginPath()
+        ctx.strokeStyle = "rgb(255, 0, 0)"
+        ctx.moveTo(this.pos.x, this.pos.y);
+        ctx.lineTo(this.pos.x + 50 * Math.cos(this.rot), this.pos.y + 50 * Math.sin(this.rot))
+        ctx.stroke();
+
+        ctx.beginPath()
+        ctx.strokeStyle = "rgb(0, 255, 0)"
+        ctx.moveTo(this.pos.x, this.pos.y);
+        ctx.lineTo(this.pos.x + 50 * Math.cos(this.rot - Math.PI / 2), this.pos.y + 50 * Math.sin(this.rot - Math.PI / 2))
+        ctx.stroke();
 
         if (debug) {
-            //draw foward
-            ctx.beginPath()
-            ctx.strokeStyle = "rgb(255, 0, 0)"
-            ctx.moveTo(this.pos.x, this.pos.y);
-            ctx.lineTo(this.pos.x + 50 * Math.cos(this.rot), this.pos.y + 50 * Math.sin(this.rot))
-            ctx.stroke();
 
-            ctx.beginPath()
-            ctx.strokeStyle = "rgb(0, 255, 0)"
-            ctx.moveTo(this.pos.x, this.pos.y);
-            ctx.lineTo(this.pos.x + 50 * Math.cos(this.rot - Math.PI / 2), this.pos.y + 50 * Math.sin(this.rot - Math.PI / 2))
-            ctx.stroke();
 
             ctx.beginPath();
             ctx.strokeStyle = "rgb(0, 255, 255)"
@@ -302,22 +304,16 @@ export class Polygon {
         let rotVel2 = new Vector2(-polygon.rotVel * collArm2.y, polygon.rotVel * collArm2.x)
         let closVel2 = polygon.vel.clone().add(rotVel2)
 
-        // console.log(collArm1, rotVel1, closVel1)
-        // console.log(collArm2, rotVel2, closVel2)
-
         let impAug1 = collArm1.cross(normal)
         impAug1 = impAug1 * impAug1 * this.invI
         let impAug2 = collArm2.cross(normal)
         impAug2 = impAug2 * impAug2 * polygon.invI
-
-        // console.log(impAug1, impAug2)
 
         let relVel = closVel1.clone().subtract(closVel2)
         let sepVel = relVel.dot(normal)
         let newSepVel = -sepVel * Math.min(this.e, polygon.e)
         let vSepDiff = newSepVel - sepVel
 
-        // console.log(relVel, sepVel, newSepVel, vSepDiff)
         let impulse = vSepDiff / (this.invMass + polygon.invMass + impAug1 + impAug2)
         let impulseVec = normal.clone().scale(impulse)
 
@@ -326,6 +322,34 @@ export class Polygon {
 
         this.rotVel += this.invI * collArm1.cross(impulseVec)
         polygon.rotVel -= polygon.invI * collArm2.cross(impulseVec)
+
+        //Friction
+        let tangent = relVel.clone().subtract(normal.clone().scale(relVel.dot(normal)))
+        if (tangent.magnitude() < 0.005) { return } //tangent is near zero
+        tangent.normalize()
+
+        let frictionAug1 = collArm1.cross(tangent)
+        frictionAug1 = frictionAug1 * frictionAug1 * this.invI
+        let frictionAug2 = collArm2.cross(tangent)
+        frictionAug2 = frictionAug2 * frictionAug2 * polygon.invI
+
+        let impulseFriction = relVel.dot(tangent) / (frictionAug1 + frictionAug2 + this.invMass + polygon.invMass)
+
+        let sf = (this.sf + polygon.sf) * .5
+        let df = (this.df + polygon.df) * .5
+
+        let impFricVec
+        if (impulseFriction <= impulse * sf) {
+            impFricVec = tangent.scale(-impulseFriction)
+        } else {
+            impFricVec = tangent.clone().scale(impulse * df)
+        }
+
+        this.vel.add(impFricVec.clone().scale(this.invMass))
+        polygon.vel.subtract(impFricVec.clone().scale(polygon.invMass))
+
+        this.rotVel += this.invI * collArm1.cross(impFricVec)
+        polygon.rotVel -= polygon.invI * collArm2.cross(impFricVec)
 
         // console.log(this.vel, polygon.vel)
     }
@@ -380,7 +404,7 @@ export class Polygon {
             let selfMaxAxis = axis.clone().scale(selfProj.maxMag / 5).add(polygon.pos)
             let compMinAxis = axis.clone().scale(compProj.minMag / 5).add(polygon.pos)
             let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(polygon.pos)
-            
+
             if (debug) {
                 ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
                 ctx.fillRect(selfMinAxis.x - 2.5, selfMinAxis.y - 2.5, 5, 5)
