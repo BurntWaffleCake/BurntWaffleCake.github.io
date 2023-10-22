@@ -177,6 +177,10 @@ body {
     line-height: 1em;
 }
 
+#article-contents h2 {
+    text-decoration: underline;
+}
+
 #article-contents h2, h3, p {
     margin-top: 1rem;
     margin-bottom: 1rem;
