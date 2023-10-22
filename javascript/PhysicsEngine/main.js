@@ -56,13 +56,15 @@ function applyCollisionBounds(polygon) {
     }
 }
 
+
+let substeps = 4
 function calculate(dt, t) {
     if (paused) { return }
 
     for (let model of models) {
-        for (let i = 0; i < 4; i++) {
-            let dti = dt / 4
-            model.vel.y += 1000 * dt
+        for (let i = 0; i < substeps; i++) {
+            let dti = dt / substeps
+            model.vel.y += 1000 * dti
             model.tick(dti, t)
             // if (!polygon.anchored) {
             //     // applyCollisionBounds(polygon)
@@ -81,8 +83,8 @@ function calculate(dt, t) {
     }
 
     for (let polygon of polygons) {
-        for (let i = 0; i < 4; i++) {
-            let dti = dt / 4
+        for (let i = 0; i < substeps; i++) {
+            let dti = dt / substeps
 
             polygon.vel.y += 1000 * dti
             polygon.tick(dti, t)
@@ -154,7 +156,8 @@ function startup() {
     model = new polyModule.Model([
         new polyModule.Box(new Vector2(0, 0), new Vector2(100, 50), 0),
         new polyModule.Box(new Vector2(75, 0), new Vector2(50, 150), 0),
-        new polyModule.Box(new Vector2(-75, 0), new Vector2(50, 150), 0)
+        new polyModule.Box(new Vector2(-75, 0), new Vector2(50, 150), 0),
+        new polyModule.RegularPolygon(new Vector2(100, 0), new Vector2(100, 100), 6, 0, undefined, -20)
     ], new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), 0)
     console.log(model)
     models.push(model)

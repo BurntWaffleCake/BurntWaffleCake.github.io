@@ -1,6 +1,6 @@
 import { Vector2 } from "./Vector2.js"
 
-const debug = true
+const debug = false
 
 function minDisToLineSeg(a, b, e) {
     let ab = b.clone().subtract(a)
@@ -74,16 +74,15 @@ export class Model {
         this.rot = rot * Math.PI / 180
         this.rotVel = initRotVel * Math.PI / 180
 
-        this.e = .6
-        this.df = .7
-        this.sf = .8
-
+        this.e = 0
+        this.df = .4
+        this.sf = .6
         this.mTot = 0
         this.iTot = 0
 
         polygons.forEach(element => {
             this.mTot += element.mass
-            this.iTot += element.i //element.mass * element.pos.clone().subtract(this.pos).magnitude() ** 2
+            this.iTot += element.mass * element.pos.magnitude() ** 2
         });
 
         this.invMTot = 1 / this.mTot
@@ -185,7 +184,7 @@ export class Model {
             let newSepVel = -sepVel * Math.min(this.e, polygon.e)
             let vSepDiff = newSepVel - sepVel
 
-            let impulse = vSepDiff / (this.invMTot + polygon.invMass + impAug1 + impAug2) / collisionPoints.length  / (this.components.length / 2)
+            let impulse = vSepDiff / (this.invMTot + polygon.invMass + impAug1 + impAug2) / collisionPoints.length
             let impulseVec = normal.clone().scale(impulse)
 
             impulses.push(impulseVec)
@@ -200,7 +199,7 @@ export class Model {
             let frictionAug2 = collArm2.cross(tangent)
             frictionAug2 = frictionAug2 * frictionAug2 * polygon.invI
 
-            let impulseFriction = relVel.dot(tangent) / (frictionAug1 + frictionAug2 + this.invMTot + polygon.invMass) / collisionPoints.length / (this.components.length / 2)
+            let impulseFriction = relVel.dot(tangent) / (frictionAug1 + frictionAug2 + this.invMTot + polygon.invMass) / collisionPoints.length
 
             let sf = (this.sf + polygon.sf) * .5
             let df = (this.df + polygon.df) * .5
