@@ -1,6 +1,6 @@
 import { Vector2 } from "./Vector2.js"
 
-const debug = true
+const debug = false
 
 function minDisToLineSeg(a, b, e) {
     let ab = b.clone().subtract(a)
@@ -257,7 +257,7 @@ export class Polygon {
         this.rot = rot * Math.PI / 180;
         this.rotVel = initRotVel * Math.PI / 180;
 
-        this.e = .6
+        this.e = 0.6
         this.df = .4
         this.sf = .6
 
@@ -269,8 +269,8 @@ export class Polygon {
         this.i = 1 / 2 * this.mass * this.radius * this.radius
         this.invI = 1 / this.i
 
-        // this.fillColor = "rgb("+ String(Math.floor(Math.random() * 255)) +","+ String(Math.floor(Math.random() * 255)) +","+ String(Math.floor(Math.random() * 255)) +")"
-        this.fillColor = "rgb(255, 255, 255)"
+        this.fillColor = "rgb("+ String(Math.floor(Math.random() * 255)) +","+ String(Math.floor(Math.random() * 255)) +","+ String(Math.floor(Math.random() * 255)) +")"
+        // this.fillColor = "rgb(255, 255, 255)"
         this.strokeColor = "rgb(255, 255, 255)"
     }
 
@@ -291,9 +291,8 @@ export class Polygon {
     }
 
     toObjectSpace(vector = Vector2.prototype) {
-        let delta = vector.clone().subtract(this.pos)
-        return this.toWorldSpace(delta)
-    }   
+        return vector.clone().subtract(this.pos).rotate(-this.rot)
+    }
 
     toWorldSpace(vector) {
         return new Vector2(
@@ -322,7 +321,6 @@ export class Polygon {
 
     applyImpulse(impulse, pos) {
         let collArm = pos.clone().subtract(this.pos)
-        console.log(impulse.clone().scale(this.invMass))
         this.vel.add(impulse.clone().scale(this.invMass))
         this.rotVel += this.invI * collArm.cross(impulse)
     }
@@ -346,7 +344,7 @@ export class Polygon {
             ctx.lineTo(point.x, point.y);
         }
         ctx.lineTo(worldCoords[0].x, worldCoords[0].y);
-        // ctx.fill()
+        ctx.fill()
         ctx.stroke()
 
         //draw foward
@@ -433,10 +431,10 @@ export class Polygon {
 
                 let dis = minDisToLineSeg(this.toWorldSpace(face.from), this.toWorldSpace(face.to), worldPoint)
 
-                if (dis < minDis - 0.5) {
+                if (dis < minDis - 0.25) {
                     minDis = dis;
                     collPoints = [worldPoint]
-                } else if (dis < minDis + 0.5) {
+                } else if (dis < minDis + 0.25) {
                     collPoints.push(worldPoint)
                 }
             }
@@ -447,10 +445,10 @@ export class Polygon {
                 let worldPoint = this.toWorldSpace(point)
                 let dis = minDisToLineSeg(polygon.toWorldSpace(face.from), polygon.toWorldSpace(face.to), worldPoint)
 
-                if (dis < minDis - 0.5) {
+                if (dis < minDis - 0.25) {
                     minDis = dis;
                     collPoints = [worldPoint]
-                } else if (dis < minDis + 0.5) {
+                } else if (dis < minDis + 0.25) {
                     collPoints.push(worldPoint)
                 }
             }
@@ -478,21 +476,28 @@ export class Polygon {
             polygon.pos.add(normal.clone().scale(mvt / 2))
         }
 
+        if (polygon.mass <= 0 && this.mass <= 0) {
+            return
+        }
+
         let impulses = []
+        let impulseList = []
+        let frictionImpulses = []
         let collArm1s = []
         let collArm2s = []
 
-        collisionPoints.forEach(collPoint => {
+        collisionPoints.forEach((collPoint, index) => {
             let collArm1 = collPoint.clone().subtract(this.pos)
-            let rotVel1 = new Vector2(-this.rotVel * collArm1.y, this.rotVel * collArm1.x)
-            let closVel1 = this.vel.clone().add(rotVel1)
-
             let collArm2 = collPoint.clone().subtract(polygon.pos)
-            let rotVel2 = new Vector2(-polygon.rotVel * collArm2.y, polygon.rotVel * collArm2.x)
-            let closVel2 = polygon.vel.clone().add(rotVel2)
 
             collArm1s.push(collArm1)
             collArm2s.push(collArm2)
+
+            let rotVel1 = new Vector2(-this.rotVel * collArm1.y, this.rotVel * collArm1.x)
+            let rotVel2 = new Vector2(-polygon.rotVel * collArm2.y, polygon.rotVel * collArm2.x)
+
+            let closVel1 = this.vel.clone().add(rotVel1)
+            let closVel2 = polygon.vel.clone().add(rotVel2)
 
             let impAug1 = collArm1.cross(normal)
             impAug1 = impAug1 * impAug1 * this.invI
@@ -507,9 +512,35 @@ export class Polygon {
             let impulse = vSepDiff / (this.invMass + polygon.invMass + impAug1 + impAug2) / collisionPoints.length
             let impulseVec = normal.clone().scale(impulse)
 
+            impulseList.push(impulse)
             impulses.push(impulseVec)
+        })
 
-            //Friction
+        impulses.forEach((impulse, index) => {
+            let collArm1 = collArm1s[index]
+            let collArm2 = collArm2s[index]
+
+            this.vel.add(impulse.clone().scale(this.invMass))
+            polygon.vel.subtract(impulse.clone().scale(polygon.invMass))
+
+            this.rotVel += this.invI * collArm1.cross(impulse)
+            polygon.rotVel -= polygon.invI * collArm2.cross(impulse)
+        });
+
+        collisionPoints.forEach((collPoint, index) => {
+            let collArm1 = collPoint.clone().subtract(this.pos)
+            let collArm2 = collPoint.clone().subtract(polygon.pos)
+
+            collArm1s[index] = collArm1
+            collArm2s[index] = collArm2
+
+            let rotVel1 = new Vector2(-this.rotVel * collArm1.y, this.rotVel * collArm1.x)
+            let rotVel2 = new Vector2(-polygon.rotVel * collArm2.y, polygon.rotVel * collArm2.x)
+
+            let closVel1 = this.vel.clone().add(rotVel1)
+            let closVel2 = polygon.vel.clone().add(rotVel2)
+
+            let relVel = closVel1.clone().subtract(closVel2)
             let tangent = relVel.clone().subtract(normal.clone().scale(relVel.dot(normal)))
             if (tangent.magnitude() < 0.005) { return } //tangent is near zero
             tangent.normalize()
@@ -525,19 +556,17 @@ export class Polygon {
             let df = (this.df + polygon.df) * .5
 
             let impFricVec
+            let impulse = impulseList[index]
             if (impulseFriction <= impulse * sf) {
                 impFricVec = tangent.scale(-impulseFriction)
             } else {
                 impFricVec = tangent.clone().scale(impulse * df)
             }
 
-            collArm1s.push(collArm1)
-            collArm2s.push(collArm2)
-
-            impulses.push(impFricVec)
+            frictionImpulses.push(impFricVec)
         });
 
-        impulses.forEach((impulse, index) => {
+        frictionImpulses.forEach((impulse, index) => {
             let collArm1 = collArm1s[index]
             let collArm2 = collArm2s[index]
 
