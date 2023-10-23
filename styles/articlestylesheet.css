@@ -40,8 +40,8 @@ body {
     padding: 0;
     margin: 0;
 
-    background-color: #282828;
-    background: radial-gradient(circle at center, #3a3a3a, #000000);
+    background-color: #121212;
+    /* background: radial-gradient(circle at center, #3a3a3a, #000000); */
 }
 
 #article-nav {
