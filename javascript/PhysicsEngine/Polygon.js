@@ -62,6 +62,177 @@ export class Face {
     }
 }
 
+export class Model {
+    constructor(polygons, pos = new Vector2(0, 0), rot = 0, initVel = new Vector2(0, 0), initRotVel = 0) {
+        this.components = []
+        polygons.forEach(element => {
+            this.components.push({ polygon: element, offset: element.pos.clone(), rotation: element.rot - rot })
+        });
+
+        this.pos = pos
+        this.vel = initVel
+        this.rot = rot * Math.PI / 180
+        this.rotVel = initRotVel * Math.PI / 180
+
+        this.e = 0
+        this.df = .4
+        this.sf = .6
+        this.mTot = 0
+        this.iTot = 0
+
+        polygons.forEach(element => {
+            this.mTot += element.mass
+            this.iTot += element.mass * element.pos.magnitude() ** 2
+        });
+
+        this.invMTot = 1 / this.mTot
+        this.invITot = 1 / this.iTot
+    }
+
+    render(ctx) {
+        this.components.forEach(element => {
+            let rot = element.rotation
+            let offset = element.offset
+            let polygon = element.polygon
+
+            polygon.render(ctx)
+        });
+    }
+
+    tick(dt) {
+        if (this.anchored) {
+            this.vel.set(0, 0)
+            this.rotVel = 0
+            return
+        } else if (this.lockRot) {
+            this.rotVel = 0
+            return
+        }
+        this.pos.add(this.vel.clone().scale(dt));
+        this.rot += this.rotVel * dt
+
+        this.components.forEach(element => {
+            let rot = element.rotation
+            let offset = element.offset
+            let polygon = element.polygon
+
+            polygon.rot = this.rot + rot
+            polygon.pos.set(this.pos.x + offset.x * Math.cos(this.rot) - offset.y * Math.sin(this.rot), this.pos.y + offset.x * Math.sin(this.rot) + offset.y * Math.cos(this.rot))
+        });
+    }
+
+    testModelCollision() {
+
+    }
+
+    testPolygonCollision(colPoly, ctx) {
+        let results = []
+        this.components.forEach(element => {
+            let rot = element.rotation
+            let offset = element.offset
+            let polygon = element.polygon
+
+            let result = polygon.testCollision(colPoly, ctx)
+            if (result == false) { return }
+            results.push({polygon: colPoly, mvt: result.mvt, normal: result.normal, points: result.points})
+            // this.resolveCollision(polygon, result.mvt, result.normal, result.point)
+        });
+        return results
+    }
+
+    applyImpulse(impulse, pos) {
+        let collArm = pos.clone().subtract(this.pos)
+        this.vel.add(impulse.clone().scale(this.invMTot))
+        this.rotVel += this.invITot * collArm.cross(impulse)
+    }
+
+    resolvePolygonCollision(polygon, mvt, normal, collisionPoints) {
+        if (this.anchored && polygon.anchored) {
+            return
+        } else if (this.anchored) {
+            polygon.pos.add(normal.clone().scale(mvt / 2))
+        } else if (polygon.anchored) {
+            this.pos.subtract(normal.clone().scale(mvt / 2))
+        } else {
+            this.pos.subtract(normal.clone().scale(mvt / 2))
+            polygon.pos.add(normal.clone().scale(mvt / 2))
+        }
+
+        let impulses = []
+        let collArm1s = []
+        let collArm2s = []
+
+        collisionPoints.forEach(collPoint => {
+            let collArm1 = collPoint.clone().subtract(this.pos)
+            let rotVel1 = new Vector2(-this.rotVel * collArm1.y, this.rotVel * collArm1.x)
+            let closVel1 = this.vel.clone().add(rotVel1)
+
+            let collArm2 = collPoint.clone().subtract(polygon.pos)
+            let rotVel2 = new Vector2(-polygon.rotVel * collArm2.y, polygon.rotVel * collArm2.x)
+            let closVel2 = polygon.vel.clone().add(rotVel2)
+
+            collArm1s.push(collArm1)
+            collArm2s.push(collArm2)
+
+            let impAug1 = collArm1.cross(normal)
+            impAug1 = impAug1 * impAug1 * this.invITot
+            let impAug2 = collArm2.cross(normal)
+            impAug2 = impAug2 * impAug2 * polygon.invI
+
+            let relVel = closVel1.clone().subtract(closVel2)
+            let sepVel = relVel.dot(normal)
+            let newSepVel = -sepVel * Math.min(this.e, polygon.e)
+            let vSepDiff = newSepVel - sepVel
+
+            let impulse = vSepDiff / (this.invMTot + polygon.invMass + impAug1 + impAug2) / collisionPoints.length
+            let impulseVec = normal.clone().scale(impulse)
+
+            impulses.push(impulseVec)
+
+            //Friction
+            let tangent = relVel.clone().subtract(normal.clone().scale(relVel.dot(normal)))
+            if (tangent.magnitude() < 0.005) { return } //tangent is near zero
+            tangent.normalize()
+
+            let frictionAug1 = collArm1.cross(tangent)
+            frictionAug1 = frictionAug1 * frictionAug1 * this.invITot
+            let frictionAug2 = collArm2.cross(tangent)
+            frictionAug2 = frictionAug2 * frictionAug2 * polygon.invI
+
+            let impulseFriction = relVel.dot(tangent) / (frictionAug1 + frictionAug2 + this.invMTot + polygon.invMass) / collisionPoints.length
+
+            let sf = (this.sf + polygon.sf) * .5
+            let df = (this.df + polygon.df) * .5
+
+            let impFricVec
+            if (impulseFriction <= impulse * sf) {
+                impFricVec = tangent.scale(-impulseFriction)
+            } else {
+                impFricVec = tangent.clone().scale(impulse * df)
+            }
+
+            collArm1s.push(collArm1)
+            collArm2s.push(collArm2)
+
+            impulses.push(impFricVec)
+        });
+
+        impulses.forEach((impulse, index) => {
+            let collArm1 = collArm1s[index]
+            let collArm2 = collArm2s[index]
+
+            this.vel.add(impulse.clone().scale(this.invMTot))
+            polygon.vel.subtract(impulse.clone().scale(polygon.invMass))
+
+            this.rotVel += this.invITot * collArm1.cross(impulse)
+            polygon.rotVel -= polygon.invI * collArm2.cross(impulse)
+        });
+
+    }
+
+
+}
+
 export class Polygon {
     constructor(points, pos = new Vector2(0, 0), rot = 0, initVel = new Vector2(0, 0), initRotVel = 0) {
         this.points = points;
@@ -86,7 +257,9 @@ export class Polygon {
         this.rot = rot * Math.PI / 180;
         this.rotVel = initRotVel * Math.PI / 180;
 
-        this.e = .5
+        this.e = .6
+        this.df = .4
+        this.sf = .6
 
         this.lockRot = false
         this.anchored = false
@@ -175,21 +348,22 @@ export class Polygon {
         ctx.lineTo(worldCoords[0].x, worldCoords[0].y);
         // ctx.fill()
         ctx.stroke()
-     
+
+        //draw foward
+        ctx.beginPath()
+        ctx.strokeStyle = "rgb(255, 0, 0)"
+        ctx.moveTo(this.pos.x, this.pos.y);
+        ctx.lineTo(this.pos.x + 50 * Math.cos(this.rot), this.pos.y + 50 * Math.sin(this.rot))
+        ctx.stroke();
+
+        ctx.beginPath()
+        ctx.strokeStyle = "rgb(0, 255, 0)"
+        ctx.moveTo(this.pos.x, this.pos.y);
+        ctx.lineTo(this.pos.x + 50 * Math.cos(this.rot - Math.PI / 2), this.pos.y + 50 * Math.sin(this.rot - Math.PI / 2))
+        ctx.stroke();
 
         if (debug) {
-            //draw foward
-            ctx.beginPath()
-            ctx.strokeStyle = "rgb(255, 0, 0)"
-            ctx.moveTo(this.pos.x, this.pos.y);
-            ctx.lineTo(this.pos.x + 50 * Math.cos(this.rot), this.pos.y + 50 * Math.sin(this.rot))
-            ctx.stroke();
 
-            ctx.beginPath()
-            ctx.strokeStyle = "rgb(0, 255, 0)"
-            ctx.moveTo(this.pos.x, this.pos.y);
-            ctx.lineTo(this.pos.x + 50 * Math.cos(this.rot - Math.PI / 2), this.pos.y + 50 * Math.sin(this.rot - Math.PI / 2))
-            ctx.stroke();
 
             ctx.beginPath();
             ctx.strokeStyle = "rgb(0, 255, 255)"
@@ -248,41 +422,51 @@ export class Polygon {
         return false
     }
 
+
     findCollidingPoint(polygon, ctx) {
-        let collPoint = undefined
+        let collPoints = []
         let minDis = Number.MAX_SAFE_INTEGER
 
         for (let point of polygon.points) {
             for (let face of this.sides) {
-                let dis = minDisToLineSeg(this.toWorldSpace(face.from), this.toWorldSpace(face.to), polygon.toWorldSpace(point))
+                let worldPoint = polygon.toWorldSpace(point)
 
-                if (dis < minDis) {
+                let dis = minDisToLineSeg(this.toWorldSpace(face.from), this.toWorldSpace(face.to), worldPoint)
+
+                if (dis < minDis - 0.5) {
                     minDis = dis;
-                    collPoint = polygon.toWorldSpace(point)
+                    collPoints = [worldPoint]
+                } else if (dis < minDis + 0.5) {
+                    collPoints.push(worldPoint)
                 }
             }
         }
 
         for (let point of this.points) {
             for (let face of polygon.sides) {
-                let dis = minDisToLineSeg(polygon.toWorldSpace(face.from), polygon.toWorldSpace(face.to), this.toWorldSpace(point))
+                let worldPoint = this.toWorldSpace(point)
+                let dis = minDisToLineSeg(polygon.toWorldSpace(face.from), polygon.toWorldSpace(face.to), worldPoint)
 
-                if (dis < minDis) {
+                if (dis < minDis - 0.5) {
                     minDis = dis;
-                    collPoint = this.toWorldSpace(point)
+                    collPoints = [worldPoint]
+                } else if (dis < minDis + 0.5) {
+                    collPoints.push(worldPoint)
                 }
             }
         }
 
         if (debug) {
-            ctx.fillStyle = "rgb(255,0,0)"
-            ctx.fillRect(collPoint.x, collPoint.y, 10, 10)
+            collPoints.forEach(point => {
+                ctx.fillStyle = "rgb(255,0,0)"
+                ctx.fillRect(point.x, point.y, 10, 10)
+            });
         }
 
-        return collPoint
+        return collPoints
     }
 
-    resolveCollision(polygon, mvt, normal, collisionPoint, ctx) {
+    resolveCollision(polygon, mvt, normal, collisionPoints) {
         if (this.anchored && polygon.anchored) {
             // return
         } else if (this.anchored) {
@@ -294,49 +478,79 @@ export class Polygon {
             polygon.pos.add(normal.clone().scale(mvt / 2))
         }
 
-        let collArm1 = collisionPoint.clone().subtract(this.pos)
-        let rotVel1 = new Vector2(-this.rotVel * collArm1.y, this.rotVel * collArm1.x)
-        let closVel1 = this.vel.clone().add(rotVel1)
+        let impulses = []
+        let collArm1s = []
+        let collArm2s = []
 
-        let collArm2 = collisionPoint.clone().subtract(polygon.pos)
-        let rotVel2 = new Vector2(-polygon.rotVel * collArm2.y, polygon.rotVel * collArm2.x)
-        let closVel2 = polygon.vel.clone().add(rotVel2)
+        collisionPoints.forEach(collPoint => {
+            let collArm1 = collPoint.clone().subtract(this.pos)
+            let rotVel1 = new Vector2(-this.rotVel * collArm1.y, this.rotVel * collArm1.x)
+            let closVel1 = this.vel.clone().add(rotVel1)
 
-        // console.log(collArm1, rotVel1, closVel1)
-        // console.log(collArm2, rotVel2, closVel2)
+            let collArm2 = collPoint.clone().subtract(polygon.pos)
+            let rotVel2 = new Vector2(-polygon.rotVel * collArm2.y, polygon.rotVel * collArm2.x)
+            let closVel2 = polygon.vel.clone().add(rotVel2)
 
-        let impAug1 = collArm1.cross(normal)
-        impAug1 = impAug1 * impAug1 * this.invI
-        let impAug2 = collArm2.cross(normal)
-        impAug2 = impAug2 * impAug2 * polygon.invI
+            collArm1s.push(collArm1)
+            collArm2s.push(collArm2)
 
-        // console.log(impAug1, impAug2)
+            let impAug1 = collArm1.cross(normal)
+            impAug1 = impAug1 * impAug1 * this.invI
+            let impAug2 = collArm2.cross(normal)
+            impAug2 = impAug2 * impAug2 * polygon.invI
 
-        let relVel = closVel1.clone().subtract(closVel2)
-        let sepVel = relVel.dot(normal)
-        let newSepVel = -sepVel * Math.min(this.e, polygon.e)
-        let vSepDiff = newSepVel - sepVel
+            let relVel = closVel1.clone().subtract(closVel2)
+            let sepVel = relVel.dot(normal)
+            let newSepVel = -sepVel * Math.min(this.e, polygon.e)
+            let vSepDiff = newSepVel - sepVel
 
-        // console.log(relVel, sepVel, newSepVel, vSepDiff)
-        let impulse = vSepDiff / (this.invMass + polygon.invMass + impAug1 + impAug2)
-        let impulseVec = normal.clone().scale(impulse)
+            let impulse = vSepDiff / (this.invMass + polygon.invMass + impAug1 + impAug2) / collisionPoints.length
+            let impulseVec = normal.clone().scale(impulse)
 
-        this.vel.add(impulseVec.clone().scale(this.invMass))
-        polygon.vel.subtract(impulseVec.clone().scale(polygon.invMass))
+            impulses.push(impulseVec)
 
-        this.rotVel += this.invI * collArm1.cross(impulseVec)
-        polygon.rotVel -= polygon.invI * collArm2.cross(impulseVec)
+            //Friction
+            let tangent = relVel.clone().subtract(normal.clone().scale(relVel.dot(normal)))
+            if (tangent.magnitude() < 0.005) { return } //tangent is near zero
+            tangent.normalize()
 
+            let frictionAug1 = collArm1.cross(tangent)
+            frictionAug1 = frictionAug1 * frictionAug1 * this.invI
+            let frictionAug2 = collArm2.cross(tangent)
+            frictionAug2 = frictionAug2 * frictionAug2 * polygon.invI
 
-        console.log(normal.dot(impulseVec))
-        let normalForce = normal.dot(impulseVec)
-        let frictionDirection = new Vector2(-normal.y, normal.x)
+            let impulseFriction = relVel.dot(tangent) / (frictionAug1 + frictionAug2 + this.invMass + polygon.invMass) / collisionPoints.length
 
-        this.applyImpulse(frictionDirection.scale(normalForce), collisionPoint.clone())
-        polygon.applyImpulse(frictionDirection.scale(-normalForce), collisionPoint.clone())
+            let sf = (this.sf + polygon.sf) * .5
+            let df = (this.df + polygon.df) * .5
+
+            let impFricVec
+            if (impulseFriction <= impulse * sf) {
+                impFricVec = tangent.scale(-impulseFriction)
+            } else {
+                impFricVec = tangent.clone().scale(impulse * df)
+            }
+
+            collArm1s.push(collArm1)
+            collArm2s.push(collArm2)
+
+            impulses.push(impFricVec)
+        });
+
+        impulses.forEach((impulse, index) => {
+            let collArm1 = collArm1s[index]
+            let collArm2 = collArm2s[index]
+
+            this.vel.add(impulse.clone().scale(this.invMass))
+            polygon.vel.subtract(impulse.clone().scale(polygon.invMass))
+
+            this.rotVel += this.invI * collArm1.cross(impulse)
+            polygon.rotVel -= polygon.invI * collArm2.cross(impulse)
+        });
+
     }
 
-    bruteForceTestCollision(polygon, ctx) {
+    testCollision(polygon, ctx) {
         let minOverlap = Number.MAX_VALUE
         let normal
 
@@ -386,7 +600,7 @@ export class Polygon {
             let selfMaxAxis = axis.clone().scale(selfProj.maxMag / 5).add(polygon.pos)
             let compMinAxis = axis.clone().scale(compProj.minMag / 5).add(polygon.pos)
             let compMaxAxis = axis.clone().scale(compProj.maxMag / 5).add(polygon.pos)
-            
+
             if (debug) {
                 ctx.fillStyle = (overlap) ? "rgb(0,255,255)" : "rgb(0,0,255)"
                 ctx.fillRect(selfMinAxis.x - 2.5, selfMinAxis.y - 2.5, 5, 5)
@@ -408,45 +622,8 @@ export class Polygon {
             normal.scale(-1)
         }
 
-        let collisionPoint = this.findCollidingPoint(polygon, ctx)
-        return { mvt: minOverlap, normal: normal, point: collisionPoint }
-    }
-
-
-    testProjection(polygon) {
-        let minOverlap = Number.MAX_VALUE
-        let minFace
-        for (let i = 0; i < this.sides.length; i++) {
-            let face = this.sides[i]
-            let selfProj = this.selfProjection[i]
-            let compProj = polygon.projectToAxis(face.normal)
-
-            let overlap = this.segmentOverlaps(selfProj.minMag, selfProj.maxMag, compProj.minMag, compProj.maxMag)
-            if (overlap == false) {
-                return false
-            } else if (minOverlap > overlap) {
-                minOverlap = overlap
-                minFace = face
-            }
-        }
-        return { overlap: minOverlap, face: minFace }
-    }
-
-    testCollision(polygon) {
-        let selfOverlap = this.testProjection(polygon)
-        let compOverlap = polygon.testProjection(this)
-
-        let minOverlap
-        let minFace
-        if (selfOverlap.overlap <= compOverlap.overlap) {
-            minOverlap = selfOverlap.overlap
-            minFace = selfOverlap.face
-        } else {
-            minOverlap = compOverlap.overlap
-            minFace = compOverlap.face
-        }
-
-        if (selfOverlap == false || compOverlap == false) { return false } else { return { overlap: minOverlap, face: minFace } }
+        let collisionPoints = this.findCollidingPoint(polygon, ctx)
+        return { mvt: minOverlap, normal: normal, points: collisionPoints }
     }
 
     tick(dt, t) {

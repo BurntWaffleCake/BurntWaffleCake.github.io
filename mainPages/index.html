@@ -34,6 +34,8 @@
 
 		color: lightgray;
 		background-color: #282828;
+		background-color: #111111;
+		background-color: #282828;
 		overflow: hidden;
 	}
 
@@ -95,12 +97,22 @@
 		/* border: 3px solid red; */
 		text-align: justify;
 	}
+
+	#background-effect {
+		position: absolute;
+		box-sizing: border-box;
+		width: 100vw;
+		height: 100vh;
+		z-index: -1;
+	}
 </style>
 
 <body>
 	<object id="global-nav-object" data="../articleTemplateObjects/articleGlobalNavObjectHome.html"></object>
 
 	<div id="vanta"></div>
+
+	<canvas id="background-effect"></canvas>
 
 	<div id="about-me-content">
 		<div id="intro" class="section">
@@ -140,5 +152,7 @@
 
 	</div>
 </body>
+
+<script defer src="./index.js"></script>
 
 </html>

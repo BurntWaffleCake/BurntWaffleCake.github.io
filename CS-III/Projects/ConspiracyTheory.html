@@ -3,59 +3,189 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../styles/articlestylesheet.css">
-    <link rel="stylesheet" href="https://fonts.google.com/specimen/Lora">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../styles/articlestylesheet.css">
+  <link rel="stylesheet" href="https://fonts.google.com/specimen/Lora">
 </head>
 
 <style>
-    .image-holder {
-      max-width: 100%;
-    }
-  
-    .image-holder img {
-      max-width: 100%;
-      height: auto;
-      background-color: white;
-    }
-  
-    .article-nav-header {
-      font-size: larger;
-    }
-  </style>
+  .image-holder {
+    max-width: 100%;
+  }
+
+  .image-holder img {
+    max-width: 100%;
+    height: auto;
+    background-color: white;
+  }
+
+  .article-nav-header {
+    font-size: larger;
+  }
+</style>
 
 <body>
-    <object id="global-nav-object" data="../../articleTemplateObjects/articleGlobalNavObject.html"></object>
+  <object id="global-nav-object" data="../../articleTemplateObjects/articleGlobalNavObject.html"></object>
 
-    <div id="article-body">
-        <object data="../../articleTemplateObjects/csArticleNavObject.html"></object>
+  <div id="article-body">
+    <object data="../../articleTemplateObjects/csArticleNavObject.html"></object>
 
-        <div class="vertical-divider"></div>
+    <div class="vertical-divider"></div>
 
-        <article id="article-contents">
-            <h1>Conspiracy Theories</h1>
-            <h2>The Basics of Recommendation Algorithms</h2>
-            <h2>The Feedback Loop</h2>
-            <h2>Conspiracy Theories & Algorithmic Amplification</h2>
-            <h2>Platform Incentives</h2>
-            <h2>Potential for Exploitation</h2>
-        </article>
+    <article id="article-contents">
+      <h1>Conspiracy Theories</h1>
+      <h2 id="01_00">The Basics of Recommendation Algorithms</h2>
+      <p>
+        Recommendation algorithms are commonly used in online applications such as social media, ads, and marketing
+        sites. These algorithms are designed to find the best fitting data sets and match them to people most likely to
+        relate and invest in them. Companies use the algorithms for applications such as recommending relevant products
+        in advertisements or finding related topics when searching for certain ideas (as Google does when you search for
+        things). Who main recommendation paradigms exist: collaborative and content. Each conform to different datasets
+        and have their own methods of categorizing information and compiling such information into results.
+      </p>
 
-        <div class="vertical-divider"></div>
+      <h3 id="01_01">Collaborative Filtering</h3>
+      <p>
+        Collaborative filtering uses past interactions between users and items to produce new recommendations and
+        relevant data. Past interactions are stored in a "user-item interactions matrix" which holds different metrics
+        regarding user's interactions with the item (rating, time spent on data, click interactions, etc). These
+        matrices are then used to estimate similar items and/or users to group data points into clusters of similar
+        information.
+        <br />
+        <br />
 
-        <nav id="article-bookmarks">
-            <a href="#Abstract" class="article-nav-link article-nav-header">Conspiracy Theories</a>
-            <a href="#Abstract" class="article-nav-link article-nav-header">The Basics of Recommendation Algorithms</a>
-            <a href="#Abstract" class="article-nav-link article-nav-header">The Feedback Loop</a>
-            <a href="#Abstract" class="article-nav-link article-nav-header">Conspiracy Theories & Algorithmic Amplification</a>
-            <a href="#Abstract" class="article-nav-link article-nav-header">Platform Incentives</a>
-            <a href="#Abstract" class="article-nav-link article-nav-header">Potential for Exploitation</a>
-        </nav>
-    </div>
+        Collaborative filtering is divided into two subcategories: memory based and model based. Memory based approaches
+        work directly with the matrix's raw values and search for similar data (find similar users by comparing matrix
+        values and recommend items these neighbors find interest in). Model based approaches use an underlying
+        generative model that tries to predict new related data points using that model.
+        <br />
+        <br />
+
+        Some benefits that collaborative filtering has is that it requires no starting data to implement and instead
+        reads information that users generate as they interact with the product. This means that more interactions and
+        time result in better recommendations due to the dataset getting larger and more interactions are held. However,
+        this does mean that collaborative filtering is weak during the early stages of the product where no data about
+        its users are present meaning no recommendations can be made to new users. This problem is also present in users
+        with very little interactions which will result in inaccurate predictions by the algorithm. To alleviate this
+        effect, random or new data points can be chosen and given to random users which is called the random strategy.
+        Another strategy used is the maximum expectation strategy where generally popular data points or completely new
+        data points are given to the most active users. Along with this, the exploration strategy can also be used where
+        sets of various items with similar structures are given to new users or new items are given to similar user.
+      </p>
+
+      <h3 id="01_02">Content Filtering</h3>
+      <p>
+        Content filtering uses additional available data such as age, sex, occupation, and other initial data to form
+        recommendations. Content filtering build models off of these available datasets to recommend data points using
+        observed user-item interactions. For example, if a person generally watches action oriented films and movies
+        more than other genres, the model will recommend more actions films to that person.
+        <br />
+        The initial issues present in collaborative filtering is less pronounced in content filtering as new data points
+        can be recommended to new users using already available data on them. The problem of completely new users or
+        ones with previously unrecorded interests persists; however, these drawbacks are solved as more and more data is
+        added into the system.
+      </p>
+
+      <h2 id="02_00">The Feedback Loop</h2>
+      <h3 id="02_01">What Is It?</h3>
+      <p>A feedback loop is a part of a system where outputs of certain operations are used as inputs of the same
+        operation in the future. Recommendation algorithms use feedback loops to iteratively generate new data points
+        for the system to use as stepping stones to develop more accurate and relevant topics users may find interest
+        in.</p>
+
+      <h3 id="02_02">Feedback Loops in Recommendation Algorithms</h3>
+      <p>
+        Most recommendation algorithms use some sort of built dataset to recommend new information to users. These
+        datasets are created using the already available data about the user or are generated and stored as the user
+        interacts with the product. The growth of these datasets are what cause feedback loops to form where new data is
+        closely related to older data forming biases and causing the algorithm to focus more on those similar topics.
+        This causes an effect referred to as the "filter bubble" or "echo chamber" where very similar topics are
+        reiterated to the user in increasing intensity causing the user interacts with the same topics and forming a
+        feedback loop.
+      </p>
+
+      <h3 id="02_03">So What?</h3>
+      <p>
+        As companies try to get their users to engage more with their product, many users will find themselves getting
+        recommended biased or "generic" content that conforms to their interests. This may lead to tunnel visioning or
+        false belief in topics that fail to branch out into other relevant or new topics which may lead to
+        misinformation, misrepresentation, among many other problems.
+      </p>
+
+      <h2 id="03_00">Conspiracy Theories & Algorithmic Amplification</h2>
+      <h3 id="03_01">Conspiracy Theory Catastrophe</h3>
+      <p>As companies look for ways to increase user engagement and metrics such as look time, shares,
+        clicks, etc. a general trend that has emerged is that people tend to engage much more with sensationalistic
+        content such as conspiracy theories or conflict / internet drama. The fluctuating, diverse, and magnitudal cast
+        of user reactions to these types of content had resulted in an increased priority for such content to be shared
+        with newer and engaging people. As discussed in the paragraphs above talking about recommendation algorithms and
+        feedback loops, this increased level of engage builds up at rates much faster than regular articles and content
+        which in turn recommends these topics to newer and more individuals increasing engagement even more.
+        <br />
+        <br />
+        What this means is that topics regarding very polarized opinions or outlandish and outright wrong opinions can
+        be spread extremely quickly through increased user interactions resulting in mass misinformation and
+        misunderstandings. This is further emphasized by the general laziness of the average internet surfer, many who
+        rely on single, unreliable sources, and who believe what others say without much thought.
+      </p>
+      <h2 id="04_00">Platform Incentives</h2>
+      <h3 id="04_01">The Basis of the Problem</h3>
+      <p>
+        Many of the companies and applications where this problem exists use user interactions as their main source of
+        relevancy and income which only incentivize the promotion of these types of conversations and topics even more.
+        This type of behavior especially plagues information outlets such as news and article websites where titles are
+        often misleading, hyperbole is generously sprinkled throughout, and information is just outright false. The fact
+        that these types of articles are what people find most interesting and the strategies used to generate visits is
+        what fuels the engine for conspiracy theories and other types of misleading content to flourish.
+      </p>
+      <h2 id="05_00">Potential for Exploitation</h2>
+      <h3 id="05_01">Escalation</h3>
+      <p>
+        In many cases, the misinformation spread throughout the internet through conspiracy theories and other forms of
+        sensationalistic articles are generally ridiculed, made fun of, and passed on as outlandish ideas that nobody
+        would believe in. However, the implications and powerful effects that these types of topics can have can easily
+        be used to exploit the human mind. Objectives such as propaganda, targeted attacks, and many other forms of
+        dangerous and destructive behavior can lead to devastating consequences.
+      </p>
+      <h3 id="05_02">What Can We Do?</h3>
+      <p>
+        Most of the problems present in conspiracy theories and misleading information hubs can be alleviated through
+        thorough researching and exploration. As a matter of fact, many of these theories only require a line of
+        reasoning or common sense to solve. Making sure to check multiple credible sources of information, keep an open
+        mind, and carefully work through a concrete line of reasoning can easily knock out the most obvious falsities
+        and result in a deeper level of perception towards misleading information.
+      </p>
+
+    </article>
+
+    <div class="vertical-divider"></div>
+
+    <nav id="article-bookmarks">
+      <a href="#01_00" class="article-nav-link article-nav-header">The Basics of Recommendation Algorithms</a>
+      <a href="#01_01" class="article-nav-link">Collaborative Filtering</a>
+      <a href="#01_02" class="article-nav-link">Content Filtering</a>
+      
+      <a href="#02_00" class="article-nav-link article-nav-header">The Feedback Loop</a>
+      <a href="#02_01" class="article-nav-link">What Is It?</a>
+      <a href="#02_02" class="article-nav-link">Feedback Loops in Recommendation Algorithms</a>
+      <a href="#02_03" class="article-nav-link">So What?</a>
+      
+      <a href="#03_00" class="article-nav-link article-nav-header">Conspiracy Theories & Algorithmic
+        Amplification</a>
+      <a href="#03_01" class="article-nav-link">Conspiracy Theory Catastrophe</a>
+      
+      <a href="#04_00" class="article-nav-link article-nav-header">Platform Incentives</a>
+      <a href="#04_01" class="article-nav-link">The Basis of the Problem</a>
+      
+      <a href="#05_00" class="article-nav-link article-nav-header">Potential for Exploitation</a>
+      <a href="#05_01" class="article-nav-link">Escalation</a>
+      <a href="#05_02" class="article-nav-link">What Can We Do?</a>
+    </nav>
+  </div>
 </body>
 
 </html>
