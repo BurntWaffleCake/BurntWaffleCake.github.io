@@ -104,15 +104,14 @@ function calculate(dt, t) {
       // model.vel.add(gravity.clone().scale(dti))
       polygon.tick(dti, t);
 
+      if (!polygon.anchored) {
+        // applyCollisionBounds(polygon)
+      }
+
       for (let collPoly of polygons) {
         if (collPoly === polygon) {
           continue;
         }
-
-        if (!polygon.boundsCollide(collPoly)) {
-          continue;
-        }
-
         let result = polygon.testCollision(collPoly, ctx);
         if (result == false) {
           continue;
@@ -261,7 +260,7 @@ function startup() {
   // poly2 = new polyModule.Wall(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), 500, 0, new Vector2(0, 0), 0)
   polygons.push(poly2);
 
-  for (let i = 0; i < 35; i++) {
+  for (let i = 0; i < 25; i++) {
     polygons.push(
       new polyModule.RegularPolygon(
         new Vector2(
