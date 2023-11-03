@@ -17,8 +17,6 @@ function clearCanvas(ctx) {
 }
 
 function render(dt) {
-  model.render(ctx);
-
   for (let model of models) {
     model.render(ctx);
   }
@@ -26,6 +24,10 @@ function render(dt) {
   for (let polygon of polygons) {
     polygon.render(ctx);
   }
+
+  let delta = poly2.pos.clone().add(poly2.toObjectSpace(poly1.pos));
+  ctx.fillStyle = "rbg(0,0,255)";
+  ctx.fillRect(delta.x, delta.y, 10, 10);
 
   // newPoly.render(ctx);
 }
@@ -55,20 +57,25 @@ function applyCollisionBounds(polygon) {
   }
 }
 
+let gravity = new Vector2(1000, 0);
 let substeps = 4;
 function calculate(dt, t) {
   if (paused) {
     return;
   }
 
+  gravity.set(1000 * Math.cos(t), 1000 * Math.sin(t));
+
+  poly2.rot += dt * ((10 * Math.PI) / 180);
+
   for (let model of models) {
     for (let i = 0; i < substeps; i++) {
       let dti = dt / substeps;
-      model.vel.y += 1000 * dti;
+      model.vel.add(gravity.clone().scale(dti));
       model.tick(dti, t);
       // if (!polygon.anchored) {
       //     // applyCollisionBounds(polygon)
-      // }
+      // }`
 
       for (let collPoly of polygons) {
         let results = model.testPolygonCollision(collPoly, ctx);
@@ -92,16 +99,17 @@ function calculate(dt, t) {
   for (let polygon of polygons) {
     for (let i = 0; i < substeps; i++) {
       let dti = dt / substeps;
+      polygon.vel.add(gravity.clone().scale(dti));
 
-      polygon.vel.y += 1000 * dti;
+      // model.vel.add(gravity.clone().scale(dti))
       polygon.tick(dti, t);
-
-      if (!polygon.anchored) {
-        // applyCollisionBounds(polygon)
-      }
 
       for (let collPoly of polygons) {
         if (collPoly === polygon) {
+          continue;
+        }
+
+        if (!polygon.boundsCollide(collPoly)) {
           continue;
         }
 
@@ -131,9 +139,9 @@ function loop(t) {
     let delta = new Vector2(
       prevMouseEvent.clientX,
       prevMouseEvent.clientY
-    ).subtract(model.pos);
+    ).subtract(poly1.pos);
     // model.pos.set(prevMouseEvent.clientX, prevMouseEvent.clientY)
-    model.applyImpulse(delta.scale(model.mTot / 2), model.pos);
+    poly1.applyImpulse(delta.scale(poly1.mass / 2), poly1.pos);
   }
 
   calculate(dt, t / 1000);
@@ -160,6 +168,10 @@ function startup() {
     undefined
   );
   top.anchored = true;
+  top.mass = 0;
+  top.invMass = 0;
+  top.i = 0;
+  top.invI = 0;
   polygons.push(top);
 
   let bottom = new polyModule.Box(
@@ -170,6 +182,10 @@ function startup() {
     undefined
   );
   bottom.anchored = true;
+  bottom.mass = 0;
+  bottom.invMass = 0;
+  bottom.i = 0;
+  bottom.invI = 0;
   polygons.push(bottom);
 
   let left = new polyModule.Box(
@@ -180,6 +196,10 @@ function startup() {
     undefined
   );
   left.anchored = true;
+  left.mass = 0;
+  left.invMass = 0;
+  left.i = 0;
+  left.invI = 0;
   polygons.push(left);
 
   let right = new polyModule.Box(
@@ -190,6 +210,10 @@ function startup() {
     undefined
   );
   right.anchored = true;
+  right.mass = 0;
+  right.invMass = 0;
+  right.i = 0;
+  right.invI = 0;
   polygons.push(right);
 
   model = new polyModule.Model(
@@ -237,7 +261,7 @@ function startup() {
   // poly2 = new polyModule.Wall(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), 500, 0, new Vector2(0, 0), 0)
   polygons.push(poly2);
 
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 35; i++) {
     polygons.push(
       new polyModule.RegularPolygon(
         new Vector2(
@@ -250,18 +274,16 @@ function startup() {
         undefined,
         180 * Math.random()
       )
+
+      //         // new polyModule.Box(
+      //         //     new Vector2(ctx.canvas.width * Math.random(), ctx.canvas.height * Math.random()),
+      //         //     new Vector2(25 + Math.random() * 100, 25 + Math.random() * 100),
+      //         //     0,
+      //         //     undefined,
+      //         //     180 * Math.random(),
+      //         // )
     );
   }
-
-  //         // new polyModule.Box(
-  //         //     new Vector2(ctx.canvas.width * Math.random(), ctx.canvas.height * Math.random()),
-  //         //     new Vector2(25 + Math.random() * 100, 25 + Math.random() * 100),
-  //         //     0,
-  //         //     undefined,
-  //         //     180 * Math.random(),
-  //         // )
-  //     )
-  // }
 
   window.requestAnimationFrame(loop);
 }

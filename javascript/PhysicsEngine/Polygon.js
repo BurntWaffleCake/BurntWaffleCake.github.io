@@ -1,6 +1,10 @@
 import { Vector2 } from "./Vector2.js";
 
+<<<<<<< HEAD
 const debug = true;
+=======
+const debug = false;
+>>>>>>> optimization
 
 function minDisToLineSeg(a, b, e) {
   let ab = b.clone().subtract(a);
@@ -310,11 +314,33 @@ export class Polygon {
     this.i = (1 / 2) * this.mass * this.radius * this.radius;
     this.invI = 1 / this.i;
 
+<<<<<<< HEAD
     // this.fillColor = "rgb("+ String(Math.floor(Math.random() * 255)) +","+ String(Math.floor(Math.random() * 255)) +","+ String(Math.floor(Math.random() * 255)) +")"
     this.fillColor = "rgb(255, 255, 255)";
     this.strokeColor = "rgb(255, 255, 255)";
   }
 
+=======
+    this.fillColor =
+      "rgb(" +
+      String(Math.floor(Math.random() * 255)) +
+      "," +
+      String(Math.floor(Math.random() * 255)) +
+      "," +
+      String(Math.floor(Math.random() * 255)) +
+      ")";
+    // this.fillColor = "rgb(255, 255, 255)"
+    this.strokeColor = "rgb(255, 255, 255)";
+  }
+
+  boundsCollide(polygon) {
+    return (
+      (polygon.pos.x - this.pos.x) ** 2 + (polygon.pos.y - this.pos.y) ** 2 <=
+      (this.radius + polygon.radius) ** 2
+    );
+  }
+
+>>>>>>> optimization
   getArea() {
     let crossSum = 0;
     for (let i = 0; i < this.points.length - 1; i++) {
@@ -332,8 +358,12 @@ export class Polygon {
   }
 
   toObjectSpace(vector = Vector2.prototype) {
+<<<<<<< HEAD
     let delta = vector.clone().subtract(this.pos);
     return this.toWorldSpace(delta);
+=======
+    return vector.clone().subtract(this.pos).rotate(-this.rot);
+>>>>>>> optimization
   }
 
   toWorldSpace(vector) {
@@ -365,7 +395,10 @@ export class Polygon {
 
   applyImpulse(impulse, pos) {
     let collArm = pos.clone().subtract(this.pos);
+<<<<<<< HEAD
     console.log(impulse.clone().scale(this.invMass));
+=======
+>>>>>>> optimization
     this.vel.add(impulse.clone().scale(this.invMass));
     this.rotVel += this.invI * collArm.cross(impulse);
   }
@@ -389,7 +422,11 @@ export class Polygon {
       ctx.lineTo(point.x, point.y);
     }
     ctx.lineTo(worldCoords[0].x, worldCoords[0].y);
+<<<<<<< HEAD
     // ctx.fill()
+=======
+    ctx.fill();
+>>>>>>> optimization
     ctx.stroke();
 
     //draw foward
@@ -491,10 +528,17 @@ export class Polygon {
           worldPoint
         );
 
+<<<<<<< HEAD
         if (dis < minDis - 0.5) {
           minDis = dis;
           collPoints = [worldPoint];
         } else if (dis < minDis + 0.5) {
+=======
+        if (dis < minDis - 0.25) {
+          minDis = dis;
+          collPoints = [worldPoint];
+        } else if (dis < minDis + 0.25) {
+>>>>>>> optimization
           collPoints.push(worldPoint);
         }
       }
@@ -509,10 +553,17 @@ export class Polygon {
           worldPoint
         );
 
+<<<<<<< HEAD
         if (dis < minDis - 0.5) {
           minDis = dis;
           collPoints = [worldPoint];
         } else if (dis < minDis + 0.5) {
+=======
+        if (dis < minDis - 0.25) {
+          minDis = dis;
+          collPoints = [worldPoint];
+        } else if (dis < minDis + 0.25) {
+>>>>>>> optimization
           collPoints.push(worldPoint);
         }
       }
@@ -540,6 +591,7 @@ export class Polygon {
       polygon.pos.add(normal.clone().scale(mvt / 2));
     }
 
+<<<<<<< HEAD
     let impulses = [];
     let collArm1s = [];
     let collArm2s = [];
@@ -681,6 +733,225 @@ export class Polygon {
       let axis = polygon
         .toWorldSpace(face.normal.clone())
         .subtract(polygon.pos);
+=======
+    if (polygon.mass <= 0 && this.mass <= 0) {
+      return;
+    }
+
+    let impulses = [];
+    let impulseList = [];
+    let frictionImpulses = [];
+    let collArm1s = [];
+    let collArm2s = [];
+
+    collisionPoints.forEach((collPoint, index) => {
+      let collArm1 = collPoint.clone().subtract(this.pos);
+      let collArm2 = collPoint.clone().subtract(polygon.pos);
+
+      collArm1s.push(collArm1);
+      collArm2s.push(collArm2);
+
+      let rotVel1 = new Vector2(
+        -this.rotVel * collArm1.y,
+        this.rotVel * collArm1.x
+      );
+      let rotVel2 = new Vector2(
+        -polygon.rotVel * collArm2.y,
+        polygon.rotVel * collArm2.x
+      );
+
+      let closVel1 = this.vel.clone().add(rotVel1);
+      let closVel2 = polygon.vel.clone().add(rotVel2);
+
+      let impAug1 = collArm1.cross(normal);
+      impAug1 = impAug1 * impAug1 * this.invI;
+      let impAug2 = collArm2.cross(normal);
+      impAug2 = impAug2 * impAug2 * polygon.invI;
+
+      let relVel = closVel1.clone().subtract(closVel2);
+      let sepVel = relVel.dot(normal);
+      let newSepVel = -sepVel * Math.min(this.e, polygon.e);
+      let vSepDiff = newSepVel - sepVel;
+
+      let impulse =
+        vSepDiff /
+        (this.invMass + polygon.invMass + impAug1 + impAug2) /
+        collisionPoints.length;
+      let impulseVec = normal.clone().scale(impulse);
+
+      impulseList.push(impulse);
+      impulses.push(impulseVec);
+    });
+
+    impulses.forEach((impulse, index) => {
+      let collArm1 = collArm1s[index];
+      let collArm2 = collArm2s[index];
+
+      this.vel.add(impulse.clone().scale(this.invMass));
+      polygon.vel.subtract(impulse.clone().scale(polygon.invMass));
+
+      this.rotVel += this.invI * collArm1.cross(impulse);
+      polygon.rotVel -= polygon.invI * collArm2.cross(impulse);
+    });
+
+    collisionPoints.forEach((collPoint, index) => {
+      let collArm1 = collPoint.clone().subtract(this.pos);
+      let collArm2 = collPoint.clone().subtract(polygon.pos);
+
+      collArm1s[index] = collArm1;
+      collArm2s[index] = collArm2;
+
+      let rotVel1 = new Vector2(
+        -this.rotVel * collArm1.y,
+        this.rotVel * collArm1.x
+      );
+      let rotVel2 = new Vector2(
+        -polygon.rotVel * collArm2.y,
+        polygon.rotVel * collArm2.x
+      );
+
+      let closVel1 = this.vel.clone().add(rotVel1);
+      let closVel2 = polygon.vel.clone().add(rotVel2);
+
+      let relVel = closVel1.clone().subtract(closVel2);
+      let tangent = relVel
+        .clone()
+        .subtract(normal.clone().scale(relVel.dot(normal)));
+      if (tangent.magnitude() < 0.005) {
+        return;
+      } //tangent is near zero
+      tangent.normalize();
+
+      let frictionAug1 = collArm1.cross(tangent);
+      frictionAug1 = frictionAug1 * frictionAug1 * this.invI;
+      let frictionAug2 = collArm2.cross(tangent);
+      frictionAug2 = frictionAug2 * frictionAug2 * polygon.invI;
+
+      let impulseFriction =
+        relVel.dot(tangent) /
+        (frictionAug1 + frictionAug2 + this.invMass + polygon.invMass) /
+        collisionPoints.length;
+
+      let sf = (this.sf + polygon.sf) * 0.5;
+      let df = (this.df + polygon.df) * 0.5;
+
+      let impFricVec;
+      let impulse = impulseList[index];
+      if (impulseFriction <= impulse * sf) {
+        impFricVec = tangent.scale(-impulseFriction);
+      } else {
+        impFricVec = tangent.clone().scale(impulse * df);
+      }
+
+      frictionImpulses.push(impFricVec);
+    });
+
+    frictionImpulses.forEach((impulse, index) => {
+      let collArm1 = collArm1s[index];
+      let collArm2 = collArm2s[index];
+
+      this.vel.add(impulse.clone().scale(this.invMass));
+      polygon.vel.subtract(impulse.clone().scale(polygon.invMass));
+
+      this.rotVel += this.invI * collArm1.cross(impulse);
+      polygon.rotVel -= polygon.invI * collArm2.cross(impulse);
+    });
+  }
+
+  testCollision(polygon, ctx) {
+    let minOverlap = Number.MAX_VALUE;
+    let normal;
+
+    for (let face of this.sides) {
+      let axis = this.toWorldSpace(face.normal.clone()).subtract(this.pos);
+>>>>>>> optimization
+
+      let selfProj = this.projectToAxis(axis);
+      let compProj = polygon.projectToAxis(axis);
+
+      let overlap = this.segmentOverlaps(
+        selfProj.minMag,
+        selfProj.maxMag,
+        compProj.minMag,
+        compProj.maxMag
+      );
+      if (overlap == false) {
+        return false;
+      } else if (overlap < minOverlap) {
+        minOverlap = overlap;
+        normal = axis;
+      }
+<<<<<<< HEAD
+      let selfMinAxis = axis
+        .clone()
+        .scale(selfProj.minMag / 5)
+        .add(polygon.pos);
+      let selfMaxAxis = axis
+        .clone()
+        .scale(selfProj.maxMag / 5)
+        .add(polygon.pos);
+      let compMinAxis = axis
+        .clone()
+        .scale(compProj.minMag / 5)
+        .add(polygon.pos);
+      let compMaxAxis = axis
+        .clone()
+        .scale(compProj.maxMag / 5)
+        .add(polygon.pos);
+=======
+      // debug render //
+      let selfMinAxis = axis
+        .clone()
+        .scale(selfProj.minMag / 5)
+        .add(this.pos);
+      let selfMaxAxis = axis
+        .clone()
+        .scale(selfProj.maxMag / 5)
+        .add(this.pos);
+      let compMinAxis = axis
+        .clone()
+        .scale(compProj.minMag / 5)
+        .add(this.pos);
+      let compMaxAxis = axis
+        .clone()
+        .scale(compProj.maxMag / 5)
+        .add(this.pos);
+>>>>>>> optimization
+
+      if (debug) {
+        ctx.fillStyle = overlap ? "rgb(0,255,255)" : "rgb(0,0,255)";
+        ctx.fillRect(selfMinAxis.x - 2.5, selfMinAxis.y - 2.5, 5, 5);
+        ctx.fillRect(selfMaxAxis.x - 2.5, selfMaxAxis.y - 2.5, 5, 5);
+        ctx.fillStyle = overlap ? "rgb(255, 0 ,255)" : "rgb(255,0,0)";
+        ctx.fillRect(compMinAxis.x - 2.5, compMinAxis.y - 2.5, 5, 5);
+        ctx.fillRect(compMaxAxis.x - 2.5, compMaxAxis.y - 2.5, 5, 5);
+      }
+    }
+
+<<<<<<< HEAD
+    ctx.strokeStyle = "rgb(255,0,0)";
+    ctx.beginPath();
+    ctx.moveTo(this.pos.x, this.pos.y);
+    ctx.lineTo(
+      this.pos.x + normal.x * minOverlap,
+      this.pos.y + normal.y * minOverlap
+    );
+    ctx.stroke();
+
+    let delta = polygon.pos.clone().subtract(this.pos).normalize();
+    if (delta.dot(normal) < 0) {
+      normal.scale(-1);
+    }
+
+    let collisionPoints = this.findCollidingPoint(polygon, ctx);
+    return { mvt: minOverlap, normal: normal, points: collisionPoints };
+  }
+
+=======
+    for (let face of polygon.sides) {
+      let axis = polygon
+        .toWorldSpace(face.normal.clone())
+        .subtract(polygon.pos);
 
       let selfProj = this.projectToAxis(axis);
       let compProj = polygon.projectToAxis(axis);
@@ -742,6 +1013,7 @@ export class Polygon {
     return { mvt: minOverlap, normal: normal, points: collisionPoints };
   }
 
+>>>>>>> optimization
   tick(dt, t) {
     if (this.anchored) {
       this.vel.set(0, 0);
