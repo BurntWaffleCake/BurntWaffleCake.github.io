@@ -104,6 +104,7 @@ function calculate(dt, t) {
         if (collPoly === polygon) {
           continue;
         }
+
         let result = polygon.testCollision(collPoly, ctx);
         if (result == false) {
           continue;
