@@ -315,6 +315,13 @@ export class Polygon {
     this.strokeColor = "rgb(255, 255, 255)";
   }
 
+  boundsCollide(polygon) {
+    return (
+      (polygon.pos.x - this.pos.x) ** 2 + (polygon.pos.y - this.pos.y) ** 2 <=
+      (this.radius + polygon.radius) ** 2
+    );
+  }
+
   getArea() {
     let crossSum = 0;
     for (let i = 0; i < this.points.length - 1; i++) {
