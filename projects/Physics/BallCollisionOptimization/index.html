@@ -66,11 +66,38 @@
           grid cells not adjacent to the current grid cell, excluding them in the comparison. This can vastly decrease the number of comparisons needed per ball improving overall performance,
           especially with a larger number of balls.
         </p>
+
+        <div class="image-holder" style="display: flex; justify-content: center">
+          <img class="" style="width: 90%" src="./images/gridDiagram.drawio.svg" />
+        </div>
+
         <h3>Pros and Cons</h3>
         <p>
           The grid optimization is relatively simple to implement and easy to understand; however, there are also several cons to is usage. The optimization's simplicity is only extended to balls of
           the same size, a property which is exploited by the optimization by setting the grid's cell size to the ball's diameter. Even with this limitation, this optimization can still be used to
           simulate fluids and particle interactions.
+        </p>
+
+        <h3>Recursive Spatial Partitioning</h3>
+        <p>
+          The term "recursive spatial partitioning" can be attributed to a number of different types of spatial partitioning. Some of these include binary partitioning, octal and quad trees, and an
+          infinite number of other data structures that each follow the same concept of recursing. This type of spatial partitioning splits the workspace into equally sized partitions each of which
+          can then be split into their own partitions. For example, in binary space partitioning the workspace is split in half (hence the binary part of the optimization) recursively forming a binary
+          tree of sorts. This is similar to the spatial separation found in grid optimizations except it is not limited by the size of grid cells.
+        </p>
+
+        <div class="image-holder" style="display: flex; justify-content: center">
+          <img class="" style="width: 90%" src="./images/binarySpacePartitionDiagram.drawio.svg" />
+        </div>
+        <div class="image-holder" style="display: flex; justify-content: center">
+          <img class="" style="width: 20%" src="./images/binaryTree.drawio.svg" />
+        </div>
+
+        <h3>Pros and Cons</h3>
+        <p>
+          Recursive spatial partitioning is a simple concept that is harder to implement than optimizations such as grid optimization due to the non uniform size of each partition. The size of each
+          partition can change relative to how you divide (binary, quad, octal, etc.) the workspace along with the actual size of the workspace. Another complication is actually assigning each physics
+          object to the partitions which can be tricky especially with non uniformly sized physics objects.
         </p>
       </article>
 
