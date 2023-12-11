@@ -20,16 +20,15 @@
     }
     body {
       display: flex;
-      background-color: white;
+      background-color: black;
       justify-content: center;
       align-content: center;
     }
 
     #simulation-fps {
-      border: 1px solid red;
       margin: 0;
       padding: 0;
-      color: black;
+      color: white;
     }
 
     a {
@@ -39,24 +38,10 @@
       font-size: x-large;
     }
 
-    #instructions {
-      border: 3px solid red;
-      padding: 2rem;
-      margin: 0;
-      text-align: left;
-      /* flex: auto; */
-
-      width: 10rem;
-      flex-shrink: 1;
-      /* flex-grow: 1; */
-      /* justify-self: end; */
-    }
-
     #container {
-      padding: 0;
-      margin: 0;
       display: flex;
       justify-content: center;
+      align-content: center;
       flex-direction: row;
       width: 100%;
       height: 100%;
@@ -65,23 +50,44 @@
     form {
       width: 10rem;
       padding: 1rem;
-      /* flex: auto; */
-      /* flex-shrink: 1; */
     }
 
     #source {
-      margin-left: auto;
-      margin-right: auto;
+      width: 50%;
+      /* margin-left: auto; */
+      /* margin-right: auto; */
       align-self: center;
       background-color: white;
-      aspect-ratio: 1/1;
-      height: 100%;
+      border: 3px solid white;
+      flex-shrink: 1;
+    }
+
+    options {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+    }
+
+    #instructions {
+      display: none;
+      color: white;
+
+      padding: 1rem;
+      margin: 0;
+      width: 10rem;
+    }
+
+    #settings {
+      display: none;
+      color: white;
     }
   </style>
 
   <body>
-    <div id="container">
-      <form>
+    <options>
+      <button id="enableSettings">Settings</button>
+      <button id="enableInstructions">Instructions</button>
+      <form id="settings">
         <p id="simulation-fps">FPS:</p>
         <label for="gravity-input">Gravity:</label>
         <input autocomplete="off" type="number" id="simulation-gravity" name="gravity-input" value="5000" /><br /><br />
@@ -98,9 +104,6 @@
         <input autocomplete="off" type="button" value="Clear" id="simulation-clear" /><br /><br />
         <input autocomplete="off" type="button" value="Reset" id="simulation-reset" /><br /><br />
       </form>
-
-      <canvas id="source"></canvas>
-
       <ul id="instructions">
         Instructions:
         <li>Click to add more balls</li>
@@ -108,8 +111,53 @@
         <li>Restitiution describes how bouncy the balls are</li>
         <li>Simulation Substeps changes the number of calculation<br />cycles per frame, increase to add more stability to the simulation in exchange of performance</li>
       </ul>
+    </options>
+
+    <div id="container">
+      <canvas id="source"></canvas>
     </div>
   </body>
+
+  <script defer>
+    var settingsToggled = false;
+    var instructionsToggled = false;
+
+    const settingsButton = document.getElementById("enableSettings");
+    const settings = document.getElementById("settings");
+    const instructionsButton = document.getElementById("enableInstructions");
+    const instructions = document.getElementById("instructions");
+
+    settingsButton.onclick = function (event) {
+      console.log(event);
+      console.log(settingsToggled);
+      if (instructionsToggled) {
+        instructions.style.display = "none";
+        instructionsToggled = false;
+      }
+
+      settingsToggled = !settingsToggled;
+      if (settingsToggled) {
+        settings.style.display = "block";
+      } else {
+        settings.style.display = "none";
+      }
+    };
+
+    instructionsButton.onclick = function () {
+      console.log(instructionsToggled);
+      if (settingsToggled) {
+        settings.style.display = "none";
+        settingsToggled = false;
+      }
+
+      instructionsToggled = !instructionsToggled;
+      if (instructionsToggled) {
+        instructions.style.display = "block";
+      } else {
+        instructions.style.display = "none";
+      }
+    };
+  </script>
 
   <script defer src="./script.js"></script>
 </html>
