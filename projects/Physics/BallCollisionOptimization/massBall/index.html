@@ -18,6 +18,7 @@
       height: 100%;
       width: 100%;
     }
+
     body {
       display: flex;
       background-color: black;
@@ -31,13 +32,6 @@
       color: white;
     }
 
-    a {
-      position: absolute;
-      bottom: 15px;
-      left: 15px;
-      font-size: x-large;
-    }
-
     #container {
       display: flex;
       justify-content: center;
@@ -48,21 +42,21 @@
     }
 
     form {
-      width: 10rem;
       padding: 1rem;
     }
 
     #source {
-      width: 50%;
-      /* margin-left: auto; */
-      /* margin-right: auto; */
+      aspect-ratio: 1;
+      height: 100%;
+      box-sizing: border-box;
       align-self: center;
-      background-color: white;
       border: 3px solid white;
       flex-shrink: 1;
     }
 
     options {
+      color: white;
+      max-width: 30rem;
       position: absolute;
       top: 1rem;
       left: 1rem;
@@ -70,16 +64,14 @@
 
     #instructions {
       display: none;
-      color: white;
 
       padding: 1rem;
       margin: 0;
-      width: 10rem;
+      max-width: 50%;
     }
 
     #settings {
       display: none;
-      color: white;
     }
   </style>
 
@@ -87,6 +79,7 @@
     <options>
       <button id="enableSettings">Settings</button>
       <button id="enableInstructions">Instructions</button>
+
       <form id="settings">
         <p id="simulation-fps">FPS:</p>
         <label for="gravity-input">Gravity:</label>
@@ -104,12 +97,13 @@
         <input autocomplete="off" type="button" value="Clear" id="simulation-clear" /><br /><br />
         <input autocomplete="off" type="button" value="Reset" id="simulation-reset" /><br /><br />
       </form>
+
       <ul id="instructions">
         Instructions:
         <li>Click to add more balls</li>
         <li>Press Space to launch balls up</li>
-        <li>Restitiution describes how bouncy the balls are</li>
-        <li>Simulation Substeps changes the number of calculation<br />cycles per frame, increase to add more stability to the simulation in exchange of performance</li>
+        <li>Restitution describes how bouncy the balls are</li>
+        <li>Simulation Substeps changes the number of calculation cycles per frame, increase to add more stability to the simulation in exchange of performance</li>
       </ul>
     </options>
 

@@ -1,46 +1,59 @@
 <!DOCTYPE html>
 
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-</head>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
 
-<style>
+  <style>
     html,
     body {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-    }
-
-    body {
-        display: flex;
-        background-color: gray;
-        justify-content: center;
-        align-content: center;
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      background-color: black;
     }
 
     canvas {
-        background-color: black;
-        display: block;
-        aspect-ratio: 1/1;
-        width: 100vh;
+      box-sizing: border-box;
+      border: 3px solid white;
+      background-color: black;
+      aspect-ratio: 1;
+      height: 100%;
     }
-</style>
 
-<body>
-    <canvas id="source"></canvas>
-    <a href="../../index.html">Back to Portfolio</a>
+    #container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+
+    p {
+      margin: 0;
+      position: absolute;
+      color: white;
+      top: 1rem;
+      left: 1rem;
+    }
+  </style>
+
+  <body>
+    <p>
+      Drag mouse to move boxes<br />
+      Press space to spawn new boxes
+    </p>
+
+    <div id="container">
+      <canvas id="source"></canvas>
+    </div>
 
     <script defer src="script.js"></script>
-
-</body>
-
+  </body>
 </html>
