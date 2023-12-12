@@ -37,6 +37,10 @@
 
     p {
       margin: 0;
+    }
+
+    options {
+      margin: 0;
       position: absolute;
       color: white;
       top: 1rem;
@@ -45,10 +49,15 @@
   </style>
 
   <body>
-    <p>
-      Drag mouse to move boxes<br />
-      Press space to spawn new boxes
-    </p>
+    <options>
+      <p>
+        Drag mouse to move boxes<br />
+        Press space to spawn new boxes
+      </p>
+      <br />
+      <button id="flingButton">fling</button>
+      <button id="clearButton">clear</button>
+    </options>
 
     <div id="container">
       <canvas id="source"></canvas>

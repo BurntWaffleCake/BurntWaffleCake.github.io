@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Box Collision</title>
+    <meta name="description" content="Projects" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../../../styles/articlestylesheet.css" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+
+  <style>
+    .image-holder {
+      max-width: 100%;
+    }
+
+    .image-holder img {
+      max-width: 100%;
+      height: auto;
+      background-color: white;
+    }
+
+    .article-nav-header {
+      font-size: larger;
+    }
+
+    .equation {
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      padding-bottom: 1rem;
+    }
+  </style>
+
+  <body>
+    <object id="global-nav-object" data="../../../articleTemplateObjects/articleGlobalNavObject.html"></object>
+
+    <div id="article-body">
+      <object data="../../../articleTemplateObjects/physicsEngineArticleNavObject.html"></object>
+
+      <div class="vertical-divider"></div>
+
+      <article id="article-contents">
+        <h1>Box Collision</h1>
+
+        <h2>Basic Polygon Collision</h2>
+        <p>
+          Balls are the simplest collision shape we need to handle. Unfortunately, most complex volumes are not made up of only balls and instead use complex polygons and shapes to fully or partially
+          represent itself. In our case with 2D collision, triangles are the most basic shape we can decompose these volumes into. This article will not go into triangle and other decomposition
+          algorithms and instead focus on collision between box or rectangular volumes.
+        </p>
+
+        <h2>AABB Box Collision</h2>
+        <p>
+          AABB collision is the most simple way to calculate the collision between two boxes. All of the edges of the box we want to collide is mapped to the x and y axis of the coordinate frame we
+          are using. This means that all colliders do not have rotation allowing for every efficient and fast calculations to test for collision. In our case (with 2d collision), we only need to test
+          the x and y axis to see if two colliders are colliding which we can calculate using the overlap of the projection of these shapes onto said axis. If these projections do not overlap in any
+          of the tested axis, we can conclude that the two volumes are not colliding. This concept of using projections is further expanded in the SAT collision algorithm.
+        </p>
+
+        <p style="text-align: center">calculating overlap between two lines</p>
+
+        <p class="equation">\( overlap =\max{(0, \min{(A_{max}, B_{max})}-\max{(A_{min}, B_{min})})}\)</p>
+
+        <div class="image-holder" style="display: flex; justify-content: center">
+          <img class="" style="width: 90%" src="./images/AABB.drawio.svg" />
+        </div>
+
+        <h2>Pros and Cons</h2>
+        <p>
+          AABB is extremely fast compared to other collision algorithms and its simple nature allows for efficient and fast calculations. This is why many games use AABB when testing for collision
+          using bounding boxes that encapsulate the entire body that needs collision. This, however, comes at the cost of precision as AABB is locked to the axis and does not allow any rotation. AABB
+          also only represents a box and is unable to test for collision between more complex geometry. AABB serves as an excellent approximation of a body's volume and is often used as an
+          optimization method for more complex collision algorithms.
+        </p>
+
+        <h2>SAT Algorithm</h2>
+        <p>
+          SAT or Separating Axis Theorem is a method of finding collision using a set of axis and overlaps between projections. The overlap calculations from AABB is applicable here with the max and
+          min points being derived by projecting the colliding geometries onto an arbitrary axis instead of using the x and y axis. SAT allows for our boxes to have rotation and can be extended to any
+          convex polygon (any line drawn across a geometry can not have move than 2 points of intersection with that geometry). SAT uses an arbitrarily large number of axis to find whether two
+          geometries collide, however; we only need to test a set number of them in order to determine whether two geometries are colliding. These axis can be obtained by fetching all the normals of
+          both geometries, ignoring any normals that are parallel to existing axis. By projecting both geometries to these axis and making sure every axis has an overlap, we can guarantee a
+          collision/overlap between those two geometries (as long as they are both convex).
+        </p>
+      </article>
+
+      <div class="vertical-divider"></div>
+
+      <nav id="article-bookmarks"></nav>
+    </div>
+  </body>
+</html>

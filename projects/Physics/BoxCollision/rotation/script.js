@@ -392,7 +392,7 @@ let boxes = [];
 
 const gravity = 0;
 const restitution = 1;
-var substeps = 1;
+var substeps = 4;
 
 let time = 0.0;
 function loop(t) {
@@ -402,20 +402,23 @@ function loop(t) {
   if (mouse1Down) {
     let point = getMousePos(canvas, mousePos);
     let closestBox = boxes[0];
-    let distance = Math.sqrt((point.x - closestBox.x) ** 2 + (point.y - closestBox.y) ** 2);
-    for (let i = 1; i < boxes.length; i++) {
-      let nextBox = boxes[i];
-      let nextDistance = Math.sqrt((point.x - nextBox.x) ** 2 + (point.y - nextBox.y) ** 2);
-      if (nextDistance < distance) {
-        closestBox = nextBox;
-        distance = nextDistance;
-      }
-    }
-    closestBox.x = point.x;
-    closestBox.y = point.y;
 
-    closestBox.dx = mouseDelta.x * 50;
-    closestBox.dy = mouseDelta.y * 50;
+    if (closestBox !== undefined) {
+      let distance = Math.sqrt((point.x - closestBox.x) ** 2 + (point.y - closestBox.y) ** 2);
+      for (let i = 1; i < boxes.length; i++) {
+        let nextBox = boxes[i];
+        let nextDistance = Math.sqrt((point.x - nextBox.x) ** 2 + (point.y - nextBox.y) ** 2);
+        if (nextDistance < distance) {
+          closestBox = nextBox;
+          distance = nextDistance;
+        }
+      }
+      closestBox.x = point.x;
+      closestBox.y = point.y;
+
+      closestBox.dx = mouseDelta.x * 50;
+      closestBox.dy = mouseDelta.y * 50;
+    }
   }
 
   for (let c = 0; c < substeps; c++) {
@@ -483,12 +486,12 @@ let mouse1Down = false;
 let mousePos = { x: 0, y: 0 };
 let mouseDelta = { x: 0, y: 0 };
 
-document.addEventListener("mousedown", (event) => {
-  console.log("mousedown");
+canvas.addEventListener("mousedown", (event) => {
   if (event.buttons == 1) {
     mouse1Down = true;
   }
 });
+
 document.addEventListener("mouseup", (event) => {
   if (event.buttons == 0) {
     mouse1Down = false;
@@ -504,7 +507,6 @@ canvas.addEventListener("mousemove", (event) => {
 
 document.onkeydown = function (event) {
   if (event.key == " ") {
-    console.log("spacePressed");
     boxes.push(
       new Box(
         Math.random() * width,
@@ -518,4 +520,26 @@ document.onkeydown = function (event) {
       )
     );
   }
+};
+
+const clearButton = document.getElementById("clearButton");
+const flingButton = document.getElementById("flingButton");
+
+clearButton.onkeydown = function (e) {
+  e.preventDefault();
+};
+
+clearButton.onclick = function (e) {
+  boxes = [];
+};
+
+flingButton.onkeydown = function (e) {
+  e.preventDefault();
+};
+
+flingButton.onclick = function (e) {
+  boxes.forEach((box) => {
+    box.dx += box.m / 2 - Math.random() * box.m;
+    box.dy += box.m / 2 - Math.random() * box.m;
+  });
 };
