@@ -1,0 +1,48 @@
+html,
+body {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  padding: 0%;
+  margin: 0%;
+  overflow: hidden;
+
+  background-color: black;
+}
+
+#container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  align-items: center;
+  justify-content: center;
+}
+
+#source {
+  aspect-ratio: 1 / 1;
+  height: 95%;
+
+  border: 3px solid white;
+  background-color: black;
+}
+
+form {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+
+  overflow: wrap;
+
+  display: flex;
+  flex-direction: column;
+  color: white; /* background-color: red; */
+}
+label {
+  margin-right: 1rem;
+}
+
+#options button {
+  position: relative;
+  left: 100%;
+}

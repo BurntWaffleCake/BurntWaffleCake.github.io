@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BrowserBundle</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./stylesheet.css" />
+  </head>
+  <body>
+    <form>
+      <option>
+        <label for="RectAWidth">Rectangle A Width</label>
+        <input id="RectAWidth" type="number" min="10" max="500" value="100" autocomplete="off" />
+      </option>
+
+      <option>
+        <label for="RectAHeight">Rectangle A Height</label>
+        <input id="RectAHeight" type="number" min="10" max="500" value="100" autocomplete="off" />
+      </option>
+
+      <option>
+        <label for="RectARotation">Rectangle A Rotation</label>
+        <input id="RectARotation" type="number" min="0" max="360" value="0" autocomplete="off" />
+      </option>
+
+      <option>
+        <label for="RectBWidth">Rectangle B Width</label>
+        <input id="RectBWidth" type="number" min="10" max="500" value="100" autocomplete="off" />
+      </option>
+
+      <option>
+        <label for="RectBHeight">Rectangle B Height</label>
+        <input id="RectBHeight" type="number" min="10" max="500" value="100" autocomplete="off" />
+      </option>
+
+      <option>
+        <label for="RectBRotation">Rectangle B Rotation</label>
+        <input id="RectBRotation" type="number" min="0" max="360" value="0" autocomplete="off" />
+      </option>
+    </form>
+
+    <div id="container">
+      <canvas id="source"></canvas>
+    </div>
+    <script type="module" src="./main.js" async defer></script>
+  </body>
+</html>

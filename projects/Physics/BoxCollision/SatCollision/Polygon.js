@@ -1,6 +1,6 @@
 import { Vector2 } from "./Vector2.js";
 
-const debug = true;
+const debug = false;
 
 function minDisToLineSeg(a, b, e) {
   let ab = b.clone().subtract(a);

@@ -77,6 +77,24 @@
           optimization method for more complex collision algorithms.
         </p>
 
+        <p
+          class="codepen"
+          data-height="300"
+          data-default-tab="result"
+          data-slug-hash="KKJOxQW"
+          data-user="WaffleCake-the-decoder"
+          style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em"
+        >
+          <span
+            >See the Pen <a href="https://codepen.io/WaffleCake-the-decoder/pen/KKJOxQW"> Untitled</a> by WaffleCake (<a href="https://codepen.io/WaffleCake-the-decoder">@WaffleCake-the-decoder</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span
+          >
+        </p>
+        <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+        <a href="./AABBCollision/index.html" target="_blank" style="color: white">Click to open in new tab</a>
+
+        <br />
+
         <h2>SAT Algorithm</h2>
         <p>
           SAT or Separating Axis Theorem is a method of finding collision using a set of axis and overlaps between projections. The overlap calculations from AABB is applicable here with the max and
@@ -86,6 +104,48 @@
           both geometries, ignoring any normals that are parallel to existing axis. By projecting both geometries to these axis and making sure every axis has an overlap, we can guarantee a
           collision/overlap between those two geometries (as long as they are both convex).
         </p>
+
+        <div class="image-holder" style="display: flex; justify-content: center">
+          <img class="" style="width: 50%" src="./images/SatDiagram.png" />
+        </div>
+
+        <p
+          class="codepen"
+          data-height="300"
+          data-default-tab="result"
+          data-slug-hash="gOqVBaw"
+          data-user="WaffleCake-the-decoder"
+          style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em"
+        >
+          <span
+            >See the Pen <a href="https://codepen.io/WaffleCake-the-decoder/pen/gOqVBaw"> Untitled</a> by WaffleCake (<a href="https://codepen.io/WaffleCake-the-decoder">@WaffleCake-the-decoder</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span
+          >
+        </p>
+        <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+        <a href="./SatCollision/index.html" target="_blank" style="color: white">Click to open in new tab</a>
+
+        <h2>Response and Simulation</h2>
+        <p>
+          Using the area of these boxes as their mass, we can calculate the collision response that would occur if they were to collide. A force is applied at the point of collision proportional to
+          the amount of momentum each box carries which can in turn be used to calculate the rotational and translational velocities of the boxes.
+        </p>
+
+        <p
+          class="codepen"
+          data-height="300"
+          data-default-tab="  result"
+          data-slug-hash="KKJOGMo"
+          data-user="WaffleCake-the-decoder"
+          style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em"
+        >
+          <span
+            >See the Pen <a href="https://codepen.io/WaffleCake-the-decoder/pen/KKJOGMo"> Untitled</a> by WaffleCake (<a href="https://codepen.io/WaffleCake-the-decoder">@WaffleCake-the-decoder</a>)
+            on <a href="https://codepen.io">CodePen</a>.</span
+          >
+        </p>
+        <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+        <a href="./BoxCollision/index.html" target="_blank" style="color: white">Click to open in new tab</a>
       </article>
 
       <div class="vertical-divider"></div>
