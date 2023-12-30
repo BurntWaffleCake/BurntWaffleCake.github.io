@@ -1,2 +1,0 @@
-Limitation of Brute Force Circle Collision
-You may have noticed the fact that spawning a lot of balls in the previous article's simulation quickly negatively impacts the performance of the simulation. The previous simulation took a brute-force approach to checking collision. Each ball is compared with every other ball meaning the number of comparisons quickly increases as the number of balls increases (in this case the number of comparisons is equal to \( n^2 \) where n is the number of balls present).
