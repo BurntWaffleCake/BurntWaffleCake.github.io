@@ -1,0 +1,16 @@
+.playfair-display-title {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.title-hover:hover {
+  color: darkgray !important;
+}
+
+@media (max-width: 768px) {
+  .md-w-100 {
+    width: 100% !important;
+  }
+}
