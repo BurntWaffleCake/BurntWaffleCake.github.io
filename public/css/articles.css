@@ -1,0 +1,36 @@
+.playfair {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@media (max-width: 576px) {
+  .sm-w-100 {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .md-w-100 {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .lg-w-100 {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .xlg-w-100 {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  .xxlg-w-100 {
+    width: 100% !important;
+  }
+}
