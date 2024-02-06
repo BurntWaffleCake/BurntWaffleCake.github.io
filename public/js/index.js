@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   tl.add({
-    targets: "#vanta-globe",
+    targets: "#vanta-backdrop",
     translateX: "-50px",
 
     easing: "spring(1, 80, 10, 0)",
