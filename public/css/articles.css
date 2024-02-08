@@ -34,3 +34,7 @@
     width: 100% !important;
   }
 }
+
+.link:hover {
+  border-left: 2px solid;
+}

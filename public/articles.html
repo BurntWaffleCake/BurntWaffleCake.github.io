@@ -39,22 +39,7 @@
         <button class="navbar-toggler hidden-lg-up" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"><i class="bi bi-three-dots"></i></button>
 
         <div class="collapse navbar-collapse" id="collapsibleNavId">
-          <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" href="#" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-              <div class="dropdown-menu" aria-labelledby="dropdownId">
-                <a class="dropdown-item" href="#">Action 1</a>
-                <a class="dropdown-item" href="#">Action 2</a>
-              </div>
-            </li>
-          </ul>
+          <ul id="mainNavBar" class="navbar-nav me-auto mt-2 mt-lg-0"></ul>
 
           <button type="button" autocomplete="" id="theme_toggle_button" class="btn btn-light"><i class="bi bi-sun-fill"></i></button>
 
@@ -83,7 +68,7 @@
         <!-- Left Side Bar -->
         <div class="d-none d-lg-block col-2">
           <div class="sticky-top px-3 pt-5" style="top: 3.5rem">
-            <div class="h4 text-dark">Yes</div>
+            <div class="h4">Yes</div>
             <a href="" class="link text-decoration-none text-light-emphasis">&emsp; Yes</a>
           </div>
         </div>
@@ -209,5 +194,6 @@
     referrerpolicy="no-referrer"
   ></script>
 
+  <script src="environment/mainPages.js"></script>
   <script src="js/article.js"></script>
 </html>
