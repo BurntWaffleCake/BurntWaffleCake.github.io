@@ -23,10 +23,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script>
-      hljs.highlightAll();
-    </script>
   </head>
 
   <body>
@@ -34,6 +30,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-secondary-subtle sticky-top">
       <div class="container d-flex">
         <button class="navbar-toggler hidden-lg-up" type="button" data-bs-toggle="offcanvas" data-bs-target="#Id1"><i class="bi bi-list"></i></button>
+        <!-- Logo -->
         <div class="fw-bold h4 playfair mb-0">Digital Portfolio</div>
 
         <button class="navbar-toggler hidden-lg-up" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"><i class="bi bi-three-dots"></i></button>
@@ -41,13 +38,9 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
           <ul id="mainNavBar" class="navbar-nav me-auto mt-2 mt-lg-0"></ul>
 
+          <!-- Theme Toggle -->
           <button type="button" autocomplete="" id="theme_toggle_button" class="btn btn-light"><i class="bi bi-sun-fill"></i></button>
-
-          <!-- <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-            <i class="bi bi-sun-fill" style="display: none"></i>
-            <i class="bi bi-moon-fill"></i>
-          </div> -->
+          <!-- End of Theme Toggle -->
         </div>
       </div>
     </nav>
@@ -63,19 +56,33 @@
     </div>
 
     <!-- Main Content -->
-    <div class="container-lg container-fluid d-flex px-0">
+    <div class="container-lg container-fluid px-0">
       <div class="row g-0">
         <!-- Left Side Bar -->
         <div class="d-none d-lg-block col-2">
           <div class="sticky-top px-3 pt-5" style="top: 3.5rem">
-            <div class="h4">Yes</div>
-            <a href="" class="link text-decoration-none text-light-emphasis">&emsp; Yes</a>
+            <a class="h4 text-decoration-none d-flex flex-row m-0" type="button" data-bs-toggle="collapse" data-bs-target="#idforthing" aria-expanded="false" aria-controls="contentId">
+              <i class="bi bi-caret-right-fill"></i>
+              <p class="m-0">Button</p>
+            </a>
+            <div class="collapse" id="idforthing">
+              <div class="d-flex flex-column">
+                <a href="" class="text-decoration-none">&emsp; Link to other page</a>
+                <a href="" class="text-decoration-none">&emsp; Link to other page</a>
+                <a href="" class="text-decoration-none">&emsp; Link to other page</a>
+                <a href="" class="text-decoration-none">&emsp; Link to other page</a>
+              </div>
+              <a href="" class="text-decoration-none">&emsp; Link to other page</a>
+            </div>
+            <!-- 
+            <button data-toggle="collapse" data-target="dropdown-content" class="d-flex h4 w-100 bg-danger flex-row"></button>
+            <div id="dropdown-content" class="collapse"></div> -->
           </div>
         </div>
         <!-- End of Left Side Bar -->
 
         <!-- Main Content -->
-        <div class="col px-0 shadow">
+        <div class="col-lg-8 px-0 shadow">
           <div
             class="px-5 mb-5"
             style="
@@ -94,29 +101,36 @@
             </nav>
 
             <div class="h1">Heading 1</div>
+            <div class="h2">Heading 2</div>
+            <div class="h3">Heading 3</div>
+            <div class="h4">Heading 4</div>
+            <div class="h5">Heading 5</div>
+            <div class="h6">Heading 6</div>
+            <br />
+            <div class="shadow">
+              <script src="https://gist.github.com/BurntWaffleCake/c299213d272c452def470dc0dc5eb4bb.js"></script>
+            </div>
+
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer quis auctor elit sed. Lacus suspendisse faucibus
-              interdum posuere. In hendrerit gravida rutrum quisque non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Fermentum leo vel orci porta non pulvinar neque laoreet. Nibh
-              venenatis cras sed felis eget. Vulputate sapien nec sagittis aliquam malesuada bibendum. Morbi tempus iaculis urna id volutpat lacus laoreet. Mauris cursus mattis molestie a iaculis at
-              erat pellentesque adipiscing. Sed viverra tellus in hac habitasse platea. Porta non pulvinar neque laoreet. Lobortis feugiat vivamus at augue eget arcu dictum varius duis. Diam vel quam
-              elementum pulvinar etiam non. Fringilla phasellus faucibus scelerisque eleifend donec. Sed augue lacus viverra vitae congue. Viverra maecenas accumsan lacus vel facilisis volutpat est
-              velit egestas. Mi bibendum neque egestas congue quisque egestas. Elit ut aliquam purus sit. Eget felis eget nunc lobortis mattis aliquam faucibus. Lacus viverra vitae congue eu consequat
-              ac felis donec et. Pellentesque adipiscing commodo elit at imperdiet dui. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Elementum facilisis leo vel fringilla est
-              ullamcorper eget. Dui nunc mattis enim ut tellus. Aliquam eleifend mi in nulla posuere sollicitudin. Quisque non tellus orci ac auctor. Eu ultrices vitae auctor eu augue ut lectus. Nec
-              sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Habitasse platea dictumst vestibulum rhoncus. Tellus mauris a diam maecenas. Est ante in nibh mauris cursus mattis.
-              Vitae ultricies leo integer malesuada nunc. Risus at ultrices mi tempus imperdiet nulla. Nibh venenatis cras sed felis eget velit aliquet sagittis id. Mauris pharetra et ultrices neque
-              ornare aenean euismod. Ut ornare lectus sit amet est placerat in egestas erat. Amet nulla facilisi morbi tempus iaculis urna. Quam id leo in vitae turpis. Morbi leo urna molestie at
-              elementum eu. Laoreet sit amet cursus sit amet. Ut tristique et egestas quis ipsum suspendisse. Commodo odio aenean sed adipiscing. Senectus et netus et malesuada fames ac turpis
-              egestas. Arcu non sodales neque sodales ut. Quis blandit turpis cursus in hac habitasse platea. Sit amet aliquam id diam. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien.
-              Erat velit scelerisque in dictum non consectetur a erat. Risus commodo viverra maecenas accumsan. Congue nisi vitae suscipit tellus mauris a diam maecenas sed. Blandit volutpat maecenas
-              volutpat blandit aliquam. Mauris ultrices eros in cursus turpis massa tincidunt dui ut. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend.
-              Condimentum mattis pellentesque id nibh tortor id. Erat nam at lectus urna duis convallis convallis tellus id. Ultrices sagittis orci a scelerisque purus semper eget duis. Tellus integer
-              feugiat scelerisque varius morbi enim nunc. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Aliquam vestibulum morbi blandit cursus risus. Tellus elementum sagittis
-              vitae et leo duis. Elit at imperdiet dui accumsan. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus. Mauris pellentesque pulvinar pellentesque habitant morbi tristique
-              senectus et. Eros in cursus turpis massa tincidunt dui. Scelerisque varius morbi enim nunc faucibus. A pellentesque sit amet porttitor eget dolor morbi non. Ullamcorper a lacus
-              vestibulum sed arcu non odio euismod. Montes nascetur ridiculus mus mauris vitae ultricies leo integer malesuada. Est pellentesque elit ullamcorper dignissim. Placerat duis ultricies
-              lacus sed turpis tincidunt id aliquet risus. Habitant morbi tristique senectus et netus. Quisque id diam vel quam elementum pulvinar. Eget sit amet tellus cras adipiscing enim. Ultrices
-              mi tempus imperdiet nulla malesuada pellentesque elit eget. Nisl suscipit adipiscing bibendum est ultricies integer quis auctor.
+              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+              libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
+              sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+              facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
+              porttitor, facilisis luctus, metus
+            </p>
+            <p>
+              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+              libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
+              sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+              facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
+              porttitor, facilisis luctus, metus
+            </p>
+            <p>
+              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
+              libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
+              sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+              facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
+              porttitor, facilisis luctus, metus
             </p>
 
             <!-- Alerts -->
@@ -196,4 +210,8 @@
 
   <script src="environment/mainPages.js"></script>
   <script src="js/article.js"></script>
+
+  <script>
+    hljs.highlightAll();
+  </script>
 </html>

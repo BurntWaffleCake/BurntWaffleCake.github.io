@@ -11,7 +11,7 @@ const env_main_pages = {
       href: "/public/index.html",
       items: [
         {
-          name: "brpther",
+          name: "brother",
           href: "/public/index.html",
         },
         {
