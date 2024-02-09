@@ -8,3 +8,16 @@
 /* .gist-meta {
   display: none;
 } */
+
+.sidebar-dropdown-category-label:hover {
+  text-decoration: underline;
+}
+
+.sidebar-dropdown-link:hover {
+  text-decoration: underline !important;
+}
+
+* {
+  scroll-behavior: smooth;
+  scrollbar-width: thin !important;
+}

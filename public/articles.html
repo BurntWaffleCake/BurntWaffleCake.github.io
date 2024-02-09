@@ -60,23 +60,8 @@
       <div class="row g-0">
         <!-- Left Side Bar -->
         <div class="d-none d-lg-block col-2">
-          <div class="sticky-top px-3 pt-5" style="top: 3.5rem">
-            <a class="h4 text-decoration-none d-flex flex-row m-0" type="button" data-bs-toggle="collapse" data-bs-target="#idforthing" aria-expanded="false" aria-controls="contentId">
-              <i class="bi bi-caret-right-fill"></i>
-              <p class="m-0">Button</p>
-            </a>
-            <div class="collapse" id="idforthing">
-              <div class="d-flex flex-column">
-                <a href="" class="text-decoration-none">&emsp; Link to other page</a>
-                <a href="" class="text-decoration-none">&emsp; Link to other page</a>
-                <a href="" class="text-decoration-none">&emsp; Link to other page</a>
-                <a href="" class="text-decoration-none">&emsp; Link to other page</a>
-              </div>
-              <a href="" class="text-decoration-none">&emsp; Link to other page</a>
-            </div>
-            <!-- 
-            <button data-toggle="collapse" data-target="dropdown-content" class="d-flex h4 w-100 bg-danger flex-row"></button>
-            <div id="dropdown-content" class="collapse"></div> -->
+          <div class="overflow-auto sticky-top" style="top: 3.5rem; height: 75vh">
+            <div id="left_side_bar" class="sticky-top px-3 pt-5 d-flex flex-column"></div>
           </div>
         </div>
         <!-- End of Left Side Bar -->
@@ -134,7 +119,7 @@
             </p>
 
             <!-- Alerts -->
-            <div class="border border-primary rounded my-3">
+            <div class="border border-primary rounded my-3" id="bruh">
               <div class="border-start border-primary border-5">
                 <!-- <img class="card-img-top" src="holder.js/100px180/" alt="" /> -->
                 <div class="card-body p-4 bg-primary-subtle">
@@ -179,9 +164,8 @@
 
         <!-- Right Side Bar -->
         <div class="d-none d-lg-block col-2">
-          <div class="sticky-top px-3 pt-5" style="top: 3.5rem">
-            <div class="h4">Yes</div>
-            <a href="" class="link text-decoration-none text-light-emphasis">&emsp; Yes</a>
+          <div class="overflow-auto sticky-top" style="top: 3.5rem; height: 75vh">
+            <div id="right_side_bar" class="sticky-top px-3 pt-5 d-flex flex-column"></div>
           </div>
         </div>
         <!-- End of Right Side Bar -->
@@ -209,9 +193,6 @@
   ></script>
 
   <script src="environment/mainPages.js"></script>
-  <script src="js/article.js"></script>
-
-  <script>
-    hljs.highlightAll();
-  </script>
+  <script src="environment/articleTemplateEnv.js"></script>
+  <script src="environment/articleTemplateSidebar.js"></script>
 </html>
