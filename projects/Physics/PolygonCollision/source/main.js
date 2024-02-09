@@ -32,14 +32,14 @@ function render(dt) {
   // newPoly.render(ctx);
 }
 
-let gravity = new Vector2(1000, 0);
+let gravity = new Vector2(0, 1000);
 let substeps = 4;
 function calculate(dt, t) {
   if (paused) {
     return;
   }
 
-  gravity.set(1000 * Math.cos(t), 1000 * Math.sin(t));
+  // gravity.set(1000 * Math.cos(t), 1000 * Math.sin(t));
 
   poly2.rot += dt * ((10 * Math.PI) / 180);
 
@@ -48,9 +48,6 @@ function calculate(dt, t) {
       let dti = dt / substeps;
       model.vel.add(gravity.clone().scale(dti));
       model.tick(dti, t);
-      // if (!polygon.anchored) {
-      //     // applyCollisionBounds(polygon)
-      // }`
 
       for (let collPoly of polygons) {
         let results = model.testPolygonCollision(collPoly, ctx);
@@ -63,7 +60,6 @@ function calculate(dt, t) {
         });
       }
     }
-    // console.log(model)
   }
 
   for (let polygon of polygons) {
@@ -102,8 +98,9 @@ function loop(t) {
 
   if (mouse1down) {
     let delta = new Vector2(prevMouseEvent.clientX, prevMouseEvent.clientY).subtract(poly1.pos);
-    // poly1.applyImpulse(delta.scale(poly1.mass / 2), poly1.pos)
     poly1.pos.set(prevMouseEvent.clientX, prevMouseEvent.clientY);
+    poly1.vel.set(delta.x * 25, delta.y * 25);
+    // poly1.applyImpulse(delta.scale(poly1.mass / 2), poly1.pos)
   }
 
   calculate(dt, t / 1000);
@@ -181,29 +178,33 @@ function startup() {
   // poly2 = new polyModule.Wall(new Vector2(ctx.canvas.width / 2, ctx.canvas.height / 2), 500, 0, new Vector2(0, 0), 0)
   // polygons.push(poly2)
   for (let i = 0; i < 20; i++) {
-    polygons.push(
-      new polyModule.RegularPolygon(
-        new Vector2(ctx.canvas.width * Math.random(), ctx.canvas.height * Math.random()),
-        new Vector2(25 + Math.random() * 100, 25 + Math.random() * 100),
-        3 + Math.floor(Math.random() * 3),
-        0,
-        undefined,
-        180 * Math.random()
-      )
-
-      // new polyModule.Box(
-      //     new Vector2(ctx.canvas.width * Math.random(), ctx.canvas.height * Math.random()),
-      //     new Vector2(25 + Math.random() * 100, 25 + Math.random() * 100),
-      //     0,
-      //     undefined,
-      //     180 * Math.random(),
-      // )
-    );
+    createNewRandomPolygon();
   }
 
   window.requestAnimationFrame(loop);
 }
 window.requestAnimationFrame(startup);
+
+function createNewRandomPolygon() {
+  polygons.push(
+    new polyModule.RegularPolygon(
+      new Vector2(ctx.canvas.width * Math.random(), ctx.canvas.height * Math.random()),
+      new Vector2(25 + Math.random() * 100, 25 + Math.random() * 100),
+      3 + Math.floor(Math.random() * 3),
+      0,
+      undefined,
+      180 * Math.random()
+    )
+
+    // new polyModule.Box(
+    //   new Vector2(ctx.canvas.width * Math.random(), ctx.canvas.height * Math.random()),
+    //   new Vector2(25 + Math.random() * 100, 25 + Math.random() * 100),
+    //   0,
+    //   undefined,
+    //   180 * Math.random()
+    // )
+  );
+}
 
 var prevMouseEvent = undefined;
 document.addEventListener("mousemove", (event) => {
