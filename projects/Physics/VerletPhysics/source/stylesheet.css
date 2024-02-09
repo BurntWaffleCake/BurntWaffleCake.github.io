@@ -1,0 +1,100 @@
+html,
+body {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  padding: 0%;
+  margin: 0%;
+  overflow: hidden;
+}
+
+canvas {
+  height: 100%;
+  width: 100%;
+}
+
+#instructions {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+
+  padding: 0;
+  margin: 0;
+
+  font-size: x-large;
+  font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+  user-select: none;
+  z-index: -1;
+}
+
+#instructions p {
+  margin: 0%;
+}
+
+#options {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 1rem;
+  right: 1rem;
+  width: 25%;
+}
+
+#options-toggle {
+  height: 2rem;
+  font-size: larger;
+
+  width: 100%;
+  border: none;
+  background-color: darkgray;
+
+  color: white;
+  text-decoration: none;
+}
+
+#options-body {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  /* background-color: red; */
+}
+
+.slider {
+  min-width: 0;
+  align-self: flex-end;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1rem;
+
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+
+  border: 1px solid gray;
+  border-top: none;
+}
+
+.slider-label {
+  min-width: 0;
+  vertical-align: middle;
+  padding: 0;
+  text-align: center;
+
+  font-size: larger;
+
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.slider-number {
+  min-width: 0;
+  width: 4rem;
+}
+
+.slider-range {
+  min-width: 0;
+  flex-grow: 1;
+}
