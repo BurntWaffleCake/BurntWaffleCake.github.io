@@ -3,7 +3,7 @@ function uuidv4() {
 }
 
 const mainNavBar = document.getElementById("mainNavBar");
-env_main_pages.mainPageLinks.forEach((navItem) => {
+env.mainLinks.elements.forEach((navItem) => {
   if (navItem.type == "basic") {
     mainNavBar.innerHTML += `
     <li class="nav-item">
@@ -27,7 +27,41 @@ env_main_pages.mainPageLinks.forEach((navItem) => {
   }
 });
 
-function generateSideBar(parent, data) {
+const rightBookmark = document.getElementById("right_side_bar");
+const mainContent = document.getElementById("body");
+
+function generateBookmarkData() {
+  let data = {
+    elements: [],
+  };
+  const bookmarks = document.getElementsByClassName("bookmark");
+
+  let inner = "";
+  for (let bookmark of bookmarks) {
+    let id = uuidv4();
+    bookmark.id = id;
+
+    if (bookmark.classList.contains("bookmark-emphasis")) {
+      inner += `<a href="#${id}" class="sidebar-dropdown-link text-decoration-none" style="margin-left: 1.5rem !important;">${bookmark.textContent}</a>`;
+    } else {
+    }
+  }
+  rightBookmark.innerHTML = inner;
+
+  mainContent.onscroll = function (evt) {
+    for (let bookmark of bookmarks) {
+      if (bookmark.getBoundingClientRect().top - window.innerHeight < -window.innerHeight / 2) {
+        bookmark.style.backgroundColor = "red";
+      } else {
+      }
+    }
+  };
+  return data;
+}
+
+console.log(generateBookmarkData());
+
+function generateLeftNavBar(parent, data) {
   data.elements.forEach((element) => {
     if (element.type == "basic") {
       let inner = `<a href="${element.href}" class="sidebar-dropdown-link text-decoration-none" style="margin-left: 1.5rem !important;">${element.name}</a>`;
@@ -54,8 +88,7 @@ function generateSideBar(parent, data) {
 
 const leftSideBar = document.getElementById("left_side_bar");
 const rightSideBar = document.getElementById("right_side_bar");
-generateSideBar(leftSideBar, env_left_sidebar);
-generateSideBar(rightSideBar, env_left_sidebar);
+generateLeftNavBar(leftSideBar, env.leftSideBar);
 
 const html = document.getElementById("html");
 const button = document.getElementById("theme_toggle_button");

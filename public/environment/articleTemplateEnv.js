@@ -14,7 +14,34 @@ const env = {
     },
   ],
 
-  mainLinks: {},
+  mainLinks: {
+    elements: [
+      {
+        type: "basic",
+        name: "MainLink1",
+        href: "www.google.com",
+      },
+      {
+        type: "dropdown",
+        name: "Home",
+        href: "/public/index.html",
+        items: [
+          {
+            name: "brother",
+            href: "/public/index.html",
+          },
+          {
+            name: "in",
+            href: "/public/index.html",
+          },
+          {
+            name: "christ",
+            href: "/public/index.html",
+          },
+        ],
+      },
+    ],
+  },
 
   leftSideBar: {
     elements: [
@@ -41,6 +68,11 @@ const env = {
 
   rightSideBar: {
     elements: [
+      {
+        type: "basic",
+        name: "Heading First",
+        href: "#headingFirst",
+      },
       {
         type: "category",
         name: "SidebarCategory",
