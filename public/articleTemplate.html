@@ -42,12 +42,12 @@
 
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="Id1" aria-labelledby="Enable both scrolling & backdrop">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="Enable both scrolling & backdrop">Backdrop with scrolling</h5>
+        <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="offcanvas-body">
-        <p>Try scrolling the rest of the page to see this option in action.</p>
-      </div>
+
+      <hr class="m-0" />
+      <div id="offCanvasNav" class="offcanvas-body"></div>
     </div>
 
     <!-- Main Content -->
@@ -73,9 +73,9 @@
               <span class="breadcrumb-item active" aria-current="page">Active</span>
             </nav>
 
-            <!-- <div class="bookmark h3">Bookmarked Sub Header 1</div> -->
-            <!-- <div class="bookmark h3">Bookmarked Sub Header 2</div> -->
-            <!-- <div class="bookmark h3">Bookmarked Sub Header 3</div> -->
+            <div class="bookmark h3" data-skew="0">Bookmarked No Skew</div>
+            <div class="bookmark h3" data-skew="1">Bookmarked Skew 1</div>
+            <div class="bookmark h3" data-skew="2">Bookmarked Skew 2 asdfjalskfjs;afkjd;</div>
 
             <div class="h1">Heading 1</div>
             <div class="h2">Heading 2</div>
@@ -93,20 +93,20 @@
               Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna
               eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
             </p>
-            <div id="headingFirst" class="h1">Heading First</div>
+            <div id="headingFirst" class="bookmark h1">Heading First</div>
             <p>
               Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
               Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna
               eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
             </p>
-            <div id="headingNext" class="h1">Heading Next</div>
+            <div id="headingNext" class="bookmark h1">Heading Next</div>
 
             <p>
               Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
               Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna
               eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
             </p>
-            <div id="headingLast" class="h1">Heading Last</div>
+            <div id="headingLast" class="bookmark h1">Heading Last</div>
 
             <!-- Alerts -->
             <div class="border border-primary rounded my-3" id="bruh">
@@ -155,7 +155,7 @@
 
         <!-- Right Side Bar -->
         <div class="d-none d-lg-block col-2">
-          <div class="overflow-auto sticky-top" style="top: 3.5rem; height: 75vh">
+          <div class="overflow-y-auto overflow-x-hidden sticky-top" style="top: 3.5rem; height: 75vh">
             <div id="right_side_bar" class="sticky-top px-3 pt-5 d-flex flex-column"></div>
           </div>
         </div>
@@ -164,12 +164,27 @@
     </div>
     <!-- End of Main Content -->
   </body>
+
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="https://getbootstrap.com/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-muted">© 2024 Soohan Cho</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3">
+        <a class="text-muted" href="#"></a>
+      </li>
+    </ul>
+  </footer>
   <!-- Bootstrap JavaScript Libraries -->
+  <script src="environment/articleTemplateEnv.js"></script>
+  <script src="js/article.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34fzN6z+201d3T8HPb1svWSKHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script src="environment/articleTemplateEnv.js"></script>
-  <script src="js/article.js"></script>
 </html>
