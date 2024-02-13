@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark" id="html">
   <head>
-    <title>Articles</title>
+    <title>Rendering</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -52,8 +52,8 @@
 
     <!-- Main Content -->
     <div class="flex-grow-1 d-flex flex-column">
-      <div class="container-lg container-fluid px-0 flex-grow-1">
-        <div class="row g-0 h-100">
+      <div class="container-lg container-fluid px-0">
+        <div class="row g-0">
           <!-- Left Side Bar -->
           <div class="d-none d-lg-block col-2">
             <div class="overflow-auto sticky-top" style="top: 3.5rem; max-height: 75vh">
@@ -64,15 +64,34 @@
 
           <!-- Main Content -->
           <div id="main_content" class="col-lg-8 px-0 shadow pb-5">
-            <div class="px-5 mb-5" style="padding-top: 10rem; padding-bottom: 10rem; background-size: cover; background-position: center; background-image: url(../assets/images/articlesBackdrop.jpg)">
-              <div class="display-1 text-center text-light" style="text-shadow: 0 0 1rem black">Articles</div>
+            <div class="px-5 mb-5" style="padding-top: 10rem; padding-bottom: 10rem; background-size: cover; background-position: center; background-image: url(../../assets/images/graphicsBackdrop.jpg)">
+              <div class="display-1 text-center text-light" style="text-shadow: 0 0 1rem black">Graphics</div>
             </div>
             <div class="px-5">
               <nav class="breadcrumb">
-                <span class="breadcrumb-item active" aria-current="page">Articles</span>
+                <a class="breadcrumb-item" href="/public/articles/index.html">Articles</a>
+                <span class="breadcrumb-item active" aria-current="page">Graphics</span>
               </nav>
 
-              <p>This is the hub for all of my articles! This includes any topics and concepts I found interesting or any project I have completed over my computer science career. Be free to explore and let's all learn something new today!</p>
+              <div class="card playfair">
+                <div class="card-body">
+                  <blockquote class="blockquote mb-0">
+                    <p>Graphics:</p>
+                    <p>the art or science of drawing a representation of an object on a two-dimensional surface according to mathematical rules of projection</p>
+                    <footer class="blockquote-footer">
+                      <cite title="Source title">Meriam Webster</cite>
+                    </footer>
+                  </blockquote>
+                </div>
+              </div>
+
+              <br />
+
+              <p>
+                Welcome to the realm of graphics, where the enchanting visuals you encounter on screens come to life, whether it's in the realm of video games, movies, or animations! It's an artistic endeavor focused on crafting breathtaking imagery, from realistic landscapes to fantastical characters. Behind the curtain, graphics relies on
+                sophisticated algorithms and techniques to swiftly render these visuals in real-time. If you're passionate about crafting captivating digital art or delving into the intricacies of its underlying technology, graphics offers an exciting realm for exploration and creativity! So, come join me in this adventure as we unravel the
+                mysteries of visual enchantment and unleash the potential of digital artistry!
+              </p>
             </div>
           </div>
           <!-- End of Main Content -->
@@ -88,7 +107,7 @@
       </div>
       <!-- End of Main Content -->
 
-      <div class="container-fluid bg-secondary-subtle position-relative shadow" style="z-index: 5">
+      <div class="container-fluid bg-secondary-subtle position-relative shadow mt-auto" style="z-index: 5">
         <div class="container py-4">
           <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top border-dark-subtle">
             <div class="col-md-4 d-flex align-items-center">

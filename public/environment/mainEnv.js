@@ -9,7 +9,6 @@ const main_env = {
       {
         type: "dropdown",
         name: "Articles",
-        href: "/",
         items: [
           {
             name: "Physics",
@@ -20,8 +19,8 @@ const main_env = {
             href: "/public/articles/algorithms/index.html",
           },
           {
-            name: "Rendering",
-            href: "/public/articles/rendering/index.html",
+            name: "Graphics",
+            href: "/public/articles/graphics/index.html",
           },
         ],
       },

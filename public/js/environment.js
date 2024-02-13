@@ -3,35 +3,72 @@ function uuidv4() {
 }
 
 const mainNavBar = document.getElementById("mainNavBar");
-main_env.mainLinks.elements.forEach((navItem) => {
-  if (navItem.type == "basic") {
-    mainNavBar.innerHTML += `
-    <li class="nav-item">
-      <a class="nav-link" href="${navItem.href}">${navItem.name}</a>
-    </li>
-  `;
-  } else if (navItem.type == "dropdown") {
-    let inner = "";
-    navItem.items.forEach((item) => {
-      inner += `<a class="dropdown-item" href="${item.href}">${item.name}</a>`;
-    });
+if (mainNavBar && main_env) {
+  main_env.mainLinks.elements.forEach((navItem) => {
+    switch (navItem.type) {
+      case "basic":
+        const basicHref = navItem.href;
+        const basicName = navItem.name;
 
-    let id = uuidv4();
+        if (!basicHref) {
+          console.warn("MainNavBar basic component missing href");
+          return;
+        }
 
-    mainNavBar.innerHTML += `<li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${navItem.name}</a>
-        <div class="dropdown-menu mb-3">
-          ${inner}
-        </div>
-      </li>
-    `;
-  }
-});
+        if (!basicName) {
+          console.warn("MainNavBar basic component missing name");
+          return;
+        }
+
+        mainNavBar.innerHTML += `
+        <li class="nav-item">
+          <a class="nav-link" href="${basicHref}">${basicName}</a>
+        </li>
+      `;
+        break;
+      case "dropdown":
+        let inner = "";
+        const dropdownName = navItem.name;
+        navItem.items.forEach((item) => {
+          const href = item.href;
+          const name = item.name;
+          if (!href) {
+            console.warn("MainNavBar dropdown link component missing href");
+            return;
+          }
+          if (!name) {
+            console.warn("MainNavBar dropdown link component missing name");
+            return;
+          }
+
+          inner += `<a class="dropdown-item" href="${href}">${name}</a>`;
+        });
+
+        mainNavBar.innerHTML += `<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${dropdownName}</a>
+            <div class="dropdown-menu mb-3">
+              ${inner}
+            </div>
+          </li>
+        `;
+        break;
+      case undefined:
+        console.warn(`MainNavBar component type not defined`);
+        break;
+      default:
+        console.warn(`${navItem.type} is not a valid MainNavBar component type`);
+        break;
+    }
+  });
+} else if (!main_env) {
+  console.warn("Environment missing MainNavBar environment values");
+}
 
 const rightBookmark = document.getElementById("right_side_bar");
-const mainContent = document.getElementById("body");
+const body = document.getElementsByTagName("body")[0];
+console.log(body, rightBookmark);
 
-function generateBookmarks() {
+if (rightBookmark && body) {
   let data = {
     elements: [],
   };
@@ -59,7 +96,7 @@ function generateBookmarks() {
   }
   rightBookmark.innerHTML = inner;
 
-  mainContent.onscroll = function (evt) {
+  body.onscroll = function (evt) {
     for (let bookmark of bookmarks) {
       let link = document.getElementById("pointer_" + bookmark.getElementsByTagName("anchor")[0].id);
       if (!link) {
@@ -74,7 +111,6 @@ function generateBookmarks() {
     }
   };
 }
-generateBookmarks();
 
 const offCanvasBody = document.getElementById("offCanvasNav");
 function generateLeftNavBar(parent, data) {

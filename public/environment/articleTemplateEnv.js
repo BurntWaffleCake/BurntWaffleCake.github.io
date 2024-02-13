@@ -30,11 +30,11 @@ const env = {
 
       {
         type: "category",
-        name: `<i class="bi bi-box"></i> Rendering`,
+        name: `<i class="bi bi-box"></i> Graphics`,
         links: [
           {
             name: "Introduction",
-            href: "/public/articles/rendering/index.html",
+            href: "/public/articles/graphics/index.html",
           },
         ],
       },
