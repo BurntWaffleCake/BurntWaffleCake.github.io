@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark" id="html">
+  <head>
+    <title>Articles</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="/public/css/articles.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <!-- Option 1: Include in HTML -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" />
+  </head>
+
+  <body id="body" class="min-vh-100 d-flex flex-column">
+    <!-- Nav tabs -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary-subtle sticky-top">
+      <div class="container d-flex">
+        <button class="navbar-toggler hidden-lg-up" type="button" data-bs-toggle="offcanvas" data-bs-target="#Id1"><i class="bi bi-list"></i></button>
+        <!-- Logo -->
+        <div class="fw-bold h4 playfair mb-0">Digital Portfolio</div>
+
+        <button class="navbar-toggler hidden-lg-up" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"><i class="bi bi-three-dots"></i></button>
+
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+          <ul id="mainNavBar" class="navbar-nav me-auto mt-2 mt-lg-0"></ul>
+
+          <!-- Theme Toggle -->
+          <button type="button" autocomplete="" id="theme_toggle_button" class="btn btn-light"><i class="bi bi-sun-fill"></i></button>
+          <!-- End of Theme Toggle -->
+        </div>
+      </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="Id1" aria-labelledby="Enable both scrolling & backdrop">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+
+      <hr class="m-0" />
+      <div id="offCanvasNav" class="offcanvas-body"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-grow-1 d-flex flex-column">
+      <div class="container-lg container-fluid px-0">
+        <div class="row g-0">
+          <!-- Left Side Bar -->
+          <div class="d-none d-lg-block col-2">
+            <div class="overflow-auto sticky-top" style="top: 3.5rem; max-height: 75vh">
+              <div id="left_side_bar" class="sticky-top px-3 pt-5 d-flex flex-column"></div>
+            </div>
+          </div>
+          <!-- End of Left Side Bar -->
+
+          <!-- Main Content -->
+          <div id="main_content" class="col-lg-8 px-0 shadow pb-5">
+            <div class="px-5 mb-5" style="padding-top: 10rem; padding-bottom: 10rem; background-size: cover; background-position-y: center; background-image: url(../assets/images/articlesBackdrop.jpg)">
+              <div class="display-1 text-center text-light" style="text-shadow: 0 0 1rem black">Articles</div>
+            </div>
+            <div class="px-5">
+              <nav class="breadcrumb">
+                <span class="breadcrumb-item active" aria-current="page">Articles</span>
+              </nav>
+
+              <p>This is the hub for all of my articles! This includes any topics and concepts I found interesting or any project I have completed over my computer science career. Be free to explore and let's all learn something new today!</p>
+            </div>
+          </div>
+          <!-- End of Main Content -->
+
+          <!-- Right Side Bar -->
+          <div class="d-none d-lg-block col-2">
+            <div class="overflow-y-auto overflow-x-hidden sticky-top" style="top: 3.5rem; max-height: 75vh">
+              <div id="right_side_bar" class="sticky-top px-3 pt-5 d-flex flex-column"></div>
+            </div>
+          </div>
+          <!-- End of Right Side Bar -->
+        </div>
+      </div>
+      <!-- End of Main Content -->
+
+      <div class="container-fluid bg-secondary-subtle position-relative shadow mt-auto" style="z-index: 5">
+        <div class="container py-4">
+          <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top border-dark-subtle">
+            <div class="col-md-4 d-flex align-items-center">
+              <a href="https://getbootstrap.com/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                <div class="fw-bold h4 playfair mb-0">Digital Portfolio</div>
+              </a>
+              <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Soohan Cho</span>
+            </div>
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+              <li class="ms-3">
+                <a class="text-body-secondary h3" href="https://github.com/BurntWaffleCake"><i class="bi bi-github"></i></a>
+              </li>
+            </ul>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="/public/environment/mainEnv.js"></script>
+  <script src="/public/environment/articleTemplateEnv.js"></script>
+  <script src="/public/js/article.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha512-aNMyYYxdIxIaot0Y1/PLuEu3eipGCmsEUBrUq+7aVyPGMFH8z0eTP0tkqAvv34fzN6z+201d3T8HPb1svWSKHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</html>

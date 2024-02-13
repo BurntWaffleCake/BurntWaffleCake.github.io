@@ -13,15 +13,15 @@ const main_env = {
         items: [
           {
             name: "Physics",
-            href: "/public/articles/projects/physics/index.html",
+            href: "/public/articles/physics/index.html",
           },
           {
-            name: "Sorting Algorithms",
-            href: "/public/index.html",
+            name: "Algorithms",
+            href: "/public/articles/algorithms/index.html",
           },
           {
             name: "Rendering",
-            href: "/public/index.html",
+            href: "/public/articles/rendering/index.html",
           },
         ],
       },
