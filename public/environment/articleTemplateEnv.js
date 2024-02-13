@@ -14,51 +14,40 @@ const env = {
     },
   ],
 
-  mainLinks: {
-    elements: [
-      {
-        type: "basic",
-        name: "Home",
-        href: "/public/index.html",
-      },
-      {
-        type: "dropdown",
-        name: "Home",
-        href: "/public/index.html",
-        items: [
-          {
-            name: "brother",
-            href: "/public/index.html",
-          },
-          {
-            name: "in",
-            href: "/public/index.html",
-          },
-          {
-            name: "christ",
-            href: "/public/index.html",
-          },
-        ],
-      },
-    ],
-  },
-
   leftSideBar: {
     elements: [
       {
+        type: "basic",
+        name: "Linkus",
+        href: "/",
+      },
+      {
         type: "category",
-        name: "SidebarCategory",
+        name: `<i class="bi bi-grid-3x2"></i> Algorithms`,
         links: [
           {
             name: "Link1",
             href: "https://www.google.com/",
           },
+        ],
+      },
+      {
+        type: "category",
+        name: `<i class="bi bi-boxes"></i> Physics`,
+        links: [
           {
-            name: "Link2",
+            name: "Link1",
             href: "https://www.google.com/",
           },
+        ],
+      },
+
+      {
+        type: "category",
+        name: `<i class="bi bi-box"></i> Rendering`,
+        links: [
           {
-            name: "Link3",
+            name: "Link1",
             href: "https://www.google.com/",
           },
         ],

@@ -3,7 +3,7 @@ function uuidv4() {
 }
 
 const mainNavBar = document.getElementById("mainNavBar");
-env.mainLinks.elements.forEach((navItem) => {
+main_env.mainLinks.elements.forEach((navItem) => {
   if (navItem.type == "basic") {
     mainNavBar.innerHTML += `
     <li class="nav-item">
@@ -80,7 +80,7 @@ const offCanvasBody = document.getElementById("offCanvasNav");
 function generateLeftNavBar(parent, data) {
   data.elements.forEach((element) => {
     if (element.type == "basic") {
-      let inner = `<a href="${element.href}" class="sidebar-dropdown-link text-decoration-none" style="margin-left: 1.5rem !important;">${element.name}</a>`;
+      let inner = `<a href="${element.href}" class="sidebar-dropdown-link text-decoration-none text-light-emphasis" style="margin-left: 1.5rem !important;">${element.name}</a>`;
       offCanvasBody.innerHTML += inner;
       parent.innerHTML += inner;
     } else if (element.type == "category") {
@@ -88,10 +88,10 @@ function generateLeftNavBar(parent, data) {
       let inner = "";
 
       element.links.forEach((link) => {
-        inner += `<a href="${link.href}" class="sidebar-dropdown-link text-decoration-none" style="margin-left: 1.5rem !important;">${link.name}</a>`;
+        inner += `<a href="${link.href}" class="sidebar-dropdown-link text-decoration-none text-light-emphasis" style="margin-left: 1.5rem !important;">${link.name}</a>`;
       });
-      inner = `<a class="h4 mt-3 text-decoration-none m-0" type="button" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="contentId">
-                  <p class="h5 m-0 sidebar-dropdown-category-label" style="word-wrap: break-word"><i class="bi bi-caret-right-fill"></i>${element.name}</p>
+      inner = `<a class="h4 mt-3 text-decoration-none m-0 mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="contentId">
+                  <p class="h5 m-0 sidebar-dropdown-category-label" style="word-wrap: break-word"><i id="icon_${id}" class="bi bi-caret-right-fill"></i>${element.name}</p>
                 </a>
               <div class="collapse show" id="${id}">
                 <div class="d-flex flex-column">
@@ -100,6 +100,11 @@ function generateLeftNavBar(parent, data) {
               </div>`;
       offCanvasBody.innerHTML += inner;
       parent.innerHTML += inner;
+
+      let parentLink = document.getElementById(`parent_${id}`);
+      let icon = document.getElementById(`icon_${id}`);
+
+      console.log(parentLink);
     }
   });
 }
@@ -134,11 +139,11 @@ function updateTheme() {
 }
 updateTheme();
 
-button.onclick = () => {
+button.addEventListener("click", () => {
   if (theme == "dark") {
     theme = "light";
   } else {
     theme = "dark";
   }
   updateTheme();
-};
+});
