@@ -7,6 +7,9 @@ const env = {
         href: "/public/articles/index.html",
       },
       {
+        type: "divider",
+      },
+      {
         type: "category",
         name: `<i class="bi bi-grid-3x2"></i> Algorithms`,
         links: [
@@ -15,6 +18,9 @@ const env = {
             href: "/public/articles/algorithms/index.html",
           },
         ],
+      },
+      {
+        type: "divider",
       },
 
       {
@@ -26,6 +32,9 @@ const env = {
             href: "/public/articles/physics/index.html",
           },
         ],
+      },
+      {
+        type: "divider",
       },
 
       {

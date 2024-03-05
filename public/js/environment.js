@@ -115,32 +115,42 @@ if (rightBookmark && body) {
 const offCanvasBody = document.getElementById("offCanvasNav");
 function generateLeftNavBar(parent, data) {
   data.elements.forEach((element) => {
+    switch (element.type) {
+      case "basic":
+        let basicInner = `<a href="${element.href}" class="sidebar-dropdown-link text-decoration-none text-light-emphasis" style="margin-left: 1.5rem !important;">${element.name}</a>`;
+        offCanvasBody.innerHTML += basicInner;
+        parent.innerHTML += basicInner;
+        break;
+      case "category":
+        let id = uuidv4();
+        let categoryInner = "";
+
+        element.links.forEach((link) => {
+          categoryInner += `<a href="${link.href}" class="sidebar-dropdown-link text-decoration-none text-light-emphasis" style="margin-left: 1.5rem !important;">${link.name}</a>`;
+        });
+        categoryInner = `<a class="h4 mt-3 text-decoration-none m-0 mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="contentId">
+                    <p class="h5 m-0 sidebar-dropdown-category-label" style="word-wrap: break-word"><i id="icon_${id}" class="bi bi-caret-right-fill"></i>${element.name}</p>
+                  </a>
+                <div class="collapse show" id="${id}">
+                  <div class="d-flex flex-column">
+                  ${categoryInner}
+                  </div>
+                </div>`;
+        offCanvasBody.innerHTML += categoryInner;
+        parent.innerHTML += categoryInner;
+        break;
+      case "divider":
+        let dividerInner = `<hr class="mt-2 my-0" />`;
+        offCanvasBody.innerHTML += dividerInner;
+        parent.innerHTML += dividerInner;
+        break;
+      default:
+        console.log("Unknown Component");
+        break;
+    }
+
     if (element.type == "basic") {
-      let inner = `<a href="${element.href}" class="sidebar-dropdown-link text-decoration-none text-light-emphasis" style="margin-left: 1.5rem !important;">${element.name}</a>`;
-      offCanvasBody.innerHTML += inner;
-      parent.innerHTML += inner;
     } else if (element.type == "category") {
-      let id = uuidv4();
-      let inner = "";
-
-      element.links.forEach((link) => {
-        inner += `<a href="${link.href}" class="sidebar-dropdown-link text-decoration-none text-light-emphasis" style="margin-left: 1.5rem !important;">${link.name}</a>`;
-      });
-      inner = `<a class="h4 mt-3 text-decoration-none m-0 mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#${id}" aria-expanded="false" aria-controls="contentId">
-                  <p class="h5 m-0 sidebar-dropdown-category-label" style="word-wrap: break-word"><i id="icon_${id}" class="bi bi-caret-right-fill"></i>${element.name}</p>
-                </a>
-              <div class="collapse show" id="${id}">
-                <div class="d-flex flex-column">
-                ${inner}
-                </div>
-              </div>`;
-      offCanvasBody.innerHTML += inner;
-      parent.innerHTML += inner;
-
-      let parentLink = document.getElementById(`parent_${id}`);
-      let icon = document.getElementById(`icon_${id}`);
-
-      console.log(parentLink);
     }
   });
 }
