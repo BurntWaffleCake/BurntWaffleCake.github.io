@@ -34,6 +34,17 @@ const env = {
         ],
       },
       {
+        type: "category",
+        name: `<i class="bi bi-boxes"></i> Physics Engine`,
+        links: [
+          {
+            name: "Introduction",
+            href: "/public/articles/physics/physicsEngine/template.html",
+          },
+        ],
+      },
+
+      {
         type: "divider",
       },
 
@@ -50,5 +61,3 @@ const env = {
     ],
   },
 };
-
-console.log(env);
